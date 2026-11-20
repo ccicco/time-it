@@ -1477,3 +1477,105 @@ You are too exhausted.
 08:14:53 of you.  The Temple is south.
 08:14:53 Exits: NS
 08:14:53 
+# session 2026-11-20T10:28:22 127.0.0.1:2150
+10:28:22 
+10:28:22 
+10:28:22                              Welcome to MUD
+10:28:22 
+10:28:22                          Based on a creation of
+10:28:22               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+10:28:22 
+10:28:25 [tail] By what name do you wish to be known? 
+10:28:25 > mwl
+10:28:30 [tail] Did I get that right, Mwl (Y/N)? 
+10:28:30 > mel
+10:28:33 [tail] Please type Yes or No? 
+10:28:33 > n
+10:28:36 [tail] Ok, what IS it, then? 
+10:28:36 > mel
+10:28:39 [tail] Password: 
+10:28:39 [secret withheld]
+10:28:39 Reconnecting.
+10:28:39 
+10:28:42 [3004] 
+10:28:42 Mom shouts 'And now she has athlete's fetus'
+10:28:42 
+10:28:57 [3004] 
+10:28:57 You are hungry.
+10:28:57 You are thirsty.
+10:28:57 
+10:29:17 [3004] 
+10:29:17 You are hungry.
+10:29:17 You are thirsty.
+10:29:17 
+10:29:22 [3004] 
+10:29:22 Uncle Fred shouts 'Time to get up, you lazy swine!'
+10:29:22 
+10:29:37 [3004] 
+10:29:37 You are hungry.
+10:29:37 You are thirsty.
+10:29:37 
+10:29:57 [3004] 
+10:29:57 You are hungry.
+10:29:57 You are thirsty.
+10:29:57 
+10:30:17 [3004] 
+10:30:17 You are hungry.
+10:30:17 You are thirsty.
+10:30:17 
+10:30:22 [3004] 
+10:30:22 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+10:30:22 
+10:30:28 [act] You are thirsty => drink coke
+10:30:30 [tail] [3004] 
+10:30:30 > l
+10:30:30 The North Steps of the Temple
+10:30:30    You find yourself on the north steps of the newly renovated
+10:30:30 Temple of Midgaard.  The northern sector of the city is north
+10:30:30 of you.  The Temple is south.
+10:30:30 Exits: NS
+10:30:30 Bowser is here, urinating on your feet.
+10:30:30 
+10:30:34 [tail] [3004] 
+10:30:34 > s
+10:30:34 The Temple Of Midgaard
+10:30:34    You are in the southern end of the temple hall in the Temple of Midgaard.
+10:30:34 The temple has been constructed from giant marble blocks, eternal in
+10:30:34 appearance, and most of the walls are covered by ancient wall paintings
+10:30:34 picturing Gods, Giants and peasants.
+10:30:34    Large steps lead down through the grand temple gate, descending the huge
+10:30:34 mound upon which the temple is built and ends on the temple square below.
+10:30:34    There is a SIGN here.
+10:30:34 Exits: NESWUD
+10:30:34 A Coke Machine is here.
+10:30:34 Mudhead is here.
+10:30:34 
+10:30:37 [3001] 
+10:30:37 Mudhead leaves south.
+10:30:37 You are hungry.
+10:30:37 You are thirsty.
+10:30:37 [act-fired] You are thirsty => drink coke
+10:30:37 
+10:30:38 [3001] You drink the Coca Cola.
+10:30:38 You do not feel thirsty.
+10:30:38 
+10:31:02 [3001] 
+10:31:02 Mudhead shouts 'This MUD sux!'
+10:31:02 
+10:31:22 [3001] 
+10:31:22 Mudhead has arrived.
+10:31:22 Uncle Fred has arrived.
+10:31:22 
+10:31:27 [3001] 
+10:31:27 Uncle Fred shouts 'Hey Mel, you yammeringflannelmouthedmongrel!'
+10:31:27 
+10:31:32 [3001] 
+10:31:32 Mudhead leaves east.
+10:31:32 Mom shouts 'Please come home with me ... I have Tylenol!!'
+10:31:32 Uncle Fred leaves south.
+10:31:32 
+10:31:51 [tail] [3001] 
+10:32:27 [tail-prompt] [3001] 
+10:32:27 > g7h8j9/quit
+10:32:27 Take two aspirin and call me in the morning.
+10:32:27 

@@ -4,6 +4,7 @@
 #include <ncurses.h>
 #include <poll.h>
 #include <unistd.h>
+#include <cctype>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -11,6 +12,17 @@
 
 static void log_line(std::FILE* log, const char* tag, const std::string& s) {
     if (log) std::fprintf(log, "%s%s\n", tag, s.c_str());
+}
+
+// The shape of a password prompt, recognized wherever Diku and its children
+// say it: the line's last word is "password:". What follows is secret.
+static bool ends_with_password_prompt(const std::string& raw) {
+    std::string s = raw;
+    while (!s.empty() && (s.back() == ' ' || s.back() == '\r' || s.back() == '\t')) s.pop_back();
+    if (s.size() < 9) return false;
+    std::string t = s.substr(s.size() - 9);
+    for (char& c : t) c = (char)std::tolower((unsigned char)c);
+    return t == "password:";
 }
 
 int main(int argc, char** argv) {
@@ -47,6 +59,7 @@ int main(int argc, char** argv) {
     view.init();
     InputLine line;
     std::string status;
+    bool expect_secret = false;                             // set by a Password: prompt, spent by the next Enter
     if (demo) {
         status = "ansi demo | the palette room";
         view.push_line("Time-It ANSI demo - painted by the same engine the scroll uses.");
@@ -64,7 +77,7 @@ int main(int argc, char** argv) {
     }
 
     for (;;) {
-        view.render(line.text(), line.cursor(), status, alive ? net.pending() : std::string());
+        view.render(expect_secret ? std::string(line.text().size(), '*') : line.text(), line.cursor(), status, alive ? net.pending() : std::string());
         struct pollfd pf[2] = { { STDIN_FILENO, POLLIN, 0 }, { net.fd(), POLLIN, 0 } };
         const int r = ::poll(pf, alive ? 2 : 1, 250);
         if (r > 0 && (pf[0].revents & POLLIN)) {
@@ -78,9 +91,19 @@ int main(int argc, char** argv) {
                     if (submitted == "/quit") break;
                     if (alive) {
                         const std::string tail = net.flush_pending();
-                        if (!tail.empty()) { view.push_line(tail); log_line(log, "[tail] ", tail); }
+                        if (!tail.empty()) {
+                            view.push_line(tail);
+                            log_line(log, "[tail] ", tail);
+                            if (ends_with_password_prompt(tail)) expect_secret = true;   // the wire just asked
+                        }
                     }
-                    if (!submitted.empty()) { view.push_line("> " + submitted); log_line(log, "> ", submitted); }
+                    if (expect_secret) {                     // the wire asked: the answer is never spoken in bytes
+                        view.push_line("> " + std::string(submitted.size(), '*'));
+                        log_line(log, "[secret withheld]", "");
+                        expect_secret = false;
+                    } else {
+                        if (!submitted.empty()) { view.push_line("> " + submitted); log_line(log, "> ", submitted); }
+                    }
                     if (alive) net.send_line(submitted);      // empty Enter still reaches the pager
                 }
             }
@@ -90,7 +113,8 @@ int main(int argc, char** argv) {
             net.pump(&lines);
             for (const std::string& s : lines) {
                 view.push_line(s);
-                log_line(log, "", s);                       // the tape stays raw: SGR rides into the log unhonored or hidden
+                log_line(log, "", s);                        // the tape stays raw: SGR rides into the log unhonored or hidden
+                if (ends_with_password_prompt(s)) expect_secret = true;
             }
             if (!net.live()) {                               // the link dropped; the room keeps its history
                 alive = false;

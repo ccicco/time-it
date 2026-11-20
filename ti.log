@@ -1629,3 +1629,715 @@ You are too exhausted.
 10:39:32 Mudhead leaves east.
 10:39:32 Uncle Fred leaves south.
 10:39:32 
+# session 2026-11-20T10:43:51 127.0.0.1:2150
+10:43:51 
+10:43:51 
+10:43:51                              Welcome to MUD
+10:43:51 
+10:43:51                          Based on a creation of
+10:43:51               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+10:43:51 
+10:43:54 [tail] By what name do you wish to be known? 
+10:43:54 > mel
+10:43:58 [tail] Password: 
+10:43:58 [secret withheld]
+10:43:58 Reconnecting.
+10:43:58 
+10:44:01 [tail] [3001] 
+10:44:01 > l
+10:44:01 The Temple Of Midgaard
+10:44:01    You are in the southern end of the temple hall in the Temple of Midgaard.
+10:44:01 The temple has been constructed from giant marble blocks, eternal in
+10:44:01 appearance, and most of the walls are covered by ancient wall paintings
+10:44:01 picturing Gods, Giants and peasants.
+10:44:01    Large steps lead down through the grand temple gate, descending the huge
+10:44:01 mound upon which the temple is built and ends on the temple square below.
+10:44:01    There is a SIGN here.
+10:44:01 Exits: NESWUD
+10:44:01 A Coke Machine is here.
+10:44:01 
+10:44:02 [tail] [3001] 
+10:44:02 > n
+10:44:02 The North Steps of the Temple
+10:44:02    You find yourself on the north steps of the newly renovated
+10:44:02 Temple of Midgaard.  The northern sector of the city is north
+10:44:02 of you.  The Temple is south.
+10:44:02 Exits: NS
+10:44:02 
+10:44:06 [tail] [3004] 
+10:44:06 > n
+10:44:06 The Corner of Mindflayer and Fourth
+10:44:06 You are outdoors in Northern Midgaard.
+10:44:06 Exits: NESW
+10:44:06 
+10:44:08 [tail] [1662] 
+10:44:08 > cl
+10:44:08 Close what?
+10:44:08 
+10:44:11 [walk] 4s (4 steps)
+10:44:11 [1662] The North Steps of the Temple
+10:44:11    You find yourself on the north steps of the newly renovated
+10:44:11 Temple of Midgaard.  The northern sector of the city is north
+10:44:11 of you.  The Temple is south.
+10:44:11 Exits: NS
+10:44:11 
+10:44:11 [3004] The Temple Of Midgaard
+10:44:11    You are in the southern end of the temple hall in the Temple of Midgaard.
+10:44:11 The temple has been constructed from giant marble blocks, eternal in
+10:44:11 appearance, and most of the walls are covered by ancient wall paintings
+10:44:11 picturing Gods, Giants and peasants.
+10:44:11    Large steps lead down through the grand temple gate, descending the huge
+10:44:11 mound upon which the temple is built and ends on the temple square below.
+10:44:11    There is a SIGN here.
+10:44:11 Exits: NESWUD
+10:44:11 A Coke Machine is here.
+10:44:11 
+10:44:11 [3001] The Temple Square
+10:44:11    You are standing on the temple square.  Huge marble steps lead up to the
+10:44:11 temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+10:44:11 Grunting Boar Inn, is to the east.  Just south of here you see the market
+10:44:11 square, the center of Midgaard.
+10:44:11 Exits: NESW
+10:44:11 
+10:44:11 [3005] You are too exhausted.
+10:44:11 
+10:44:15 [walk] 4n (4 steps)
+10:44:15 [3005] The Temple Of Midgaard
+10:44:15    You are in the southern end of the temple hall in the Temple of Midgaard.
+10:44:15 The temple has been constructed from giant marble blocks, eternal in
+10:44:15 appearance, and most of the walls are covered by ancient wall paintings
+10:44:15 picturing Gods, Giants and peasants.
+10:44:15    Large steps lead down through the grand temple gate, descending the huge
+10:44:15 mound upon which the temple is built and ends on the temple square below.
+10:44:15    There is a SIGN here.
+10:44:15 Exits: NESWUD
+10:44:15 A Coke Machine is here.
+10:44:15 
+10:44:15 [3001] The North Steps of the Temple
+10:44:15    You find yourself on the north steps of the newly renovated
+10:44:15 Temple of Midgaard.  The northern sector of the city is north
+10:44:15 of you.  The Temple is south.
+10:44:15 Exits: NS
+10:44:15 
+10:44:15 [3004] The Corner of Mindflayer and Fourth
+10:44:15 You are outdoors in Northern Midgaard.
+10:44:15 Exits: NESW
+10:44:15 
+10:44:15 [1662] You are too exhausted.
+10:44:15 
+10:44:17 [1662] 
+10:44:17 The day has begun.
+10:44:17 
+10:44:37 [1662] 
+10:44:37 It starts to hail.
+10:44:37 
+10:45:22 [1662] 
+10:45:22 Uncle Fred shouts 'Time to get up, you lazy swine!'
+10:45:22 Bowser has arrived.
+10:45:22 
+10:46:22 [1662] 
+10:46:22 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+10:46:22 
+10:46:47 [1662] 
+10:46:47 Bowser leaves south.
+10:46:47 
+10:47:02 [1662] 
+10:47:02 Mudhead shouts 'About time for a player file wipe, isn't it?'
+10:47:02 
+10:47:12 [1662] 
+10:47:12 Bowser has arrived.
+10:47:12 
+10:47:27 [1662] 
+10:47:27 Bowser leaves west.
+10:47:27 
+10:51:06 [1662] 
+10:51:06 The sun slowly disappears in the east.
+10:51:06 
+10:51:26 [1662] 
+10:51:26 The night has begun.
+10:51:26 
+10:57:53 [1662] 
+10:57:53 Huge, dark cumulonimbus clouds cover the sky.
+10:57:53 
+11:06:36 [1662] 
+11:06:36 Light, alto-stratus clouds cover the sky.
+11:06:36 
+11:06:56 [1662] 
+11:06:56 The sun rises in the west.
+11:06:56 
+11:07:16 [1662] 
+11:07:16 The day has begun.
+11:07:16 
+11:07:46 [1662] 
+11:07:46 Mom shouts 'Where there's a will, there's an Inheritance Tax.'
+11:07:46 
+11:08:21 [1662] 
+11:08:21 Uncle Fred shouts 'Time to get up, you lazy swine!'
+11:08:21 
+11:08:36 [1662] 
+11:08:36 Mom shouts 'Cloning is the sincerest form of flattery.'
+11:08:36 
+11:08:46 [1662] 
+11:08:46 Mom shouts 'Am I accompanied by a PARENT or GUARDIAN?'
+11:08:46 
+11:09:21 [1662] 
+11:09:21 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+11:09:21 
+11:10:01 [1662] 
+11:10:01 Mudhead shouts 'This MUD sux!'
+11:10:01 
+11:11:26 [1662] 
+11:11:26 Bowser has arrived.
+11:11:26 
+11:12:16 [1662] 
+11:12:16 The sun slowly disappears in the east.
+11:12:16 
+11:12:36 [1662] 
+11:12:36 The night has begun.
+11:12:36 
+11:12:56 [1662] 
+11:12:56 The Rooster shouts 'Cock-a-doodle-doo!!'
+11:12:56 Bowser leaves south.
+11:12:56 
+11:13:36 [1662] 
+11:13:36 You are hungry.
+11:13:36 
+11:13:56 [1662] 
+11:13:56 You are hungry.
+11:13:56 
+11:14:16 [1662] 
+11:14:16 You are hungry.
+11:14:16 
+11:14:36 [1662] 
+11:14:36 You are hungry.
+11:14:36 
+11:14:56 [1662] 
+11:14:56 The sun rises in the west.
+11:14:56 You are hungry.
+11:14:56 
+11:15:06 [1662] 
+11:15:06 The Rooster shouts 'Cock-a-doodle-doo!!'
+11:15:06 
+11:15:16 [1662] 
+11:15:16 The day has begun.
+11:15:16 You are hungry.
+11:15:16 
+11:15:31 [1662] 
+11:15:31 Mom shouts 'The churches must learn humility as well as teach it.'
+11:15:31 
+11:16:11 [1662] 
+11:16:11 You are hungry.
+11:16:11 
+11:23:01 [1662] 
+11:23:01 You are hungry.
+11:23:01 
+11:29:46 [1662] 
+11:29:46 You are hungry.
+11:29:46 
+11:30:45 [1662] 
+11:30:45 Uncle Fred shouts 'Time to get up, you lazy swine!'
+11:30:45 
+11:33:22 [1662] 
+11:33:22 You are hungry.
+11:33:22 
+11:39:12 [1662] 
+11:39:12 Bowser has arrived.
+11:39:12 
+11:39:57 [1662] 
+11:39:57 You are hungry.
+11:39:57 
+11:40:17 [1662] 
+11:40:17 You are hungry.
+11:40:17 
+11:40:22 [1662] 
+11:40:22 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+11:40:22 
+11:40:37 [1662] 
+11:40:37 You are hungry.
+11:40:37 
+11:40:57 [1662] 
+11:40:57 You are hungry.
+11:40:57 
+11:41:02 [1662] 
+11:41:02 Mudhead shouts 'Let's wipe this game out!'
+11:41:02 Bowser leaves south.
+11:41:02 
+11:41:17 [1662] 
+11:41:17 You are hungry.
+11:41:17 
+11:41:37 [1662] 
+11:41:37 The Rooster shouts 'Cock-a-doodle-doo!!'
+11:41:37 You are hungry.
+11:41:37 
+11:41:57 [1662] 
+11:41:57 You are hungry.
+11:41:57 You are thirsty.
+11:41:57 [act-fired] You are thirsty => drink coke
+11:41:57 
+11:41:57 [1662] You can't find it!
+11:41:57 
+11:42:17 [1662] 
+11:42:17 You are hungry.
+11:42:17 You are thirsty.
+11:42:17 [act-fired] You are thirsty => drink coke
+11:42:17 
+11:42:17 [1662] You can't find it!
+11:42:17 
+11:42:22 [1662] 
+11:42:22 Bowser has arrived.
+11:42:22 
+11:42:37 [1662] 
+11:42:37 You are hungry.
+11:42:37 You are thirsty.
+11:42:37 [act-fired] You are thirsty => drink coke
+11:42:37 
+11:42:37 [1662] You can't find it!
+11:42:37 
+11:42:57 [1662] 
+11:42:57 You are hungry.
+11:42:57 You are thirsty.
+11:42:57 [act-fired] You are thirsty => drink coke
+11:42:57 
+11:42:57 [1662] You can't find it!
+11:42:57 
+11:43:02 [1662] 
+11:43:02 Bowser leaves east.
+11:43:02 
+11:43:17 [1662] 
+11:43:17 The sun slowly disappears in the east.
+11:43:17 You are hungry.
+11:43:17 You are thirsty.
+11:43:17 [act-fired] You are thirsty => drink coke
+11:43:17 
+11:43:17 [1662] You can't find it!
+11:43:17 
+11:43:32 [1662] 
+11:43:32 Mom shouts 'Stay away from flying saucers today.'
+11:43:32 
+11:43:37 [1662] 
+11:43:37 The night has begun.
+11:43:37 You are hungry.
+11:43:37 You are thirsty.
+11:43:37 [act-fired] You are thirsty => drink coke
+11:43:37 
+11:43:37 [1662] You can't find it!
+11:43:37 
+11:43:52 [1662] 
+11:43:52 Mom shouts 'Pro is to con as progress is to Congress.'
+11:43:52 
+11:43:57 [1662] 
+11:43:57 You are hungry.
+11:43:57 You are thirsty.
+11:43:57 [act-fired] You are thirsty => drink coke
+11:43:57 
+11:43:57 [1662] You can't find it!
+11:43:57 
+11:44:17 [1662] 
+11:44:17 You are hungry.
+11:44:17 You are thirsty.
+11:44:17 [act-fired] You are thirsty => drink coke
+11:44:17 
+11:44:17 [1662] You can't find it!
+11:44:17 
+11:44:37 [1662] 
+11:44:37 You are hungry.
+11:44:37 You are thirsty.
+11:44:37 [act-fired] You are thirsty => drink coke
+11:44:37 
+11:44:37 [1662] You can't find it!
+11:44:37 
+11:44:57 [1662] 
+11:44:57 You are hungry.
+11:44:57 You are thirsty.
+11:44:57 [act-fired] You are thirsty => drink coke
+11:44:57 
+11:44:57 [1662] You can't find it!
+11:44:57 
+11:45:17 [1662] 
+11:45:17 You are hungry.
+11:45:17 You are thirsty.
+11:45:17 [act-fired] You are thirsty => drink coke
+11:45:17 
+11:45:17 [1662] You can't find it!
+11:45:17 
+11:45:37 [1662] 
+11:45:37 You are hungry.
+11:45:37 You are thirsty.
+11:45:37 [act-fired] You are thirsty => drink coke
+11:45:37 
+11:45:37 [1662] You can't find it!
+11:45:37 
+11:45:57 [1662] 
+11:45:57 The sun rises in the west.
+11:45:57 You are hungry.
+11:45:57 You are thirsty.
+11:45:57 [act-fired] You are thirsty => drink coke
+11:45:57 
+11:45:57 [1662] You can't find it!
+11:45:57 
+11:46:17 [1662] 
+11:46:17 The day has begun.
+11:46:17 You are hungry.
+11:46:17 You are thirsty.
+11:46:17 [act-fired] You are thirsty => drink coke
+11:46:17 
+11:46:17 [1662] You can't find it!
+11:46:17 
+11:46:37 [1662] 
+11:46:37 You are hungry.
+11:46:37 You are thirsty.
+11:46:37 [act-fired] You are thirsty => drink coke
+11:46:37 
+11:46:37 [1662] You can't find it!
+11:46:37 
+11:46:57 [1662] 
+11:46:57 You are hungry.
+11:46:57 You are thirsty.
+11:46:57 [act-fired] You are thirsty => drink coke
+11:46:57 
+11:46:57 [1662] You can't find it!
+11:46:57 
+11:47:17 [1662] 
+11:47:17 You are hungry.
+11:47:17 You are thirsty.
+11:47:17 [act-fired] You are thirsty => drink coke
+11:47:17 
+11:47:17 [1662] You can't find it!
+11:47:17 
+11:47:22 [1662] 
+11:47:22 Uncle Fred shouts 'Time to get up, you lazy swine!'
+11:47:22 
+11:47:37 [1662] 
+11:47:37 You are hungry.
+11:47:37 You are thirsty.
+11:47:37 [act-fired] You are thirsty => drink coke
+11:47:37 
+11:47:37 [1662] You can't find it!
+11:47:37 
+11:47:57 [1662] 
+11:47:57 You are hungry.
+11:47:57 You are thirsty.
+11:47:57 [act-fired] You are thirsty => drink coke
+11:47:57 
+11:47:57 [1662] You can't find it!
+11:47:57 
+11:48:17 [1662] 
+11:48:17 You are hungry.
+11:48:17 You are thirsty.
+11:48:17 [act-fired] You are thirsty => drink coke
+11:48:17 
+11:48:17 [1662] You can't find it!
+11:48:17 
+11:48:22 [1662] 
+11:48:22 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+11:48:22 
+11:48:37 [1662] 
+11:48:37 You are hungry.
+11:48:37 You are thirsty.
+11:48:37 [act-fired] You are thirsty => drink coke
+11:48:37 
+11:48:37 [1662] You can't find it!
+11:48:37 
+11:48:42 [1662] 
+11:48:42 Mom shouts 'This fortune intentionally not included.'
+11:48:42 
+11:48:57 [1662] 
+11:48:57 Dark snow clouds roll in from the north.
+11:48:57 You are hungry.
+11:48:57 You are thirsty.
+11:48:57 [act-fired] You are thirsty => drink coke
+11:48:57 
+11:48:57 [1662] You can't find it!
+11:48:57 
+11:49:02 [1662] 
+11:49:02 Mudhead shouts 'This MUD sux!'
+11:49:02 
+11:49:17 [1662] 
+11:49:17 You are hungry.
+11:49:17 You are thirsty.
+11:49:17 [act-fired] You are thirsty => drink coke
+11:49:17 
+11:49:17 [1662] You can't find it!
+11:49:17 
+11:49:37 [1662] 
+11:49:37 You are hungry.
+11:49:37 You are thirsty.
+11:49:37 [act-fired] You are thirsty => drink coke
+11:49:37 
+11:49:37 [1662] You can't find it!
+11:49:37 
+11:49:57 [1662] 
+11:49:57 You are hungry.
+11:49:57 You are thirsty.
+11:49:57 [act-fired] You are thirsty => drink coke
+11:49:57 
+11:49:57 [1662] You can't find it!
+11:49:57 
+11:52:32 [1662] 
+11:52:32 Light, alto-stratus clouds cover the sky.
+11:52:32 You are hungry.
+11:52:32 You are thirsty.
+11:52:32 [act-fired] You are thirsty => drink coke
+11:52:32 
+11:52:32 [1662] You can't find it!
+11:52:32 
+11:52:52 [1662] 
+11:52:52 You are hungry.
+11:52:52 You are thirsty.
+11:52:52 [act-fired] You are thirsty => drink coke
+11:52:52 
+11:52:52 [1662] You can't find it!
+11:52:52 
+11:53:12 [1662] 
+11:53:12 You are hungry.
+11:53:12 You are thirsty.
+11:53:12 [act-fired] You are thirsty => drink coke
+11:53:12 
+11:53:12 [1662] You can't find it!
+11:53:12 
+11:53:32 [1662] 
+11:53:32 The sun slowly disappears in the east.
+11:53:32 You are hungry.
+11:53:32 You are thirsty.
+11:53:32 [act-fired] You are thirsty => drink coke
+11:53:32 
+11:53:32 [1662] You can't find it!
+11:53:32 
+11:53:52 [1662] 
+11:53:52 The night has begun.
+11:53:52 You are hungry.
+11:53:52 You are thirsty.
+11:53:52 [act-fired] You are thirsty => drink coke
+11:53:52 
+11:53:52 [1662] You can't find it!
+11:53:52 
+11:54:12 [1662] 
+11:54:12 You are hungry.
+11:54:12 You are thirsty.
+11:54:12 [act-fired] You are thirsty => drink coke
+11:54:12 
+11:54:12 [1662] You can't find it!
+11:54:12 
+11:54:32 [1662] 
+11:54:32 You are hungry.
+11:54:32 You are thirsty.
+11:54:32 [act-fired] You are thirsty => drink coke
+11:54:32 
+11:54:32 [1662] You can't find it!
+11:54:32 
+11:54:52 [1662] 
+11:54:52 You are hungry.
+11:54:52 You are thirsty.
+11:54:52 [act-fired] You are thirsty => drink coke
+11:54:52 
+11:54:52 [1662] You can't find it!
+11:54:52 
+11:55:12 [1662] 
+11:55:12 You are hungry.
+11:55:12 You are thirsty.
+11:55:12 [act-fired] You are thirsty => drink coke
+11:55:12 
+11:55:12 [1662] You can't find it!
+11:55:12 
+11:55:22 [1662] 
+11:55:22 Mom shouts 'Give me the Luxuries, and the Hell with the Necessities!'
+11:55:22 
+11:55:32 [1662] 
+11:55:32 You are hungry.
+11:55:32 You are thirsty.
+11:55:32 [act-fired] You are thirsty => drink coke
+11:55:32 
+11:55:32 [1662] You can't find it!
+11:55:32 
+11:55:52 [1662] 
+11:55:52 You are hungry.
+11:55:52 You are thirsty.
+11:55:52 [act-fired] You are thirsty => drink coke
+11:55:52 
+11:55:52 [1662] You can't find it!
+11:55:52 
+11:56:12 [1662] 
+11:56:12 The sun rises in the west.
+11:56:12 You are hungry.
+11:56:12 You are thirsty.
+11:56:12 [act-fired] You are thirsty => drink coke
+11:56:12 
+11:56:12 [1662] You can't find it!
+11:56:12 
+11:56:32 [1662] 
+11:56:32 The day has begun.
+11:56:32 You are hungry.
+11:56:32 You are thirsty.
+11:56:32 [act-fired] You are thirsty => drink coke
+11:56:32 
+11:56:32 [1662] You can't find it!
+11:56:32 
+11:56:52 [1662] 
+11:56:52 You are hungry.
+11:56:52 You are thirsty.
+11:56:52 [act-fired] You are thirsty => drink coke
+11:56:52 
+11:56:52 [1662] You can't find it!
+11:56:52 
+11:57:12 [1662] 
+11:57:12 You are hungry.
+11:57:12 You are thirsty.
+11:57:12 [act-fired] You are thirsty => drink coke
+11:57:12 
+11:57:12 [1662] You can't find it!
+11:57:12 
+11:57:32 [1662] 
+11:57:32 You are hungry.
+11:57:32 You are thirsty.
+11:57:32 [act-fired] You are thirsty => drink coke
+11:57:32 
+11:57:32 [1662] You can't find it!
+11:57:32 
+11:57:37 [1662] 
+11:57:37 Uncle Fred shouts 'Time to get up, you lazy swine!'
+11:57:37 
+11:57:52 [1662] 
+11:57:52 You are hungry.
+11:57:52 You are thirsty.
+11:57:52 [act-fired] You are thirsty => drink coke
+11:57:52 
+11:57:52 [1662] You can't find it!
+11:57:52 
+11:58:12 [1662] 
+11:58:12 You are hungry.
+11:58:12 You are thirsty.
+11:58:12 [act-fired] You are thirsty => drink coke
+11:58:12 
+11:58:12 [1662] You can't find it!
+11:58:12 
+11:58:32 [1662] 
+11:58:32 You are hungry.
+11:58:32 You are thirsty.
+11:58:32 [act-fired] You are thirsty => drink coke
+11:58:32 
+11:58:32 [1662] You can't find it!
+11:58:32 
+11:58:37 [1662] 
+11:58:37 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+11:58:37 
+11:58:52 [1662] 
+11:58:52 You are hungry.
+11:58:52 You are thirsty.
+11:58:52 [act-fired] You are thirsty => drink coke
+11:58:52 
+11:58:52 [1662] You can't find it!
+11:58:52 
+11:59:12 [1662] 
+11:59:12 You are hungry.
+11:59:12 You are thirsty.
+11:59:12 [act-fired] You are thirsty => drink coke
+11:59:12 
+11:59:12 [1662] You can't find it!
+11:59:12 
+11:59:17 [1662] 
+11:59:17 Mudhead shouts 'Guess what sux, Mel!'
+11:59:17 
+11:59:32 [1662] 
+11:59:32 You are hungry.
+11:59:32 You are thirsty.
+11:59:32 [act-fired] You are thirsty => drink coke
+11:59:32 
+11:59:32 [1662] You can't find it!
+11:59:32 
+11:59:52 [1662] 
+11:59:52 Mom shouts 'I'll show you MY telex number if you show me YOURS ...'
+11:59:52 You are hungry.
+11:59:52 You are thirsty.
+11:59:52 [act-fired] You are thirsty => drink coke
+11:59:52 
+11:59:52 [1662] You can't find it!
+11:59:52 
+12:00:12 [1662] 
+12:00:12 You are hungry.
+12:00:12 You are thirsty.
+12:00:12 [act-fired] You are thirsty => drink coke
+12:00:12 
+12:00:12 [1662] You can't find it!
+12:00:12 
+12:00:32 [1662] 
+12:00:32 You are hungry.
+12:00:32 You are thirsty.
+12:00:32 [act-fired] You are thirsty => drink coke
+12:00:32 
+12:00:32 [1662] You can't find it!
+12:00:32 
+12:00:52 [1662] 
+12:00:52 You are hungry.
+12:00:52 You are thirsty.
+12:00:52 [act-fired] You are thirsty => drink coke
+12:00:52 
+12:00:52 [1662] You can't find it!
+12:00:52 
+12:01:12 [1662] 
+12:01:12 You are hungry.
+12:01:12 You are thirsty.
+12:01:12 [act-fired] You are thirsty => drink coke
+12:01:12 
+12:01:12 [1662] You can't find it!
+12:01:12 
+12:01:32 [1662] 
+12:01:32 The sun slowly disappears in the east.
+12:01:32 You are hungry.
+12:01:32 You are thirsty.
+12:01:32 [act-fired] You are thirsty => drink coke
+12:01:32 
+12:01:32 [1662] You can't find it!
+12:01:32 
+12:01:52 [1662] 
+12:01:52 The night has begun.
+12:01:52 You are hungry.
+12:01:52 You are thirsty.
+12:01:52 [act-fired] You are thirsty => drink coke
+12:01:52 
+12:01:52 [1662] You can't find it!
+12:01:52 
+12:02:12 [1662] 
+12:02:12 You are hungry.
+12:02:12 You are thirsty.
+12:02:12 [act-fired] You are thirsty => drink coke
+12:02:12 
+12:02:12 [1662] You can't find it!
+12:02:12 
+12:03:03 [1662] 
+12:03:03 You are hungry.
+12:03:03 You are thirsty.
+12:03:03 [act-fired] You are thirsty => drink coke
+12:03:03 
+12:03:03 [1662] You can't find it!
+12:03:03 
+12:05:35 [1662] 
+12:05:35 You are hungry.
+12:05:35 You are thirsty.
+12:05:35 [act-fired] You are thirsty => drink coke
+12:05:35 
+12:05:35 [1662] You can't find it!
+12:05:35 
+12:05:55 [1662] 
+12:05:55 You are hungry.
+12:05:55 You are thirsty.
+12:05:55 [act-fired] You are thirsty => drink coke
+12:05:55 
+12:05:55 [1662] You can't find it!
+12:05:55 
+12:06:00 [1662] 
+12:06:00 Mom shouts 'The nourishment is palatable.'
+12:06:00 
+12:06:15 [1662] 
+12:06:15 You are hungry.
+12:06:15 You are thirsty.
+12:06:15 [act-fired] You are thirsty => drink coke
+12:06:15 
+12:06:15 [1662] You can't find it!
+12:06:15 
+12:06:35 [1662] 
+12:06:35 You are hungry.
+12:06:35 You are thirsty.
+12:06:35 [act-fired] You are thirsty => drink coke
+12:06:35 
+12:06:35 [1662] You can't find it!
+12:06:35 

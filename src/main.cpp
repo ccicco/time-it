@@ -71,6 +71,17 @@ static bool contains_ci(const std::string& s, const std::string& text) {
     return false;
 }
 
+static bool parse_walk(const std::string& s, std::vector<std::string>* out) {
+    if (s.size() < 2 || s.size() % 2 != 0) return false;   // pairs only: 2n, 3e, 2n3e
+    for (size_t i = 0; i < s.size(); i += 2) {
+        if (s[i] < '2' || s[i] > '9') return false;        // digits required, single dirs pass through
+        const char d = s[i + 1];
+        if (d != 'n' && d != 's' && d != 'e' && d != 'w' && d != 'u' && d != 'd') return false;
+        for (int k = 0; k < s[i] - '0'; ++k) out->push_back(std::string(1, d));
+    }
+    return true;
+}
+
 struct Alias {
     std::string name;
     std::string expansion;
@@ -406,6 +417,13 @@ int main(int argc, char** argv) {
                         }
                     } else {
                         std::string before = submitted;
+                        std::vector<std::string> walksteps;
+            if (parse_walk(submitted, &walksteps)) {
+                view.push_line("[walk] " + submitted + " -> " + std::to_string(walksteps.size()) + " step(s)");
+                log_line(log, "[walk] ", submitted + " (" + std::to_string(walksteps.size()) + " steps)");
+                if (alive) for (const std::string& wd : walksteps) net.send_line(wd);
+                goto done_submit;
+            }
                         if (expand_aliases(&aliases, &submitted) && submitted != before) {
                             view.push_line("[alias] " + before + " -> " + submitted);
                             log_line(log, "[alias-echo] ", before + " -> " + submitted);
@@ -431,6 +449,7 @@ int main(int argc, char** argv) {
                         }
                         if (alive) net.send_line(submitted);
                     }
+                    done_submit:;
                 }
             }
         }

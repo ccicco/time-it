@@ -37,7 +37,7 @@ bool View::on_key(int ch) {
 }
 
 void View::render(const std::string& input, size_t cursor, const std::string& status,
-                  const std::string& tail) {
+                  const std::string& tail, const std::string& prompt) {
     const int h = LINES - 2 > 0 ? LINES - 2 : 1;
     if (offset_ > lines_.size()) offset_ = lines_.size();   // the ring is finite
 
@@ -75,7 +75,15 @@ void View::render(const std::string& input, size_t cursor, const std::string& st
         mvwaddnstr(wout_, h - 1, COLS - (int)back.size() - 1, back.c_str(), (int)back.size());
     }
     werase(wstatus_);
+    // left voice: the link's words; right voice: the wire's prompt, never doubled below
+    const size_t prompt_pos = prompt.empty() ? (size_t)COLS
+                                             : ((size_t)COLS > prompt.size() + 1 ? (size_t)COLS - prompt.size() - 1 : 0);
     mvwaddnstr(wstatus_, 0, 0, status.c_str(), COLS - 1);
+    if (!prompt.empty()) {
+        wattron(wstatus_, A_BOLD);
+        mvwaddnstr(wstatus_, 0, (int)prompt_pos, prompt.c_str(), COLS - (int)prompt_pos - 1);
+        wattroff(wstatus_, A_BOLD);
+    }
     werase(winput_);
     mvwaddnstr(winput_, 0, 0, "> ", 2);
     mvwaddnstr(winput_, 0, 2, input.c_str(), COLS - 3);

@@ -1,5 +1,6 @@
 #include "highlight.h"
 #include "input.h"
+#include "prompt.h"
 #include "net.h"
 #include "view.h"
 #include <ncurses.h>
@@ -203,8 +204,19 @@ int main(int argc, char** argv) {
         else                    state = "free";
         status = link + " | " + state + " | " + std::to_string(view.line_count()) + " lines";
 
+        /* prompt: the bar right-voice, spoken from the pending tail every beat */
+        PromptReport pr;
+        std::string prompt_note;
+        if (alive && parse_prompt(net.pending(), &pr)) {
+            if (pr.vitals) {
+                prompt_note = "hp " + std::to_string(pr.hit) + " m " + std::to_string(pr.mana) + " mv " + std::to_string(pr.move);
+                if (pr.fight) prompt_note += " foe " + std::to_string(pr.foe);
+            } else {
+                prompt_note = "room " + std::to_string(pr.room);
+            }
+        }
         view.render(expect_secret ? std::string(line.text().size(), '*') : line.text(),
-                    line.cursor(), status, alive ? net.pending() : std::string());
+                    line.cursor(), status, alive ? net.pending() : std::string(), prompt_note);
         struct pollfd pf[2] = { { STDIN_FILENO, POLLIN, 0 }, { net.fd(), POLLIN, 0 } };
         const int r = ::poll(pf, alive ? 2 : 1, 250);
         if (r > 0 && (pf[0].revents & POLLIN)) {
@@ -282,11 +294,15 @@ int main(int argc, char** argv) {
                         if (alive) {
                             const std::string tail = net.flush_pending();
                             if (!tail.empty()) {
+                                if (whole_tail_is_prompt(tail)) {
+                                    if (log) std::fprintf(log, "[tail-prompt] %s\n", tail.c_str());
+                                } else {
                                 view.push_line(tail);
                                 log_line(log, "[tail] ", tail);
-                                if (ends_with_password_prompt(tail)) expect_secret = true;   // the wire just asked
+                                if (whole_tail_is_prompt(tail)) {} else if (ends_with_password_prompt(tail)) expect_secret = true;   // the wire just asked
+                                }
+                                }
                             }
-                        }
                         if (expect_secret) {                     // the wire asked: the answer is never spoken in bytes
                             view.push_line("> " + std::string(submitted.size(), '*'));
                             log_line(log, "[secret withheld]", "");

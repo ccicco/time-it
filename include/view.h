@@ -17,7 +17,7 @@ public:
     void push_line(const std::string& s);      // scrollback gains a logical line (raw, ANSI untouched)
     bool on_key(int ch);               // browse keys: PageUp/PageDown/ESC; returns true if consumed
     void render(const std::string& input, size_t cursor, const std::string& status,
-               const std::string& tail);
+               const std::string& tail, const std::string& prompt);
     size_t line_count() const { return lines_.size(); }   // the ring's weight, for the bar to speak
     void add_highlight(const std::string& text, int attr) { rules_.push_back(HiRule{text, attr}); }
     void clear_highlights() { rules_.clear(); }

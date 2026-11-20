@@ -662,3 +662,114 @@ Reconnecting.
 You are hungry.
 You are thirsty.
 
+
+
+                             Welcome to MUD
+
+                         Based on a creation of
+              Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+
+[tail] By what name do you wish to be known? 
+> mel
+[tail] Password: 
+[secret withheld]
+Reconnecting.
+
+[tail] [3023] 
+> l
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESD
+The Undercover Cop is sneaky and strong.
+Beastly Fido is here.
+A squeaky little mouse is running in circles.
+A Mercenary waiting for a job.
+Uncle Fred is resting here.
+Uncle Fred is twitching.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[3023] 
+A mouse leaves north.
+
+[tail] [3023] 
+> prompt
+Try that again?
+
+[3023] 
+You are hungry.
+You are thirsty.
+
+[3023] 
+Uncle Fred shouts 'Time to get up, you lazy swine!'
+Uncle Fred says 'My damroll is now 907.
+'
+Uncle Fred coughs loudly.
+
+[3023] 
+The Mercenary leaves north.
+Uncle Fred stands up.
+
+
+
+                             Welcome to MUD
+
+                         Based on a creation of
+              Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+
+[tail] By what name do you wish to be known? 
+> snaga
+[tail] Password: 
+[secret withheld]
+
+Reedanooze.
+
+
+
+[tail] *** PRESS RETURN: 
+
+Welcome to DikuMUD
+
+0) Exit from DikuMud.
+1) Enter the game.
+2) Enter description.
+3) Change password.
+4) Kick a dog.
+
+[tail]    Make your choice: 
+> 1
+
+Welcome to Midgaard.
+
+The Temple Of Midgaard
+   You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.
+   There is a SIGN here.
+A Coke Machine is here.
+
+[tail] [13,13,59] 
+> l
+The Temple Of Midgaard
+   You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.
+   There is a SIGN here.
+A Coke Machine is here.
+
+[13,13,59] 
+Mudhead shouts 'Hey, it's noon, time for me to get up!'
+
+[13,13,59] 
+Mudhead has arrived.
+
+[13,13,59] 
+Mudhead leaves south.
+

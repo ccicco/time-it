@@ -1,7 +1,7 @@
 #include "highlight.h"
 #include "input.h"
-#include "prompt.h"
 #include "net.h"
+#include "prompt.h"
 #include "view.h"
 #include <ncurses.h>
 #include <poll.h>
@@ -78,9 +78,25 @@ static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
     return any;
 }
 
+// --- gags: scroll-silence, tape-honest. Case-insensitive substring; a line
+//     containing a gag text never reaches the scroll. The tape stays raw.
+static bool is_gagged(const std::string& s, const std::vector<std::string>& gags) {
+    for (const std::string& g : gags) {
+        if (g.empty()) continue;
+        if (s.size() < g.size()) continue;
+        for (size_t i = 0; i + g.size() <= s.size(); ++i) {
+            bool hit = true;
+            for (size_t j = 0; j < g.size(); ++j) {
+                if (std::tolower((unsigned char)s[i + j]) != std::tolower((unsigned char)g[j])) { hit = false; break; }
+            }
+            if (hit) return true;
+        }
+    }
+    return false;
+}
+
 // --- the rc: ~/.timeit.rc, human grammar, auto-loaded at boot, rewritten at every mutation.
-//     File lines: "hi <text> [color]" (last word colors only if it names one) and
-//     "alias <name> <expansion...>". No exit hook: the file is always current.
+//     File lines: "hi <text> [color]", "alias <name> <expansion...>", "gag <text>".
 static std::string rc_path() {
     const char* h = std::getenv("HOME");
     return std::string(h ? h : ".") + "/.timeit.rc";
@@ -96,20 +112,22 @@ static std::string attr_to_name(int attr) {
     return "";                                             // default bold-yellow: written as bare text
 }
 
-static bool save_rc(const std::vector<HiRule>& hi, const std::vector<Alias>& al) {
+static bool save_rc(const std::vector<HiRule>& hi, const std::vector<Alias>& al,
+                    const std::vector<std::string>& gags) {
     std::FILE* f = std::fopen(rc_path().c_str(), "w");
     if (!f) return false;
-    std::fprintf(f, "# time-it rules. Grammar: hi <text> [color] | alias <name> <expansion...>\n");
+    std::fprintf(f, "# time-it rules. Grammar: hi <text> [color] | alias <name> <expansion...> | gag <text>\n");
     for (const HiRule& r : hi) {
         const std::string n = attr_to_name(r.attr);
         std::fprintf(f, "hi %s%s%s\n", r.text.c_str(), n.empty() ? "" : " ", n.c_str());
     }
     for (const Alias& a : al) std::fprintf(f, "alias %s %s\n", a.name.c_str(), a.expansion.c_str());
+    for (const std::string& g : gags) std::fprintf(f, "gag %s\n", g.c_str());
     std::fclose(f);
     return true;
 }
 
-static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al) {
+static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al, std::vector<std::string>* gags) {
     std::FILE* f = std::fopen(rc_path().c_str(), "r");
     if (!f) return 0;
     char buf[1024];
@@ -117,6 +135,7 @@ static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al) {
     while (std::fgets(buf, sizeof buf, f)) {
         std::string s = buf;
         while (!s.empty() && (s.back() == '\n' || s.back() == '\r')) s.pop_back();
+        while (!s.empty() && s.back() == ' ') s.pop_back();
         if (s.empty() || s[0] == '#') continue;
         if (s.rfind("hi ", 0) == 0) {
             std::string rest = s.substr(3);
@@ -134,6 +153,9 @@ static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al) {
                 al->push_back(Alias{rest.substr(0, sp), rest.substr(sp + 1)});
                 ++n;
             }
+        } else if (s.rfind("gag ", 0) == 0) {
+            const std::string rest = s.substr(4);
+            if (!rest.empty()) { gags->push_back(rest); ++n; }
         }
     }
     std::fclose(f);
@@ -174,10 +196,15 @@ int main(int argc, char** argv) {
     view.init();
     InputLine line;
     const std::string link = std::string(host) + ":" + std::to_string(port);
+
     std::vector<Alias> aliases;                             // born from the rc at boot, saved at every change
     std::vector<HiRule> rules;                              // staged for the view once the screen exists
-    const size_t rc_count = load_rc(&rules, &aliases);
+    std::vector<std::string> gags;                           // scroll-silence for the wire's repeated noise
+    const size_t rc_count = load_rc(&rules, &aliases, &gags);
     for (const HiRule& r : rules) view.add_highlight(r.text, r.attr);
+
+    // the scroll's one law, honored everywhere: gagged lines never display, never hidden from the tape
+    const auto push = [&](const std::string& s) { if (!is_gagged(s, gags)) view.push_line(s); };
 
     bool expect_secret = false;                             // set by a Password: prompt, spent by the next Enter
     if (demo) {
@@ -188,10 +215,10 @@ int main(int argc, char** argv) {
         view.push_line("truecolor: \x1b[38;2;255;140;0mtruecolor orange\x1b[0m \x1b[38;2;64;224;208mtruecolor turquoise\x1b[0m \x1b[38;2;128;0;255mtruecolor violet\x1b[0m");
         view.push_line("wrap + color interlocked: \x1b[36mthe cyan sentence must bend at the right edge and stay cyan on every row it occupies, seam and all, until the last word lands.\x1b[0m");
         view.push_line("swallow test: \x1b[2K\x1b[1;33mthis bright yellow follows a consumed cursor-clear; nothing garbled above.\x1b[0m");
-        view.push_line("/hi paints what matters, /alias names what you say. /quit to leave.");
+        view.push_line("/hi paints what matters, /alias names what you say, /gag silences what repeats. /quit to leave.");
     } else {
         view.push_line("Time-It 1.0 - linked to " + link);
-        view.push_line("Type commands below. Arrows recall history, PageUp browses, /hi highlights, /alias macros, /quit leaves (Ctrl-D too).");
+        view.push_line("Type commands below. Arrows recall history, PageUp browses, /hi highlights, /alias macros, /gag silences, /quit leaves (Ctrl-D too).");
     }
     if (rc_count > 0)
         view.push_line("[rc] " + std::to_string(rc_count) + " rule(s) remembered from ~/.timeit.rc");
@@ -204,7 +231,7 @@ int main(int argc, char** argv) {
         else                    state = "free";
         status = link + " | " + state + " | " + std::to_string(view.line_count()) + " lines";
 
-        /* prompt: the bar right-voice, spoken from the pending tail every beat */
+        // prompt: the bar's right voice, spoken from the pending tail every beat
         PromptReport pr;
         std::string prompt_note;
         if (alive && parse_prompt(net.pending(), &pr)) {
@@ -238,8 +265,7 @@ int main(int argc, char** argv) {
                                 view.push_line("  " + r.text);
                         } else if (rest == "clear") {
                             view.clear_highlights();
-                            aliases = aliases;                // highlights clear alone; macros keep their names
-                            save_rc(view.highlights(), aliases);
+                            save_rc(view.highlights(), aliases, gags);   // surgical: only highlights go
                             view.push_line("[hi] cleared (rc updated)");
                         } else {
                             std::string text = rest, color;
@@ -253,7 +279,7 @@ int main(int argc, char** argv) {
                             if (!color.empty()) note += " (" + color + ")";
                             view.push_line(note);
                             log_line(log, "[hi] ", note);
-                            save_rc(view.highlights(), aliases);
+                            save_rc(view.highlights(), aliases, gags);
                         }
                     } else if (submitted.rfind("/alias", 0) == 0) {   // client-side: never reaches the wire
                         std::string rest = submitted.substr(6);
@@ -265,7 +291,7 @@ int main(int argc, char** argv) {
                                 view.push_line("  " + a.name + " = " + a.expansion);
                         } else if (rest == "clear") {
                             aliases.clear();
-                            save_rc(view.highlights(), aliases);
+                            save_rc(view.highlights(), aliases, gags);   // surgical: only macros go
                             view.push_line("[alias] cleared (rc updated)");
                         } else {
                             const size_t sp = rest.find(' ');
@@ -281,8 +307,42 @@ int main(int argc, char** argv) {
                                 if (!replaced) aliases.push_back(Alias{name, expansion});
                                 view.push_line("[alias] " + name + " = " + expansion);
                                 log_line(log, "[alias] ", name + " = " + expansion);
-                                save_rc(view.highlights(), aliases);
+                                save_rc(view.highlights(), aliases, gags);
                             }
+                        }
+                    } else if (submitted.rfind("/ungag", 0) == 0) {   // one hand, one law undone
+                        std::string rest = submitted.substr(6);
+                        while (!rest.empty() && rest.front() == 32) rest.erase(0, 1);
+                        while (!rest.empty() && rest.back() == 32) rest.pop_back();
+                        if (rest.empty()) {
+                            view.push_line("[ungag] usage: /ungag <text>");
+                        } else {
+                            bool removed = false;
+                            for (size_t i = 0; i < gags.size(); ++i) {
+                                if (gags[i] == rest) { gags.erase(gags.begin() + (long)i); removed = true; break; }
+                            }
+                            view.push_line(removed ? "[ungag] spoke again: " + rest : "[ungag] no such gag");
+                            if (removed) save_rc(view.highlights(), aliases, gags);
+                        }
+                    } else if (submitted.rfind("/gag", 0) == 0) {      // client-side: never reaches the wire
+                        std::string rest = submitted.substr(4);
+                        while (!rest.empty() && rest.front() == ' ') rest.erase(0, 1);
+                        while (!rest.empty() && rest.back() == ' ') rest.pop_back();
+                        if (rest.empty() || rest == "list") {
+                            view.push_line("[gag] " + std::to_string(gags.size()) + " gag(s)");
+                            for (const std::string& g : gags)
+                                view.push_line("  " + g);
+                        } else if (rest == "clear") {
+                            gags.clear();
+                            save_rc(view.highlights(), aliases, gags);   // surgical: only gags go
+                            view.push_line("[gag] cleared (rc updated)");
+                        } else {
+                            bool replaced = false;
+                            for (const std::string& g : gags) if (g == rest) { replaced = true; break; }
+                            if (!replaced) gags.push_back(rest);
+                            view.push_line("[gag] silenced: " + rest);
+                            log_line(log, "[gag] ", rest);
+                            save_rc(view.highlights(), aliases, gags);
                         }
                     } else {
                         // the hinge: macros speak before the wire ever hears
@@ -297,18 +357,18 @@ int main(int argc, char** argv) {
                                 if (whole_tail_is_prompt(tail)) {
                                     if (log) std::fprintf(log, "[tail-prompt] %s\n", tail.c_str());
                                 } else {
-                                view.push_line(tail);
-                                log_line(log, "[tail] ", tail);
-                                if (whole_tail_is_prompt(tail)) {} else if (ends_with_password_prompt(tail)) expect_secret = true;   // the wire just asked
-                                }
+                                    push(tail);
+                                    log_line(log, "[tail] ", tail);   // the tape stays raw: gag or no gag
+                                    if (ends_with_password_prompt(tail)) expect_secret = true;
                                 }
                             }
+                        }
                         if (expect_secret) {                     // the wire asked: the answer is never spoken in bytes
                             view.push_line("> " + std::string(submitted.size(), '*'));
                             log_line(log, "[secret withheld]", "");
                             expect_secret = false;
                         } else {
-                            if (!submitted.empty()) { view.push_line("> " + submitted); log_line(log, "> ", submitted); }
+                            if (!submitted.empty()) { push("> " + submitted); log_line(log, "> ", submitted); }
                         }
                         if (alive) net.send_line(submitted);      // empty Enter still reaches the pager
                     }
@@ -319,8 +379,8 @@ int main(int argc, char** argv) {
             std::vector<std::string> lines;
             net.pump(&lines);
             for (const std::string& s : lines) {
-                view.push_line(s);
-                log_line(log, "", s);                        // the tape stays raw: SGR rides into the log unhonored or hidden
+                push(s);                                       // the scroll keeps silence; the tape keeps truth
+                log_line(log, "", s);
                 if (ends_with_password_prompt(s)) expect_secret = true;
             }
             if (!net.live()) {                               // the link dropped; the room keeps its history

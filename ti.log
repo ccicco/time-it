@@ -154,3 +154,404 @@ Age: 21 years old, Alignment: 0, Level: 9999, Spell level: 9999.
 Your GUT can hold 100 units.
 You are standing.
 
+
+
+                             Welcome to MUD
+
+                         Based on a creation of
+              Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+
+
+
+                             Welcome to MUD
+
+                         Based on a creation of
+              Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+
+[tail] By what name do you wish to be known? 
+> mel
+[tail] Password: 
+[secret withheld]
+Reconnecting.
+
+[tail] [3005] 
+> l
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+Dad is here, trying to think up some good excuses for Mom.
+
+[3005] 
+Mudhead shouts 'Hey, it's noon, time for me to get up!'
+
+[tail] [3005] 
+> n
+The Temple Of Midgaard
+   You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.
+   There is a SIGN here.
+Exits: NESWUD
+A Coke Machine is here.
+
+[3001] 
+Mudhead has arrived.
+
+[tail] [3001] 
+> n
+The North Steps of the Temple
+   You find yourself on the north steps of the newly renovated
+Temple of Midgaard.  The northern sector of the city is north
+of you.  The Temple is south.
+Exits: NS
+
+[tail] [3004] 
+> s
+The Temple Of Midgaard
+   You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.
+   There is a SIGN here.
+Exits: NESWUD
+A Coke Machine is here.
+Mudhead is here.
+
+[3001] 
+Mudhead leaves south.
+
+[hi] [hi] painted: Uncle Fred (red)
+[hi] [hi] painted: hungry (yellow)
+[tail] [3001] 
+> go fred
+The MidGaard Hospital
+   You are in the MidGaard Hospital.  It is a very modern facility,
+providing the latest in health care.  There is a sign here.
+Exits: S
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+
+[tail] [3060] 
+> l
+The MidGaard Hospital
+   You are in the MidGaard Hospital.  It is a very modern facility,
+providing the latest in health care.  There is a sign here.
+Exits: S
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+
+[3060] 
+Mudhead shouts 'Where's my ole pal, ThisMudSux?'
+Uncle Fred leaves south.
+
+[tail] [3060] 
+> s
+The Dark Alley
+   The dark alley, to the west is the common square and to the south is
+where McDonalds used to be.  The alley continues east.
+Exits: NESW
+Beastly Fido is here.
+A Mercenary waiting for a job.
+
+[tail] [3026] 
+> go fred
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+Mudhead is here.
+Dad is here, trying to think up some good excuses for Mom.
+
+[3005] 
+Mudhead leaves north.
+Uncle Fred leaves north.
+
+[tail] [3005] 
+> fol fred
+I see no person by that name here!
+
+[3005] 
+Dad leaves west.
+
+[tail] [3005] 
+> n
+The Temple Of Midgaard
+   You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.
+   There is a SIGN here.
+Exits: NESWUD
+A Coke Machine is here.
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+Mudhead is here.
+
+[3001] 
+Mudhead leaves east.
+Uncle Fred leaves south.
+
+[tail] [3001] 
+> fol fred
+I see no person by that name here!
+
+[tail] [3001] 
+> s
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+
+[3005] 
+Uncle Fred leaves south.
+
+[tail] [3005] 
+> fol fred
+I see no person by that name here!
+
+[tail] [3005] 
+> s
+You are too exhausted.
+
+[3005] 
+The Rooster shouts 'Cock-a-doodle-doo!!'
+
+[tail] [3005] 
+> tran fred
+Uncle Fred arrives from a puff of smoke.
+Ok.
+
+[3005] 
+Dad has arrived.
+Uncle Fred leaves south.
+
+[tail] [3005] 
+> force fred slee
+Ok.
+
+[tail] [3005] 
+> tran fred
+Uncle Fred arrives from a puff of smoke.
+Ok.
+
+[3005] 
+Uncle Fred spits you in the face.
+
+[tail] [3005] 
+> l
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+Uncle Fred is sleeping here.
+Uncle Fred is twitching.
+Dad is here, trying to think up some good excuses for Mom.
+
+[3005] 
+Uncle Fred leaves east.
+
+[3005] 
+Dad says 'That damn woman has all my money.'
+Uncle Fred has arrived.
+
+[3005] 
+Uncle Fred leaves west.
+
+[3005] 
+Uncle Fred has arrived.
+
+[hi] [hi] painted: Uncle Fred
+[tail] [3005] 
+> l
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+Uncle Fred is sleeping here.
+Uncle Fred is twitching.
+Dad is here, trying to think up some good excuses for Mom.
+
+[3005] 
+Uncle Fred burps loudly.
+
+[3005] 
+Uncle Fred laughs at you.
+
+[3005] 
+Uncle Fred leaves north.
+
+
+
+                             Welcome to MUD
+
+                         Based on a creation of
+              Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+
+[tail] By what name do you wish to be known? 
+> mel
+[tail] Password: 
+[secret withheld]
+Reconnecting.
+
+[tail] [3005] 
+> l
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+
+[hi] [hi] painted: has arrived (red)
+[3005] 
+The sun rises in the west.
+
+[tail] [3005] 
+> n
+The Temple Of Midgaard
+   You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.
+   There is a SIGN here.
+Exits: NESWUD
+A Coke Machine is here.
+
+[tail] [3001] 
+> go fred
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESD
+Uncle Fred is sleeping here.
+Uncle Fred is twitching.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[tail] [3023] 
+> wake fred
+You wake him up.
+
+[tail] [3023] 
+> l
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESD
+Uncle Fred is here, taking a load off his feet.
+Uncle Fred is twitching.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[tail] [3023] 
+> force fred stand
+Ok.
+Uncle Fred clambers on his feet.
+
+[tail] [3023] 
+> l
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESD
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[hi] [hi] painted: Aint
+[tail] [3023] 
+[3023] 
+Plasterman shouts 'I'm here with Uncle Joe, having a swell time!'
+
+[hi] [hi] painted: Aunt Kate (orange)
+[tail] [3023] 
+> l
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESD
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[tail] [3023] 
+> n
+Fred's Kitchen
+   This Fred's kitchen, where Fred and Kate eat.
+Exits: S
+A cityguard stands here.
+
+[tail] [3037] 
+> s
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESD
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[3023] 
+Uncle Fred shouts 'Time to get up, you lazy swine!'
+Uncle Fred says 'My damroll is now 907.
+'
+Uncle Fred pukes.
+
+[tail] [3023] 
+> l
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESD
+Uncle Fred is standing here.
+Uncle Fred is twitching.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[3023] 
+The Cityguard has arrived.
+Uncle Fred stands up.
+
+[3023] 
+Uncle Fred opens the door.
+
+[3023] 
+Uncle Fred leaves west.
+
+[tail] [3023] 
+> l
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESWD
+A cityguard stands here.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+

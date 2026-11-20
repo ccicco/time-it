@@ -18,6 +18,10 @@ void View::init() {
     winput_  = newwin(1, COLS, LINES - 1, 0);
 }
 
+View::~View() {
+    if (wout_) { delwin(wout_); delwin(wstatus_); delwin(winput_); }
+}
+
 void View::push_line(const std::string& s) {
     lines_.push_back(s);
     if (lines_.size() > kScrollback) lines_.pop_front();
@@ -53,14 +57,16 @@ void View::render(const std::string& input, size_t cursor, const std::string& st
     werase(wout_);
     int row = 0;
     for (; row < (int)rows.size(); ++row) {
+        highlight_row(&rows[row], rules_);                  // client-side paint after the wire's own
         paint_row(wout_, row, 0, rows[row], COLS);
     }
     // the pending tail rides the same paint, shown only at the live edge
     if (offset_ == 0 && !tail.empty() && row < h) {
         std::vector<PaintRow> trows;
         paint_wrap(tail, COLS, &trows);
-        for (const PaintRow& t : trows) {
+        for (PaintRow& t : trows) {
             if (row >= h) break;
+            highlight_row(&t, rules_);
             paint_row(wout_, row++, 0, t, COLS);
         }
     }
@@ -79,8 +85,4 @@ void View::render(const std::string& input, size_t cursor, const std::string& st
     wnoutrefresh(wstatus_);
     wnoutrefresh(winput_);
     doupdate();
-}
-
-View::~View() {
-    if (wout_) { delwin(wout_); delwin(wstatus_); delwin(winput_); }
 }

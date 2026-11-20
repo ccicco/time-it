@@ -25,6 +25,24 @@ static bool ends_with_password_prompt(const std::string& raw) {
     return t == "password:";
 }
 
+static bool is_color_name(const std::string& s) {
+    return s == "red" || s == "green" || s == "yellow" || s == "blue" ||
+           s == "magenta" || s == "cyan" || s == "white" || s == "orange" || s == "bold";
+}
+
+static int color_attr(const std::string& name) {
+    if (name == "red")     return COLOR_PAIR(2) | A_BOLD;
+    if (name == "green")   return COLOR_PAIR(3);
+    if (name == "yellow")  return COLOR_PAIR(4);
+    if (name == "blue")    return COLOR_PAIR(5);
+    if (name == "magenta") return COLOR_PAIR(6) | A_BOLD;
+    if (name == "cyan")    return COLOR_PAIR(7);
+    if (name == "white")   return COLOR_PAIR(8) | A_BOLD;
+    if (name == "orange")  return COLOR_PAIR(209);
+    if (name == "bold")    return A_BOLD;
+    return COLOR_PAIR(4) | A_BOLD;                        // unspoken color: bold yellow, the classic
+}
+
 int main(int argc, char** argv) {
     const char* host = "127.0.0.1";
     int port = 2600;
@@ -68,10 +86,10 @@ int main(int argc, char** argv) {
         view.push_line("truecolor: \x1b[38;2;255;140;0mtruecolor orange\x1b[0m \x1b[38;2;64;224;208mtruecolor turquoise\x1b[0m \x1b[38;2;128;0;255mtruecolor violet\x1b[0m");
         view.push_line("wrap + color interlocked: \x1b[36mthe cyan sentence must bend at the right edge and stay cyan on every row it occupies, seam and all, until the last word lands.\x1b[0m");
         view.push_line("swallow test: \x1b[2K\x1b[1;33mthis bright yellow follows a consumed cursor-clear; nothing garbled above.\x1b[0m");
-        view.push_line("/quit to leave.");
+        view.push_line("/hi <text> [color] paints what matters. /quit to leave.");
     } else {
         view.push_line("Time-It 1.0 - linked to " + link);
-        view.push_line("Type commands below. Arrows recall history, PageUp browses, /quit leaves (Ctrl-D too).");
+        view.push_line("Type commands below. Arrows recall history, PageUp browses, /hi highlights, /quit leaves (Ctrl-D too).");
     }
 
     std::string status;                                     // recomposed each beat: the bar speaks
@@ -95,22 +113,48 @@ int main(int argc, char** argv) {
                 if (act == InputLine::Act::quit) break;
                 if (act == InputLine::Act::submit) {
                     if (submitted == "/quit") break;
-                    if (alive) {
-                        const std::string tail = net.flush_pending();
-                        if (!tail.empty()) {
-                            view.push_line(tail);
-                            log_line(log, "[tail] ", tail);
-                            if (ends_with_password_prompt(tail)) expect_secret = true;   // the wire just asked
+                    if (submitted.rfind("/hi", 0) == 0) {     // client-side: never reaches the wire
+                        std::string rest = submitted.substr(3);
+                        while (!rest.empty() && rest.front() == ' ') rest.erase(0, 1);
+                        while (!rest.empty() && rest.back() == ' ') rest.pop_back();
+                        if (rest.empty() || rest == "list") {
+                            view.push_line("[hi] " + std::to_string(view.highlights().size()) + " rule(s)");
+                            for (const HiRule& r : view.highlights())
+                                view.push_line("  " + r.text);
+                        } else if (rest == "clear") {
+                            view.clear_highlights();
+                            view.push_line("[hi] cleared");
+                        } else {
+                            std::string text = rest, color;
+                            const size_t sp = rest.rfind(' ');  // last word colors only if it names a color
+                            if (sp != std::string::npos) {
+                                const std::string tail = rest.substr(sp + 1);
+                                if (is_color_name(tail)) { text = rest.substr(0, sp); color = tail; }
+                            }
+                            view.add_highlight(text, color_attr(color));
+                            std::string note = "[hi] painted: " + text;
+                            if (!color.empty()) note += " (" + color + ")";
+                            view.push_line(note);
+                            log_line(log, "[hi] ", note);
                         }
-                    }
-                    if (expect_secret) {                     // the wire asked: the answer is never spoken in bytes
-                        view.push_line("> " + std::string(submitted.size(), '*'));
-                        log_line(log, "[secret withheld]", "");
-                        expect_secret = false;
                     } else {
-                        if (!submitted.empty()) { view.push_line("> " + submitted); log_line(log, "> ", submitted); }
+                        if (alive) {
+                            const std::string tail = net.flush_pending();
+                            if (!tail.empty()) {
+                                view.push_line(tail);
+                                log_line(log, "[tail] ", tail);
+                                if (ends_with_password_prompt(tail)) expect_secret = true;   // the wire just asked
+                            }
+                        }
+                        if (expect_secret) {                     // the wire asked: the answer is never spoken in bytes
+                            view.push_line("> " + std::string(submitted.size(), '*'));
+                            log_line(log, "[secret withheld]", "");
+                            expect_secret = false;
+                        } else {
+                            if (!submitted.empty()) { view.push_line("> " + submitted); log_line(log, "> ", submitted); }
+                        }
+                        if (alive) net.send_line(submitted);      // empty Enter still reaches the pager
                     }
-                    if (alive) net.send_line(submitted);      // empty Enter still reaches the pager
                 }
             }
         }

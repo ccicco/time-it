@@ -955,3 +955,525 @@ Uncle Fred's House
 Aunt Kate is here, doing nothing, as usual.
 Aunt Kate is twitching.
 
+
+
+                             Welcome to MUD
+
+                         Based on a creation of
+              Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+
+[tail] By what name do you wish to be known? 
+> mel
+[tail] Password: 
+[secret withheld]
+Reconnecting.
+
+[3023] 
+The Odif Yltsaeb leaves west.
+The Beastly Fido leaves north.
+A mouse leaves south.
+
+[tail] [3023] 
+> l
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESWD
+A cityguard stands here.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[tail] [3023] 
+> n
+Fred's Kitchen
+   This Fred's kitchen, where Fred and Kate eat.
+Exits: S
+Beastly Fido is here.
+A turkey is here, gobbling.
+
+[3037] 
+You are hungry.
+You are thirsty.
+
+[tail] [3037] 
+> s
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESWD
+A cityguard stands here.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[tail] [3023] 
+> e
+Fred's Bedroom
+   This is Fred's bedroom - where he and Kate dream of the old days.
+Exits: W
+A Mercenary waiting for a job.
+A cityguard stands here.
+
+[tail] [3035] 
+> w
+Uncle Fred's House
+   You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+Aunt Kate will also be moving in soon.
+Exits: NESWD
+A cityguard stands here.
+Aunt Kate is here, doing nothing, as usual.
+Aunt Kate is twitching.
+
+[tail] [3023] 
+> w
+Some Park Benches
+   You are near a group of park benches, just south of the new
+Midgaard Plaza.
+Exits: NE
+A white-painted wooden bench is standing here.
+Odif Yltsaeb is here, walking backwards.
+A singing, happy Drunk.
+Grandpa is resting here, complaining about things in general.
+Grandpa is glowing and twitching.
+
+[3022] 
+The Drunk leaves east.
+
+[tail] [3022] 
+> go 3001
+The Temple Of Midgaard
+   You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.
+   There is a SIGN here.
+Exits: NESWUD
+A Coke Machine is here.
+
+[tail] [3001] 
+> s
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[tail] [3005] 
+> s
+You are too exhausted.
+
+[3005] 
+The Rooster shouts 'Cock-a-doodle-doo!!'
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Drunk has arrived.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The sun slowly disappears in the east.
+Lightning starts to show in the sky.
+You are hungry.
+You are thirsty.
+
+[3005] 
+The night has begun.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Uncle Fred has arrived.
+
+[3005] 
+Uncle Fred leaves north.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Beastly Fido has arrived.
+
+[3005] 
+The Drunk leaves south.
+The lightning has stopped.
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Beastly Fido leaves south.
+Uncle Fred has arrived.
+
+[3005] 
+Uncle Fred leaves south.
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Beastly Fido has arrived.
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Beastly Fido leaves west.
+
+[3005] 
+The sun rises in the west.
+You are hungry.
+You are thirsty.
+
+[3005] 
+The day has begun.
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Rooster shouts 'Cock-a-doodle-doo!!'
+Mean Mister Mustard has arrived.
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Drunk has arrived.
+Mom shouts 'I'm not available for comment..'
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+Uncle Fred shouts 'Time to get up, you lazy swine!'
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Beastly Fido has arrived.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead shouts 'Hey, it's noon, time for me to get up!'
+
+[3005] 
+Mudhead has arrived.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead leaves south.
+
+[3005] 
+An llama has arrived.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead shouts 'Where's my ole pal, ThisMudSux?'
+
+[3005] 
+Mean Mister Mustard leaves south.
+An llama leaves south.
+
+[3005] 
+Mudhead has arrived.
+Uncle Fred has arrived.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead leaves north.
+Uncle Fred leaves north.
+
+[3005] 
+The Beastly Fido leaves west.
+Uncle Fred has arrived.
+
+[3005] 
+Uncle Fred leaves south.
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The Drunk leaves south.
+
+[3005] 
+Mom shouts 'Tonight's the night: Sleep in a eucalyptus tree.'
+You are hungry.
+You are thirsty.
+
+[3005] 
+A cockroach has arrived.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The sun slowly disappears in the east.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mean Mister Mustard has arrived.
+
+[3005] 
+The night has begun.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Uncle Fred has arrived.
+
+[3005] 
+Uncle Fred leaves north.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+Uncle Fred has arrived.
+
+[3005] 
+Uncle Fred leaves south.
+You are hungry.
+You are thirsty.
+
+[3005] 
+A cockroach leaves south.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+A cockroach has arrived.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+A cockroach leaves east.
+
+[3005] 
+The sun rises in the west.
+You are hungry.
+You are thirsty.
+
+[3005] 
+The day has begun.
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+Lightning starts to show in the sky.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Uncle Fred shouts 'Time to get up, you lazy swine!'
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The snow has almost stopped.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead shouts 'Hey, it's noon, time for me to get up!'
+
+[3005] 
+Mudhead has arrived.
+Mean Mister Mustard leaves east.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead leaves south.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead shouts 'Hey Mel, this Mud sucks!'
+
+[3005] 
+Mudhead has arrived.
+Uncle Fred has arrived.
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mudhead leaves north.
+Uncle Fred leaves north.
+
+[3005] 
+Uncle Fred has arrived.
+
+[3005] 
+Uncle Fred leaves south.
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+Mom shouts 'You will be surprised by a loud noise.'
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+You are hungry.
+You are thirsty.
+
+[3005] 
+The sun slowly disappears in the east.
+You are hungry.
+You are thirsty.
+
+# session 2026-11-20T08:14:29 127.0.0.1:2150
+08:14:29 
+08:14:29 
+08:14:29                              Welcome to MUD
+08:14:29 
+08:14:29                          Based on a creation of
+08:14:29               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+08:14:29 
+08:14:32 [tail] By what name do you wish to be known? 
+08:14:32 > mel
+08:14:36 [tail] Password: 
+08:14:36 [secret withheld]
+08:14:36 
+08:14:36 Reedanooze.
+08:14:36 
+08:14:36 
+08:14:36 
+08:14:37 [tail] *** PRESS RETURN: 
+08:14:37 
+08:14:37 Welcome to DikuMUD
+08:14:37 
+08:14:37 0) Exit from DikuMud.
+08:14:37 1) Enter the game.
+08:14:37 2) Enter description.
+08:14:37 3) Change password.
+08:14:37 4) Kick a dog.
+08:14:37 
+08:14:39 [tail]    Make your choice: 
+08:14:39 > 1
+08:14:39 
+08:14:39 Welcome to Midgaard.
+08:14:39 
+08:14:39 The Wizard's Lounge
+08:14:39   Say!  Isn't this a nifty room?
+08:14:39 Exits: SWD
+08:14:39 
+08:14:41 [2] 
+08:14:41 You are hungry.
+08:14:41 You are thirsty.
+08:14:41 
+08:14:43 [tail] [2] 
+08:14:43 > d
+08:14:43 The Temple Of Midgaard
+08:14:43    You are in the southern end of the temple hall in the Temple of Midgaard.
+08:14:43 The temple has been constructed from giant marble blocks, eternal in
+08:14:43 appearance, and most of the walls are covered by ancient wall paintings
+08:14:43 picturing Gods, Giants and peasants.
+08:14:43    Large steps lead down through the grand temple gate, descending the huge
+08:14:43 mound upon which the temple is built and ends on the temple square below.
+08:14:43    There is a SIGN here.
+08:14:43 Exits: NESWUD
+08:14:43 A Coke Machine is here.
+08:14:43 Bozo the Clown is joking around here.
+08:14:43 Bozo is twitching.
+08:14:43 Sam Hill is here, struting around.
+08:14:43 Sam Hill is twitching.
+08:14:43 
+08:14:46 [3001] 
+08:14:46 Bozo leaves south.
+08:14:46 Uncle Fred shouts 'Time to get up, you lazy swine!'
+08:14:46 
+08:14:53 [tail] [3001] 
+08:14:53 > n
+08:14:53 The North Steps of the Temple
+08:14:53    You find yourself on the north steps of the newly renovated
+08:14:53 Temple of Midgaard.  The northern sector of the city is north
+08:14:53 of you.  The Temple is south.
+08:14:53 Exits: NS
+08:14:53 

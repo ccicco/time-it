@@ -8,13 +8,20 @@
 #include <unistd.h>
 #include <cctype>
 #include <cstdio>
+#include <ctime>
 #include <cstdlib>
 #include <cstring>
 #include <string>
 #include <vector>
 
 static void log_line(std::FILE* log, const char* tag, const std::string& s) {
-    if (log) std::fprintf(log, "%s%s\n", tag, s.c_str());
+    if (!log) return;
+    const time_t now = ::time(nullptr);
+    char clock[16];
+    const struct tm* tv = ::localtime(&now);
+    ::strftime(clock, sizeof clock, "%H:%M:%S ", tv);
+    std::fputs(clock, log);                              // the tape now names WHEN, not just what
+    std::fprintf(log, "%s%s\n", tag, s.c_str());
 }
 
 // The shape of a password prompt, recognized wherever Diku and its children
@@ -185,6 +192,13 @@ int main(int argc, char** argv) {
         alive = true;
     }
     std::FILE* log = log_path ? std::fopen(log_path, "a") : nullptr;
+    if (log) {
+        const time_t now = ::time(nullptr);
+        char iso[40];
+        const struct tm* tv = ::localtime(&now);
+        ::strftime(iso, sizeof iso, "%Y-%m-%dT%H:%M:%S", tv);
+        std::fprintf(log, "# session %s %s:%d\n", iso, host, port);
+    }
 
     initscr();
     cbreak();
@@ -355,7 +369,7 @@ int main(int argc, char** argv) {
                             const std::string tail = net.flush_pending();
                             if (!tail.empty()) {
                                 if (whole_tail_is_prompt(tail)) {
-                                    if (log) std::fprintf(log, "[tail-prompt] %s\n", tail.c_str());
+                                    log_line(log, "[tail-prompt] ", tail);
                                 } else {
                                     push(tail);
                                     log_line(log, "[tail] ", tail);   // the tape stays raw: gag or no gag

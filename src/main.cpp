@@ -1,3 +1,4 @@
+#include "highlight.h"
 #include "input.h"
 #include "net.h"
 #include "view.h"
@@ -76,6 +77,68 @@ static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
     return any;
 }
 
+// --- the rc: ~/.timeit.rc, human grammar, auto-loaded at boot, rewritten at every mutation.
+//     File lines: "hi <text> [color]" (last word colors only if it names one) and
+//     "alias <name> <expansion...>". No exit hook: the file is always current.
+static std::string rc_path() {
+    const char* h = std::getenv("HOME");
+    return std::string(h ? h : ".") + "/.timeit.rc";
+}
+
+static std::string attr_to_name(int attr) {
+    static const struct { const char* n; int a; } kTable[] = {
+        {"red", COLOR_PAIR(2) | A_BOLD}, {"green", COLOR_PAIR(3)}, {"yellow", COLOR_PAIR(4)},
+        {"blue", COLOR_PAIR(5)}, {"magenta", COLOR_PAIR(6) | A_BOLD}, {"cyan", COLOR_PAIR(7)},
+        {"white", COLOR_PAIR(8) | A_BOLD}, {"orange", COLOR_PAIR(209)}, {"bold", A_BOLD},
+    };
+    for (const auto& e : kTable) if (e.a == attr) return e.n;
+    return "";                                             // default bold-yellow: written as bare text
+}
+
+static bool save_rc(const std::vector<HiRule>& hi, const std::vector<Alias>& al) {
+    std::FILE* f = std::fopen(rc_path().c_str(), "w");
+    if (!f) return false;
+    std::fprintf(f, "# time-it rules. Grammar: hi <text> [color] | alias <name> <expansion...>\n");
+    for (const HiRule& r : hi) {
+        const std::string n = attr_to_name(r.attr);
+        std::fprintf(f, "hi %s%s%s\n", r.text.c_str(), n.empty() ? "" : " ", n.c_str());
+    }
+    for (const Alias& a : al) std::fprintf(f, "alias %s %s\n", a.name.c_str(), a.expansion.c_str());
+    std::fclose(f);
+    return true;
+}
+
+static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al) {
+    std::FILE* f = std::fopen(rc_path().c_str(), "r");
+    if (!f) return 0;
+    char buf[1024];
+    size_t n = 0;
+    while (std::fgets(buf, sizeof buf, f)) {
+        std::string s = buf;
+        while (!s.empty() && (s.back() == '\n' || s.back() == '\r')) s.pop_back();
+        if (s.empty() || s[0] == '#') continue;
+        if (s.rfind("hi ", 0) == 0) {
+            std::string rest = s.substr(3);
+            std::string text = rest, color;
+            const size_t sp = rest.rfind(' ');
+            if (sp != std::string::npos) {
+                const std::string tail = rest.substr(sp + 1);
+                if (is_color_name(tail)) { text = rest.substr(0, sp); color = tail; }
+            }
+            if (!text.empty()) { hi->push_back(HiRule{text, color_attr(color)}); ++n; }
+        } else if (s.rfind("alias ", 0) == 0) {
+            const std::string rest = s.substr(6);
+            const size_t sp = rest.find(' ');
+            if (sp != std::string::npos) {
+                al->push_back(Alias{rest.substr(0, sp), rest.substr(sp + 1)});
+                ++n;
+            }
+        }
+    }
+    std::fclose(f);
+    return n;
+}
+
 int main(int argc, char** argv) {
     const char* host = "127.0.0.1";
     int port = 2600;
@@ -110,7 +173,11 @@ int main(int argc, char** argv) {
     view.init();
     InputLine line;
     const std::string link = std::string(host) + ":" + std::to_string(port);
-    std::vector<Alias> aliases;                             // in-memory by the declared law: disk earns a session
+    std::vector<Alias> aliases;                             // born from the rc at boot, saved at every change
+    std::vector<HiRule> rules;                              // staged for the view once the screen exists
+    const size_t rc_count = load_rc(&rules, &aliases);
+    for (const HiRule& r : rules) view.add_highlight(r.text, r.attr);
+
     bool expect_secret = false;                             // set by a Password: prompt, spent by the next Enter
     if (demo) {
         view.push_line("Time-It ANSI demo - painted by the same engine the scroll uses.");
@@ -125,6 +192,8 @@ int main(int argc, char** argv) {
         view.push_line("Time-It 1.0 - linked to " + link);
         view.push_line("Type commands below. Arrows recall history, PageUp browses, /hi highlights, /alias macros, /quit leaves (Ctrl-D too).");
     }
+    if (rc_count > 0)
+        view.push_line("[rc] " + std::to_string(rc_count) + " rule(s) remembered from ~/.timeit.rc");
 
     std::string status;                                     // recomposed each beat: the bar speaks
     for (;;) {
@@ -147,7 +216,34 @@ int main(int argc, char** argv) {
                 if (act == InputLine::Act::quit) break;
                 if (act == InputLine::Act::submit) {
                     if (submitted == "/quit") break;
-                    if (submitted.rfind("/alias", 0) == 0) {   // client-side: never reaches the wire
+                    if (submitted.rfind("/hi", 0) == 0) {     // client-side: never reaches the wire
+                        std::string rest = submitted.substr(3);
+                        while (!rest.empty() && rest.front() == ' ') rest.erase(0, 1);
+                        while (!rest.empty() && rest.back() == ' ') rest.pop_back();
+                        if (rest.empty() || rest == "list") {
+                            view.push_line("[hi] " + std::to_string(view.highlights().size()) + " rule(s)");
+                            for (const HiRule& r : view.highlights())
+                                view.push_line("  " + r.text);
+                        } else if (rest == "clear") {
+                            view.clear_highlights();
+                            aliases = aliases;                // highlights clear alone; macros keep their names
+                            save_rc(view.highlights(), aliases);
+                            view.push_line("[hi] cleared (rc updated)");
+                        } else {
+                            std::string text = rest, color;
+                            const size_t sp = rest.rfind(' ');  // last word colors only if it names a color
+                            if (sp != std::string::npos) {
+                                const std::string tail = rest.substr(sp + 1);
+                                if (is_color_name(tail)) { text = rest.substr(0, sp); color = tail; }
+                            }
+                            view.add_highlight(text, color_attr(color));
+                            std::string note = "[hi] painted: " + text;
+                            if (!color.empty()) note += " (" + color + ")";
+                            view.push_line(note);
+                            log_line(log, "[hi] ", note);
+                            save_rc(view.highlights(), aliases);
+                        }
+                    } else if (submitted.rfind("/alias", 0) == 0) {   // client-side: never reaches the wire
                         std::string rest = submitted.substr(6);
                         while (!rest.empty() && rest.front() == ' ') rest.erase(0, 1);
                         while (!rest.empty() && rest.back() == ' ') rest.pop_back();
@@ -157,7 +253,8 @@ int main(int argc, char** argv) {
                                 view.push_line("  " + a.name + " = " + a.expansion);
                         } else if (rest == "clear") {
                             aliases.clear();
-                            view.push_line("[alias] cleared");
+                            save_rc(view.highlights(), aliases);
+                            view.push_line("[alias] cleared (rc updated)");
                         } else {
                             const size_t sp = rest.find(' ');
                             if (sp == std::string::npos) {
@@ -172,6 +269,7 @@ int main(int argc, char** argv) {
                                 if (!replaced) aliases.push_back(Alias{name, expansion});
                                 view.push_line("[alias] " + name + " = " + expansion);
                                 log_line(log, "[alias] ", name + " = " + expansion);
+                                save_rc(view.highlights(), aliases);
                             }
                         }
                     } else {

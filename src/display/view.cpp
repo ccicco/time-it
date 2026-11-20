@@ -1,29 +1,17 @@
 #include "view.h"
+#include "paint.h"
 #include <ncurses.h>
 #include <vector>
 
-// A word gap collapses to one space at a seam; a monster token hard-breaks;
-// short lines and centered banners pass untouched. Width is decided at render,
-// so a resize re-wraps the same scrollback honestly - the ring stores words,
-// never pre-broken rows.
-static void wrap_line(const std::string& s, int width, std::vector<std::string>* out) {
-    if (width < 1) width = 1;
-    size_t start = 0;
-    for (;;) {
-        const size_t remain = s.size() - start;
-        if (remain <= (size_t)width) {
-            out->push_back(s.substr(start));
-            return;
-        }
-        size_t brk = s.find_last_of(' ', start + (size_t)width - 1);
-        if (brk == std::string::npos || brk <= start) brk = start + (size_t)width;  // no gap in sight: hard break
-        out->push_back(s.substr(start, brk - start));
-        start = brk;
-        if (start < s.size() && s[start] == ' ') ++start;                            // the collapsed seam
-    }
-}
-
 void View::init() {
+    static bool s_colors = false;                    // once per process: pair n = palette color n-1
+    if (!s_colors) {
+        start_color();
+        use_default_colors();
+        const int n = COLORS < 256 ? COLORS : 256;
+        for (int i = 0; i < n; ++i) init_pair(i + 1, i, -1);
+        s_colors = true;
+    }
     if (wout_) { delwin(wout_); delwin(wstatus_); delwin(winput_); }
     wout_    = newwin(LINES - 2 > 0 ? LINES - 2 : 1, COLS, 0, 0);
     wstatus_ = newwin(1, COLS, LINES - 2 > 0 ? LINES - 2 : 0, 0);
@@ -49,13 +37,13 @@ void View::render(const std::string& input, size_t cursor, const std::string& st
     const int h = LINES - 2 > 0 ? LINES - 2 : 1;
     if (offset_ > lines_.size()) offset_ = lines_.size();   // the ring is finite
 
-    // Walk logical lines newest-first, wrap each, and fill the pane so the
-    // last visual row is always the newest word on the wire.
-    std::vector<std::string> rows;
+    // Walk logical lines newest-first, paint-wrap each, fill the pane so the
+    // last visual row is always the newest word on the wire, styled.
+    std::vector<PaintRow> rows;
     size_t li = lines_.size() - offset_;                   // exclusive end: newest candidate
     while (li > 0 && rows.size() < (size_t)h) {
-        std::vector<std::string> wrapped;
-        wrap_line(lines_[li - 1], COLS, &wrapped);
+        std::vector<PaintRow> wrapped;
+        paint_wrap(lines_[li - 1], COLS, &wrapped);
         const size_t need = (size_t)h - rows.size();
         const size_t skip = wrapped.size() > need ? wrapped.size() - need : 0;
         rows.insert(rows.begin(), wrapped.begin() + (long)skip, wrapped.end());
@@ -65,15 +53,15 @@ void View::render(const std::string& input, size_t cursor, const std::string& st
     werase(wout_);
     int row = 0;
     for (; row < (int)rows.size(); ++row) {
-        mvwaddnstr(wout_, row, 0, rows[row].c_str(), COLS);
+        paint_row(wout_, row, 0, rows[row], COLS);
     }
-    // the pending tail rides the same wrap, shown only at the live edge
+    // the pending tail rides the same paint, shown only at the live edge
     if (offset_ == 0 && !tail.empty() && row < h) {
-        std::vector<std::string> trows;
-        wrap_line(tail, COLS, &trows);
-        for (const std::string& t : trows) {
+        std::vector<PaintRow> trows;
+        paint_wrap(tail, COLS, &trows);
+        for (const PaintRow& t : trows) {
             if (row >= h) break;
-            mvwaddnstr(wout_, row++, 0, t.c_str(), COLS);
+            paint_row(wout_, row++, 0, t, COLS);
         }
     }
     if (offset_ > 0) {                                     // browsing leaves a marker naming the distance home

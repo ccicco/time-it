@@ -45,6 +45,7 @@ InputLine::Act InputLine::feed(int ch, std::string* submitted) {
         return Act::none;
     }
     if (ch == KEY_DC) { if (pos_ < buf_.size()) buf_.erase(pos_, 1); return Act::none; }
+    if (ch == 21) { buf_.clear(); pos_ = 0; return Act::none; }   // Ctrl-U kill-line
     if (ch >= 32 && ch < 127) {                             // printable; UTF-8 rides the same byte path
         buf_.insert(buf_.begin() + (long)pos_, (char)ch);
         ++pos_;

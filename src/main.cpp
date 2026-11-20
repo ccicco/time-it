@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <vector>
 
 static void log_line(std::FILE* log, const char* tag, const std::string& s) {
     if (log) std::fprintf(log, "%s%s\n", tag, s.c_str());
@@ -41,6 +42,38 @@ static int color_attr(const std::string& name) {
     if (name == "orange")  return COLOR_PAIR(209);
     if (name == "bold")    return A_BOLD;
     return COLOR_PAIR(4) | A_BOLD;                        // unspoken color: bold yellow, the classic
+}
+
+// One macro: name swaps for expansion at the submit hinge, trailing words ride.
+struct Alias {
+    std::string name;
+    std::string expansion;
+};
+
+static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
+    bool any = false;
+    for (;;) {
+        const std::string& s = *text;
+        const size_t sp = s.find(' ');
+        const std::string head = sp == std::string::npos ? s : s.substr(0, sp);
+        if (head.empty()) break;
+        bool hit = false;
+        for (const Alias& a : *aliases) {
+            if (head == a.name) {
+                *text = a.expansion + (sp == std::string::npos ? "" : s.substr(sp));
+                any = hit = true;
+                break;
+            }
+        }
+        if (!hit) break;                                   // no rule chain: one substitution per pass
+        if (text->find(' ') == std::string::npos) {
+            const std::string& t = *text;                  // single word left: try once more, no loop
+            bool chain = false;
+            for (const Alias& a : *aliases) if (t == a.name) { chain = true; break; }
+            if (!chain) break;
+        }
+    }
+    return any;
 }
 
 int main(int argc, char** argv) {
@@ -77,6 +110,7 @@ int main(int argc, char** argv) {
     view.init();
     InputLine line;
     const std::string link = std::string(host) + ":" + std::to_string(port);
+    std::vector<Alias> aliases;                             // in-memory by the declared law: disk earns a session
     bool expect_secret = false;                             // set by a Password: prompt, spent by the next Enter
     if (demo) {
         view.push_line("Time-It ANSI demo - painted by the same engine the scroll uses.");
@@ -86,10 +120,10 @@ int main(int argc, char** argv) {
         view.push_line("truecolor: \x1b[38;2;255;140;0mtruecolor orange\x1b[0m \x1b[38;2;64;224;208mtruecolor turquoise\x1b[0m \x1b[38;2;128;0;255mtruecolor violet\x1b[0m");
         view.push_line("wrap + color interlocked: \x1b[36mthe cyan sentence must bend at the right edge and stay cyan on every row it occupies, seam and all, until the last word lands.\x1b[0m");
         view.push_line("swallow test: \x1b[2K\x1b[1;33mthis bright yellow follows a consumed cursor-clear; nothing garbled above.\x1b[0m");
-        view.push_line("/hi <text> [color] paints what matters. /quit to leave.");
+        view.push_line("/hi paints what matters, /alias names what you say. /quit to leave.");
     } else {
         view.push_line("Time-It 1.0 - linked to " + link);
-        view.push_line("Type commands below. Arrows recall history, PageUp browses, /hi highlights, /quit leaves (Ctrl-D too).");
+        view.push_line("Type commands below. Arrows recall history, PageUp browses, /hi highlights, /alias macros, /quit leaves (Ctrl-D too).");
     }
 
     std::string status;                                     // recomposed each beat: the bar speaks
@@ -113,31 +147,40 @@ int main(int argc, char** argv) {
                 if (act == InputLine::Act::quit) break;
                 if (act == InputLine::Act::submit) {
                     if (submitted == "/quit") break;
-                    if (submitted.rfind("/hi", 0) == 0) {     // client-side: never reaches the wire
-                        std::string rest = submitted.substr(3);
+                    if (submitted.rfind("/alias", 0) == 0) {   // client-side: never reaches the wire
+                        std::string rest = submitted.substr(6);
                         while (!rest.empty() && rest.front() == ' ') rest.erase(0, 1);
                         while (!rest.empty() && rest.back() == ' ') rest.pop_back();
                         if (rest.empty() || rest == "list") {
-                            view.push_line("[hi] " + std::to_string(view.highlights().size()) + " rule(s)");
-                            for (const HiRule& r : view.highlights())
-                                view.push_line("  " + r.text);
+                            view.push_line("[alias] " + std::to_string(aliases.size()) + " macro(s)");
+                            for (const Alias& a : aliases)
+                                view.push_line("  " + a.name + " = " + a.expansion);
                         } else if (rest == "clear") {
-                            view.clear_highlights();
-                            view.push_line("[hi] cleared");
+                            aliases.clear();
+                            view.push_line("[alias] cleared");
                         } else {
-                            std::string text = rest, color;
-                            const size_t sp = rest.rfind(' ');  // last word colors only if it names a color
-                            if (sp != std::string::npos) {
-                                const std::string tail = rest.substr(sp + 1);
-                                if (is_color_name(tail)) { text = rest.substr(0, sp); color = tail; }
+                            const size_t sp = rest.find(' ');
+                            if (sp == std::string::npos) {
+                                view.push_line("[alias] usage: /alias <name> <expansion...>");
+                            } else {
+                                const std::string name = rest.substr(0, sp);
+                                const std::string expansion = rest.substr(sp + 1);
+                                bool replaced = false;
+                                for (Alias& a : aliases) {
+                                    if (a.name == name) { a.expansion = expansion; replaced = true; break; }
+                                }
+                                if (!replaced) aliases.push_back(Alias{name, expansion});
+                                view.push_line("[alias] " + name + " = " + expansion);
+                                log_line(log, "[alias] ", name + " = " + expansion);
                             }
-                            view.add_highlight(text, color_attr(color));
-                            std::string note = "[hi] painted: " + text;
-                            if (!color.empty()) note += " (" + color + ")";
-                            view.push_line(note);
-                            log_line(log, "[hi] ", note);
                         }
                     } else {
+                        // the hinge: macros speak before the wire ever hears
+                        std::string before = submitted;
+                        if (expand_aliases(&aliases, &submitted) && submitted != before) {
+                            view.push_line("[alias] " + before + " -> " + submitted);
+                            log_line(log, "[alias-echo] ", before + " -> " + submitted);
+                        }
                         if (alive) {
                             const std::string tail = net.flush_pending();
                             if (!tail.empty()) {

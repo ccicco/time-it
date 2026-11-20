@@ -108,3 +108,49 @@ The Temple Square
 > s
 You are too exhausted.
 
+
+
+                             Welcome to MUD
+
+                         Based on a creation of
+              Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+
+[tail] By what name do you wish to be known? 
+> mel
+[tail] Password: 
+[secret withheld]
+Reconnecting.
+
+[tail] [3005] 
+> ls
+What?
+
+[tail] [3005] 
+> look
+The Temple Square
+   You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.
+Exits: NESW
+
+[tail] [3005] 
+> s
+You are too exhausted.
+
+[tail] [3005] 
+> sc
+Age: 21 years old, Alignment: 0, Level: 9999, Spell level: 9999.
+You have 1(1) hit, 1(1) mana and 1(1) moves.
+EXPERIENCE: 1, GOLD: 0, MR: 0, META: 0
+Str: 9999  Int: 9999  Wis: 9999  Dex: 9999  Con: 9999
+Armor: 0, Hit Roll: 0, Damage Roll: 0, Practices: 0
+You have been playing for 0 days and 7 hours.
+You have made 0 kills and died 0 times.
+Your flags are: AUTOEXIT 
+Alcohol Blood Level    : 0
+Solid stomach content  : 76
+Liquid stomach content : 76
+Your GUT can hold 100 units.
+You are standing.
+

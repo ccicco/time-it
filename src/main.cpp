@@ -58,10 +58,9 @@ int main(int argc, char** argv) {
     View view;
     view.init();
     InputLine line;
-    std::string status;
+    const std::string link = std::string(host) + ":" + std::to_string(port);
     bool expect_secret = false;                             // set by a Password: prompt, spent by the next Enter
     if (demo) {
-        status = "ansi demo | the palette room";
         view.push_line("Time-It ANSI demo - painted by the same engine the scroll uses.");
         view.push_line("\x1b[30mblack\x1b[0m \x1b[31mred\x1b[0m \x1b[32mgreen\x1b[0m \x1b[33myellow\x1b[0m \x1b[34mblue\x1b[0m \x1b[35mmagenta\x1b[0m \x1b[36mcyan\x1b[0m \x1b[37mwhite\x1b[0m");
         view.push_line("bold rail: \x1b[1;30mbright black\x1b[0m \x1b[1;31mbright red\x1b[0m \x1b[1;32mbright green\x1b[0m \x1b[1;33mbright yellow\x1b[0m \x1b[1;34mbright blue\x1b[0m \x1b[1;35mbright magenta\x1b[0m \x1b[1;36mbright cyan\x1b[0m \x1b[1;37mbright white\x1b[0m");
@@ -71,13 +70,20 @@ int main(int argc, char** argv) {
         view.push_line("swallow test: \x1b[2K\x1b[1;33mthis bright yellow follows a consumed cursor-clear; nothing garbled above.\x1b[0m");
         view.push_line("/quit to leave.");
     } else {
-        status = std::string(host) + ":" + std::to_string(port) + " | live";
-        view.push_line("Time-It 1.0 - linked to " + std::string(host) + ":" + std::to_string(port));
+        view.push_line("Time-It 1.0 - linked to " + link);
         view.push_line("Type commands below. Arrows recall history, PageUp browses, /quit leaves (Ctrl-D too).");
     }
 
+    std::string status;                                     // recomposed each beat: the bar speaks
     for (;;) {
-        view.render(expect_secret ? std::string(line.text().size(), '*') : line.text(), line.cursor(), status, alive ? net.pending() : std::string());
+        std::string state;
+        if (demo)               state = "ansi demo";
+        else if (alive)         state = "live";
+        else                    state = "free";
+        status = link + " | " + state + " | " + std::to_string(view.line_count()) + " lines";
+
+        view.render(expect_secret ? std::string(line.text().size(), '*') : line.text(),
+                    line.cursor(), status, alive ? net.pending() : std::string());
         struct pollfd pf[2] = { { STDIN_FILENO, POLLIN, 0 }, { net.fd(), POLLIN, 0 } };
         const int r = ::poll(pf, alive ? 2 : 1, 250);
         if (r > 0 && (pf[0].revents & POLLIN)) {
@@ -119,7 +125,6 @@ int main(int argc, char** argv) {
             if (!net.live()) {                               // the link dropped; the room keeps its history
                 alive = false;
                 net.shutdown();
-                status = std::string(host) + ":" + std::to_string(port) + " | link dropped";
                 view.push_line("[The link dropped. /quit to leave.]");
             }
         }

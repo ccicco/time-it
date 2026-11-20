@@ -80,3 +80,7 @@ void View::render(const std::string& input, size_t cursor, const std::string& st
     wnoutrefresh(winput_);
     doupdate();
 }
+
+View::~View() {
+    if (wout_) { delwin(wout_); delwin(wstatus_); delwin(winput_); }
+}

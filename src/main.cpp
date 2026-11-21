@@ -216,6 +216,7 @@ int main(int argc, char** argv) {
     Net net;
     std::string err;
     bool alive = false;
+    time_t next_dial = 0;   // zero means no redial pending
     if (!demo) {
         if (!net.connect_to(host, port, &err)) {
             std::printf("Time-It: cannot reach %s:%d (%s).\n", host, port, err.c_str());
@@ -289,6 +290,19 @@ int main(int argc, char** argv) {
         }
         view.render(expect_secret ? std::string(line.text().size(), '*') : line.text(),
                     line.cursor(), status, alive ? net.pending() : std::string(), prompt_note);
+        if (!alive && !demo && next_dial > 0 && ::time(nullptr) >= next_dial) {
+            std::string rerr;
+            if (net.connect_to(host, port, &rerr)) {
+                alive = true;
+                next_dial = 0;
+                view.push_line("[reconnect] back in the world");
+                log_line(log, "[reconnect] ", std::string(host) + ":" + std::to_string(port) + " - auto dial ok");
+            } else {
+                view.push_line("[reconnect] redial refused: " + rerr);
+                log_line(log, "[reconnect] ", "auto FAILED " + rerr);
+                next_dial = ::time(nullptr) + 10;
+            }
+        }
         struct pollfd pf[2] = { { STDIN_FILENO, POLLIN, 0 }, { net.fd(), POLLIN, 0 } };
         const int r = ::poll(pf, alive ? 2 : 1, 250);
         if (r > 0 && (pf[0].revents & POLLIN)) {
@@ -539,7 +553,9 @@ int main(int argc, char** argv) {
             if (!net.live()) {
                 alive = false;
                 net.shutdown();
-                view.push_line("[The link dropped. /quit to leave.]");
+                room_buf.clear();                          // room-sense dies honestly, again
+                next_dial = ::time(nullptr) + 1;          // redial starts in one second
+                view.push_line("[reconnect] the wire fell - redialing every 10s, /quit to stop");
             }
         }
         if (log) std::fflush(log);

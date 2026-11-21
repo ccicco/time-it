@@ -2953,3 +2953,94 @@ You are too exhausted.
 19:56:44 [3005] 
 19:56:44 Mudhead shouts 'Hey Mel, this Mud sucks!'
 19:56:44 
+# session 2026-11-20T20:11:37 127.0.0.1:2150
+20:11:37 
+20:11:37 
+20:11:37                              Welcome to MUD
+20:11:37 
+20:11:37                          Based on a creation of
+20:11:37               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:11:37 
+20:11:46 [tail] By what name do you wish to be known? 
+20:11:46 > mel
+20:11:50 [tail] Password: 
+20:11:50 [secret withheld]
+20:11:50 Reconnecting.
+20:11:50 
+20:11:55 [tail] [3005] 
+20:11:55 > l
+20:11:55 The Temple Square
+20:11:55    You are standing on the temple square.  Huge marble steps lead up to the
+20:11:55 temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+20:11:55 Grunting Boar Inn, is to the east.  Just south of here you see the market
+20:11:55 square, the center of Midgaard.
+20:11:55 Exits: NESW
+20:11:55 A Mercenary waiting for a job.
+20:11:55 A turkey is here, gobbling.
+20:11:55 
+20:11:59 [3005] 
+20:11:59 You are hungry.
+20:11:59 You are thirsty.
+20:11:59 
+20:12:02 [tail] [3005] 
+20:12:02 > n
+20:12:02 The Temple Of Midgaard
+20:12:02    You are in the southern end of the temple hall in the Temple of Midgaard.
+20:12:02 The temple has been constructed from giant marble blocks, eternal in
+20:12:02 appearance, and most of the walls are covered by ancient wall paintings
+20:12:02 picturing Gods, Giants and peasants.
+20:12:02    Large steps lead down through the grand temple gate, descending the huge
+20:12:02 mound upon which the temple is built and ends on the temple square below.
+20:12:02    There is a SIGN here.
+20:12:02 Exits: NESWUD
+20:12:02 A Coke Machine is here.
+20:12:02 
+20:12:04 [3001] 
+20:12:04 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+20:12:04 
+20:12:07 [tail] [3001] 
+20:12:07 > sc
+20:12:07 Age: 22 years old, Alignment: -62, Level: 9999, Spell level: 9999.
+20:12:07 You have 1(1) hit, 1(1) mana and 1(1) moves.
+20:12:07 EXPERIENCE: 1, GOLD: 0, MR: 0, META: 0
+20:12:07 Str: 9999  Int: 9999  Wis: 9999  Dex: 9999  Con: 9999
+20:12:07 Armor: 0, Hit Roll: 0, Damage Roll: 0, Practices: 0
+20:12:07 You have been playing for 1 days and 2 hours.
+20:12:07 You have made 1 kills and died 0 times.
+20:12:07 Your flags are: AUTOEXIT 
+20:12:07 Alcohol Blood Level    : 0
+20:12:07 Solid stomach content  : 0
+20:12:07 Liquid stomach content : 0
+20:12:07 Your GUT can hold 100 units.
+20:12:07 You are standing.
+20:12:07 
+20:12:09 [3001] 
+20:12:09 Mudhead has arrived.
+20:12:09 
+20:12:11 [tail] [3001] 
+20:12:11 > l
+20:12:11 The Temple Of Midgaard
+20:12:11    You are in the southern end of the temple hall in the Temple of Midgaard.
+20:12:11 The temple has been constructed from giant marble blocks, eternal in
+20:12:11 appearance, and most of the walls are covered by ancient wall paintings
+20:12:11 picturing Gods, Giants and peasants.
+20:12:11    Large steps lead down through the grand temple gate, descending the huge
+20:12:11 mound upon which the temple is built and ends on the temple square below.
+20:12:11    There is a SIGN here.
+20:12:11 Exits: NESWUD
+20:12:11 A Coke Machine is here.
+20:12:11 Mudhead is here.
+20:12:11 
+20:12:19 [3001] 
+20:12:19 Mudhead leaves south.
+20:12:19 You are hungry.
+20:12:19 You are thirsty.
+20:12:19 [act-fired] You are thirsty => drink coke (WHEN Coke Machine is here)
+20:12:19 
+20:12:19 [3001] You drink the Coca Cola.
+20:12:19 You do not feel thirsty.
+20:12:19 You are full.
+20:12:19 
+20:12:44 [3001] 
+20:12:44 Mudhead shouts 'About time for a player file wipe, isn't it?'
+20:12:44 

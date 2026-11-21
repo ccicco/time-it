@@ -587,7 +587,11 @@ int main(int argc, char** argv) {
                         if (rooms.empty()) { view.push_line("[map] nothing walked yet"); }
                         else {
                             view.push_line("[map] " + std::to_string(rooms.size()) + " room(s)");
-                            for (const RoomNode& r : rooms) view.push_line("  " + r.name + " - " + r.exits + " (seen " + std::to_string(r.visits) + "x)");
+                            for (const RoomNode& r : rooms) {
+                                std::string mk;
+                                for (const auto& m : marks) if (m.second == r.name) { if (!mk.empty()) mk += ","; mk += m.first; }
+                                view.push_line("  " + r.name + " - " + r.exits + " (seen " + std::to_string(r.visits) + "x)" + (mk.empty() ? "" : " [ marked: " + mk + " ]"));
+                            }
                         }
                     } else if (submitted.rfind("/count", 0) == 0) {   // the numbers with names
                         const std::string cname = trim(submitted.substr(6));

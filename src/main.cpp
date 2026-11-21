@@ -95,6 +95,7 @@ struct ActRule {
 static std::vector<std::string> room_buf;   // the room render since the last Exits:
 struct Counter { std::string name; long v; };
 static std::vector<Counter> counts;   // session counters, born at zero
+static std::vector<std::pair<std::string, std::string>> marks;   // label -> room, the named beyond the walk
 struct RoomNode { std::string name; std::string exits; long visits; };
 static std::vector<RoomNode> rooms;   // the world you have walked, in visit order
 struct PathStep { std::string from, to, dir; };
@@ -355,10 +356,10 @@ int main(int argc, char** argv) {
                             view.push_line("[reconnect] refused: " + rerr);
                             log_line(log, "[reconnect] ", "FAILED " + rerr);
                         }
-                    } else if (submitted.rfind("/mark ", 0) == 0) {   // a pin in the tape
+                    } else if (submitted.rfind("/note ", 0) == 0) {   // a pin in the tape
                         const std::string note = trim(submitted.substr(6));
                         if (!note.empty()) {
-                            log_line(log, "[mark] ", note);
+                            log_line(log, "[note] ", note);
                             view.push_line("[mark] " + note);
                         }
                     } else if (submitted.rfind("/tail", 0) == 0) {   // the tape comes home
@@ -480,6 +481,48 @@ int main(int argc, char** argv) {
                             view.push_line(removed ? "[unact] disarmed: " + rest : "[unact] no such act");
                             if (removed) save_rc(view.highlights(), aliases, gags, acts, counts);
                         }
+                    } else if (submitted.rfind("/mark", 0) == 0) {   // rooms named beyond the walk
+
+                        const std::string rest = submitted.size() > 5 ? trim(submitted.substr(6)) : "";
+
+                        if (rest.empty()) {
+
+                            if (marks.empty()) { view.push_line("[mark] no marks yet"); }
+
+                            else { for (const auto& m : marks) { view.push_line("[mark] " + m.first + " -> " + m.second); } }
+
+                        } else if (current_room.empty()) {
+
+                            view.push_line("[mark] presence unnamed - no room confessed yet");
+
+                        } else {
+
+                            bool re_aimed = false;
+
+                            for (auto& m : marks) {
+
+                                if (m.first == rest) {
+
+                                    re_aimed = true;
+
+                                    view.push_line("[mark] " + rest + " re-aimed from " + m.second + " to " + current_room);
+
+                                    m.second = current_room;
+
+                                }
+
+                            }
+
+                            if (!re_aimed) {
+
+                                marks.push_back({rest, current_room});
+
+                                view.push_line("[mark] " + rest + " -> " + current_room);
+
+                            }
+
+                        }
+
                     } else if (submitted.rfind("/back", 0) == 0) {   // the way back, confessed
 
                         if (steps.empty() || current_room.empty()) { view.push_line("[back] nowhere walked yet"); }

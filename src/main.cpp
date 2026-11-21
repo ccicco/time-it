@@ -313,8 +313,42 @@ int main(int argc, char** argv) {
                             view.push_line("[reconnect] refused: " + rerr);
                             log_line(log, "[reconnect] ", "FAILED " + rerr);
                         }
-                    }
-                    if (submitted.rfind("/hi", 0) == 0) {
+                    } else if (submitted.rfind("/mark ", 0) == 0) {   // a pin in the tape
+                        const std::string note = trim(submitted.substr(6));
+                        if (!note.empty()) {
+                            log_line(log, "[mark] ", note);
+                            view.push_line("[mark] " + note);
+                        }
+                    } else if (submitted.rfind("/tail", 0) == 0) {   // the tape comes home
+                        if (!log_path) {
+                            view.push_line("[tail] no tape - start with --log <file>");
+                        } else {
+                            std::fflush(log);
+                            int n = 10;
+                            const std::string rest = trim(submitted.substr(5));
+                            if (!rest.empty()) { n = std::atoi(rest.c_str()); if (n < 1) n = 1; if (n > 200) n = 200; }
+                            std::FILE* r = std::fopen(log_path, "r");
+                            if (!r) {
+                                view.push_line("[tail] cannot open the tape");
+                            } else {
+                                std::vector<std::string> ring;
+                                char buf[4096];
+                                while (std::fgets(buf, sizeof buf, r)) {
+                                    std::string ln(buf);
+                                    if (!ln.empty() && ln.back() == '\n') ln.pop_back();
+                                    ring.push_back(ln);
+                                    if (ring.size() > (size_t)n) ring.erase(ring.begin());
+                                }
+                                std::fclose(r);
+                                if (ring.empty()) {
+                                    view.push_line("[tail] the tape is blank");
+                                } else {
+                                    view.push_line("[tail] last " + std::to_string(ring.size()) + ":");
+                                    for (const std::string& ln : ring) view.push_line("  " + ln);
+                                }
+                            }
+                        }
+                    } else if (submitted.rfind("/hi", 0) == 0) {
                         std::string rest = trim(submitted.substr(3));
                         if (rest.empty() || rest == "list") {
                             view.push_line("[hi] " + std::to_string(view.highlights().size()) + " rule(s)");

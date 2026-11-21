@@ -2696,3 +2696,260 @@ You are too exhausted.
 18:45:39 Exits: NESWUD
 18:45:39 A Coke Machine is here.
 18:45:39 
+# session 2026-11-20T19:49:26 127.0.0.1:2150
+19:49:26 
+19:49:26 
+19:49:26                              Welcome to MUD
+19:49:26 
+19:49:26                          Based on a creation of
+19:49:26               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+19:49:26 
+19:49:34 [reconnect] 127.0.0.1:2150 - dial ok
+19:49:34 > /reconnect
+19:49:34 
+19:49:34 
+19:49:34                              Welcome to MUD
+19:49:34 
+19:49:34                          Based on a creation of
+19:49:34               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+19:49:34 
+19:49:34 By what name do you wish to be known? Illegal name, please try another.
+19:49:39 [tail] Name: 
+19:49:39 > mel
+19:49:42 [tail] Password: 
+19:49:42 [secret withheld]
+19:49:42 Wrong password.
+19:49:48 [tail] Password: 
+19:49:48 [secret withheld]
+19:49:48 Reconnecting.
+19:49:48 
+19:49:50 [tail] [3001] 
+19:49:50 > l
+19:49:50 The Temple Of Midgaard
+19:49:50    You are in the southern end of the temple hall in the Temple of Midgaard.
+19:49:50 The temple has been constructed from giant marble blocks, eternal in
+19:49:50 appearance, and most of the walls are covered by ancient wall paintings
+19:49:50 picturing Gods, Giants and peasants.
+19:49:50    Large steps lead down through the grand temple gate, descending the huge
+19:49:50 mound upon which the temple is built and ends on the temple square below.
+19:49:50    There is a SIGN here.
+19:49:50 Exits: NESWUD
+19:49:50 A Coke Machine is here.
+19:49:50 
+19:49:53 [tail] [3001] 
+19:49:53 > s
+19:49:53 The Temple Square
+19:49:53    You are standing on the temple square.  Huge marble steps lead up to the
+19:49:53 temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+19:49:53 Grunting Boar Inn, is to the east.  Just south of here you see the market
+19:49:53 square, the center of Midgaard.
+19:49:53 Exits: NESW
+19:49:53 The Undercover Cop is sneaky and strong.
+19:49:53 
+19:49:56 [tail] [3005] 
+19:49:56 > sc
+19:49:56 Age: 22 years old, Alignment: 0, Level: 9999, Spell level: 9999.
+19:49:56 You have 1(1) hit, 1(1) mana and 1(1) moves.
+19:49:56 EXPERIENCE: 1, GOLD: 0, MR: 0, META: 0
+19:49:56 Str: 9999  Int: 9999  Wis: 9999  Dex: 9999  Con: 9999
+19:49:56 Armor: 0, Hit Roll: 0, Damage Roll: 0, Practices: 0
+19:49:56 You have been playing for 1 days and 2 hours.
+19:49:56 You have made 0 kills and died 0 times.
+19:49:56 Your flags are: AUTOEXIT 
+19:49:56 Alcohol Blood Level    : 0
+19:49:56 Solid stomach content  : 0
+19:49:56 Liquid stomach content : 0
+19:49:56 Your GUT can hold 100 units.
+19:49:56 You are standing.
+19:49:56 
+19:49:59 [3005] 
+19:49:59 You are hungry.
+19:49:59 You are thirsty.
+19:49:59 
+19:50:07 [tail] [3005] 
+19:50:07 > n
+19:50:07 The Temple Of Midgaard
+19:50:07    You are in the southern end of the temple hall in the Temple of Midgaard.
+19:50:07 The temple has been constructed from giant marble blocks, eternal in
+19:50:07 appearance, and most of the walls are covered by ancient wall paintings
+19:50:07 picturing Gods, Giants and peasants.
+19:50:07    Large steps lead down through the grand temple gate, descending the huge
+19:50:07 mound upon which the temple is built and ends on the temple square below.
+19:50:07    There is a SIGN here.
+19:50:07 Exits: NESWUD
+19:50:07 A Coke Machine is here.
+19:50:07 
+19:50:19 [3001] 
+19:50:19 You are hungry.
+19:50:19 You are thirsty.
+19:50:19 [act-fired] You are thirsty => drink coke (WHEN Coke Machine is here)
+19:50:19 
+19:50:19 [3001] You drink the Coca Cola.
+19:50:19 
+19:51:03 [mark] hunt
+19:51:03 [tail] [3001] 
+19:51:03 > /mark hunt
+19:51:03 I'll go look that one up.
+19:51:03 
+19:51:20 [tail] [3001] 
+19:51:20 > /mark
+19:51:20 I'll go look that one up.
+19:51:20 
+19:51:34 [3001] 
+19:51:34 Uncle Fred has arrived.
+19:51:34 
+19:51:39 [3001] 
+19:51:39 Uncle Fred pukes.
+19:51:39 
+19:51:44 [3001] 
+19:51:44 Uncle Fred leaves north.
+19:51:44 
+19:51:54 [3001] 
+19:51:54 Uncle Fred has arrived.
+19:51:54 
+19:51:59 [3001] 
+19:51:59 Uncle Fred leaves east.
+19:51:59 
+19:52:04 [3001] 
+19:52:04 Mom shouts 'Did you move a lot of KOREAN STEAK KNIVES this trip, Dingy?'
+19:52:04 Uncle Fred has arrived.
+19:52:04 
+19:52:09 [3001] 
+19:52:09 Uncle Fred says 'I guess Mel's brain isn't getting any oxygen.'
+19:52:09 
+19:52:14 [3001] 
+19:52:14 Uncle Fred leaves south.
+19:52:14 
+# session 2026-11-20T19:53:57 127.0.0.1:2150
+19:53:57 
+19:53:57 
+19:53:57                              Welcome to MUD
+19:53:57 
+19:53:57                          Based on a creation of
+19:53:57               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+19:53:57 
+19:54:13 [reconnect] 127.0.0.1:2150 - dial ok
+19:54:13 
+19:54:13 
+19:54:13                              Welcome to MUD
+19:54:13 
+19:54:13                          Based on a creation of
+19:54:13               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+19:54:13 
+19:54:17 [tail] By what name do you wish to be known? 
+19:54:17 > mel
+19:54:21 [tail] Password: 
+19:54:21 [secret withheld]
+19:54:21 Reconnecting.
+19:54:21 
+19:54:24 [tail] [3001] 
+19:54:24 > l
+19:54:24 The Temple Of Midgaard
+19:54:24    You are in the southern end of the temple hall in the Temple of Midgaard.
+19:54:24 The temple has been constructed from giant marble blocks, eternal in
+19:54:24 appearance, and most of the walls are covered by ancient wall paintings
+19:54:24 picturing Gods, Giants and peasants.
+19:54:24    Large steps lead down through the grand temple gate, descending the huge
+19:54:24 mound upon which the temple is built and ends on the temple square below.
+19:54:24    There is a SIGN here.
+19:54:24 Exits: NESWUD
+19:54:24 A Coke Machine is here.
+19:54:24 
+19:54:24 [3001] 
+19:54:24 Mom shouts 'It is hard for an empty bag to stand upright.'
+19:54:24 
+19:54:31 [mark] hunt
+19:54:58 [tail] [3001] 
+19:54:58 > l
+19:54:58 The Temple Of Midgaard
+19:54:58    You are in the southern end of the temple hall in the Temple of Midgaard.
+19:54:58 The temple has been constructed from giant marble blocks, eternal in
+19:54:58 appearance, and most of the walls are covered by ancient wall paintings
+19:54:58 picturing Gods, Giants and peasants.
+19:54:58    Large steps lead down through the grand temple gate, descending the huge
+19:54:58 mound upon which the temple is built and ends on the temple square below.
+19:54:58    There is a SIGN here.
+19:54:58 Exits: NESWUD
+19:54:58 A Coke Machine is here.
+19:54:58 
+19:55:00 [tail] [3001] 
+19:55:00 > s
+19:55:00 The Temple Square
+19:55:00    You are standing on the temple square.  Huge marble steps lead up to the
+19:55:00 temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+19:55:00 Grunting Boar Inn, is to the east.  Just south of here you see the market
+19:55:00 square, the center of Midgaard.
+19:55:00 Exits: NESW
+19:55:00 A pile of shit is decaying nearby.
+19:55:00 The Undercover Cop is sneaky and strong.
+19:55:00 
+19:55:04 [3005] 
+19:55:04 The Undercover Cop leaves south.
+19:55:04 Uncle Fred shouts 'Time to get up, you lazy swine!'
+19:55:04 
+19:55:07 [tail] [3005] 
+19:55:07 > kick cop
+19:55:07 Kick who?
+19:55:07 
+19:55:10 [tail] [3005] 
+19:55:10 > s
+19:55:10 You are too exhausted.
+19:55:10 
+19:55:14 [3005] 
+19:55:14 The Undercover Cop has arrived.
+19:55:14 
+19:55:14 [tail] [3005] 
+19:55:14 > n
+19:55:14 The Temple Of Midgaard
+19:55:14    You are in the southern end of the temple hall in the Temple of Midgaard.
+19:55:14 The temple has been constructed from giant marble blocks, eternal in
+19:55:14 appearance, and most of the walls are covered by ancient wall paintings
+19:55:14 picturing Gods, Giants and peasants.
+19:55:14    Large steps lead down through the grand temple gate, descending the huge
+19:55:14 mound upon which the temple is built and ends on the temple square below.
+19:55:14    There is a SIGN here.
+19:55:14 Exits: NESWUD
+19:55:14 A Coke Machine is here.
+19:55:14 
+19:55:16 [tail] [3001] 
+19:55:16 > s
+19:55:16 The Temple Square
+19:55:16    You are standing on the temple square.  Huge marble steps lead up to the
+19:55:16 temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+19:55:16 Grunting Boar Inn, is to the east.  Just south of here you see the market
+19:55:16 square, the center of Midgaard.
+19:55:16 Exits: NESW
+19:55:16 A pile of shit is decaying nearby.
+19:55:16 The Undercover Cop is sneaky and strong.
+19:55:16 
+19:55:20 [tail] [3005] 
+19:55:20 > kick cop
+19:55:20 You miss your kick at The Undercover Cop's groin, much to his relief
+19:55:20 
+19:55:21 [3005] 
+19:55:21 You BIFURCATE The Undercover Cop with your hit (514 Dam).
+19:55:21 The Undercover Cop is dead! R.I.P.
+19:55:21 You get 50 experience point(s).
+19:55:21 Your blood freezes as you hear The Undercover Cops death cry.
+19:55:21 
+19:55:49 [3005] 
+19:55:49 Mom shouts 'DIDI ... is that a MARTIAN name, or, are we in ISRAEL?'
+19:55:49 
+19:56:04 [3005] 
+19:56:04 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+19:56:04 
+19:56:19 [3005] 
+19:56:19 Mudhead has arrived.
+19:56:19 The Corpse of The Undercover Cop dries up and blows away.
+19:56:19 
+19:56:24 [3005] 
+19:56:24 Mudhead leaves south.
+19:56:24 
+19:56:40 [tail] [3005] 
+19:56:40 > /qii
+19:56:40 Take two aspirin and call me in the morning.
+19:56:40 
+19:56:42 [tail] [3005] 
+19:56:44 [3005] 
+19:56:44 Mudhead shouts 'Hey Mel, this Mud sucks!'
+19:56:44 

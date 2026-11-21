@@ -3044,3 +3044,454 @@ You are too exhausted.
 20:12:44 [3001] 
 20:12:44 Mudhead shouts 'About time for a player file wipe, isn't it?'
 20:12:44 
+# session 2026-11-20T20:17:47 127.0.0.1:2150
+20:17:47 
+20:17:47 
+20:17:47                              Welcome to MUD
+20:17:47 
+20:17:47                          Based on a creation of
+20:17:47               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:17:47 
+20:17:50 [tail] By what name do you wish to be known? 
+20:17:50 > mel
+20:17:53 [tail] Password: 
+20:17:53 [secret withheld]
+20:17:53 Reconnecting.
+20:17:53 
+20:18:09 [reconnect] auto FAILED Connection refused
+20:18:19 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:19 
+20:18:19 
+20:18:19                              Welcome to MUD
+20:18:19 
+20:18:19                          Based on a creation of
+20:18:19               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:19 
+20:18:20 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:20 
+20:18:20 
+20:18:20                              Welcome to MUD
+20:18:20 
+20:18:20                          Based on a creation of
+20:18:20               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:20 
+20:18:21 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:21 
+20:18:21 
+20:18:21                              Welcome to MUD
+20:18:21 
+20:18:21                          Based on a creation of
+20:18:21               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:21 
+20:18:22 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:22 
+20:18:22 
+20:18:22                              Welcome to MUD
+20:18:22 
+20:18:22                          Based on a creation of
+20:18:22               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:22 
+20:18:23 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:23 
+20:18:23 
+20:18:23                              Welcome to MUD
+20:18:23 
+20:18:23                          Based on a creation of
+20:18:23               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:23 
+20:18:24 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:24 
+20:18:24 
+20:18:24                              Welcome to MUD
+20:18:24 
+20:18:24                          Based on a creation of
+20:18:24               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:24 
+20:18:25 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:25 
+20:18:25 
+20:18:25                              Welcome to MUD
+20:18:25 
+20:18:25                          Based on a creation of
+20:18:25               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:25 
+20:18:26 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:26 
+20:18:26 
+20:18:26                              Welcome to MUD
+20:18:26 
+20:18:26                          Based on a creation of
+20:18:26               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:26 
+20:18:27 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:27 
+20:18:27 
+20:18:27                              Welcome to MUD
+20:18:27 
+20:18:27                          Based on a creation of
+20:18:27               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:27 
+20:18:28 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:28 
+20:18:28 
+20:18:28                              Welcome to MUD
+20:18:28 
+20:18:28                          Based on a creation of
+20:18:28               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:28 
+20:18:28 [reconnect] 127.0.0.1:2150 - dial ok
+20:18:28 
+20:18:28 
+20:18:28                              Welcome to MUD
+20:18:28 
+20:18:28                          Based on a creation of
+20:18:28               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:28 
+20:18:29 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:29 
+20:18:29 
+20:18:29                              Welcome to MUD
+20:18:29 
+20:18:29                          Based on a creation of
+20:18:29               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:29 
+20:18:30 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:30 
+20:18:30 
+20:18:30                              Welcome to MUD
+20:18:30 
+20:18:30                          Based on a creation of
+20:18:30               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:30 
+20:18:31 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:31 
+20:18:31 
+20:18:31                              Welcome to MUD
+20:18:31 
+20:18:31                          Based on a creation of
+20:18:31               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:31 
+20:18:32 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:32 
+20:18:32 
+20:18:32                              Welcome to MUD
+20:18:32 
+20:18:32                          Based on a creation of
+20:18:32               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:32 
+20:18:33 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:33 > l
+20:18:33 
+20:18:33 
+20:18:33                              Welcome to MUD
+20:18:33 
+20:18:33                          Based on a creation of
+20:18:33               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:33 
+20:18:34 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:34 
+20:18:34 
+20:18:34                              Welcome to MUD
+20:18:34 
+20:18:34                          Based on a creation of
+20:18:34               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:34 
+20:18:35 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:35 
+20:18:35 
+20:18:35                              Welcome to MUD
+20:18:35 
+20:18:35                          Based on a creation of
+20:18:35               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:35 
+20:18:36 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:36 
+20:18:36 
+20:18:36                              Welcome to MUD
+20:18:36 
+20:18:36                          Based on a creation of
+20:18:36               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:36 
+20:18:37 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:37 
+20:18:37 
+20:18:37                              Welcome to MUD
+20:18:37 
+20:18:37                          Based on a creation of
+20:18:37               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:37 
+20:18:38 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:38 
+20:18:38 
+20:18:38                              Welcome to MUD
+20:18:38 
+20:18:38                          Based on a creation of
+20:18:38               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:38 
+20:18:39 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:39 
+20:18:39 
+20:18:39                              Welcome to MUD
+20:18:39 
+20:18:39                          Based on a creation of
+20:18:39               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:39 
+20:18:39 > l
+20:18:40 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:40 
+20:18:40 
+20:18:40                              Welcome to MUD
+20:18:40 
+20:18:40                          Based on a creation of
+20:18:40               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:40 
+20:18:41 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:41 
+20:18:41 
+20:18:41                              Welcome to MUD
+20:18:41 
+20:18:41                          Based on a creation of
+20:18:41               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:41 
+20:18:42 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:42 
+20:18:42 
+20:18:42                              Welcome to MUD
+20:18:42 
+20:18:42                          Based on a creation of
+20:18:42               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:42 
+20:18:43 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:43 
+20:18:43 
+20:18:43                              Welcome to MUD
+20:18:43 
+20:18:43                          Based on a creation of
+20:18:43               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:43 
+20:18:43 > mel
+20:18:44 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:44 
+20:18:44 
+20:18:44                              Welcome to MUD
+20:18:44 
+20:18:44                          Based on a creation of
+20:18:44               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:44 
+20:18:45 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:45 
+20:18:45 
+20:18:45                              Welcome to MUD
+20:18:45 
+20:18:45                          Based on a creation of
+20:18:45               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:45 
+20:18:46 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:46 
+20:18:46 
+20:18:46                              Welcome to MUD
+20:18:46 
+20:18:46                          Based on a creation of
+20:18:46               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:46 
+20:18:47 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:47 
+20:18:47 
+20:18:47                              Welcome to MUD
+20:18:47 
+20:18:47                          Based on a creation of
+20:18:47               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:47 
+20:18:48 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:48 
+20:18:48 
+20:18:48                              Welcome to MUD
+20:18:48 
+20:18:48                          Based on a creation of
+20:18:48               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:48 
+20:18:49 > g7h8j9
+20:18:49 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:49 
+20:18:49 
+20:18:49                              Welcome to MUD
+20:18:49 
+20:18:49                          Based on a creation of
+20:18:49               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:49 
+20:18:50 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:50 
+20:18:50 
+20:18:50                              Welcome to MUD
+20:18:50 
+20:18:50                          Based on a creation of
+20:18:50               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:50 
+20:18:51 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:51 
+20:18:51 
+20:18:51                              Welcome to MUD
+20:18:51 
+20:18:51                          Based on a creation of
+20:18:51               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:51 
+20:18:51 > ls
+20:18:52 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:52 
+20:18:52 
+20:18:52                              Welcome to MUD
+20:18:52 
+20:18:52                          Based on a creation of
+20:18:52               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:52 
+20:18:53 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:53 
+20:18:53 
+20:18:53                              Welcome to MUD
+20:18:53 
+20:18:53                          Based on a creation of
+20:18:53               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:53 
+20:18:54 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:54 
+20:18:54 
+20:18:54                              Welcome to MUD
+20:18:54 
+20:18:54                          Based on a creation of
+20:18:54               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:54 
+20:18:55 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:55 
+20:18:55 
+20:18:55                              Welcome to MUD
+20:18:55 
+20:18:55                          Based on a creation of
+20:18:55               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:55 
+20:18:56 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:56 
+20:18:56 
+20:18:56                              Welcome to MUD
+20:18:56 
+20:18:56                          Based on a creation of
+20:18:56               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:56 
+20:18:57 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:57 
+20:18:57 
+20:18:57                              Welcome to MUD
+20:18:57 
+20:18:57                          Based on a creation of
+20:18:57               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:57 
+20:18:58 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:58 
+20:18:58 
+20:18:58                              Welcome to MUD
+20:18:58 
+20:18:58                          Based on a creation of
+20:18:58               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:58 
+20:18:59 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:18:59 
+20:18:59 
+20:18:59                              Welcome to MUD
+20:18:59 
+20:18:59                          Based on a creation of
+20:18:59               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:18:59 
+20:19:00 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:19:00 
+20:19:00 
+20:19:00                              Welcome to MUD
+20:19:00 
+20:19:00                          Based on a creation of
+20:19:00               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:19:00 
+20:19:01 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:19:01 
+20:19:01 
+20:19:01                              Welcome to MUD
+20:19:01 
+20:19:01                          Based on a creation of
+20:19:01               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:19:01 
+20:19:02 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:19:02 
+20:19:02 
+20:19:02                              Welcome to MUD
+20:19:02 
+20:19:02                          Based on a creation of
+20:19:02               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:19:02 
+20:19:03 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:19:03 
+20:19:03 
+20:19:03                              Welcome to MUD
+20:19:03 
+20:19:03                          Based on a creation of
+20:19:03               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:19:03 
+20:19:04 [reconnect] 127.0.0.1:2150 - auto dial ok
+20:19:04 
+20:19:04 
+20:19:04                              Welcome to MUD
+20:19:04 
+20:19:04                          Based on a creation of
+20:19:04               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:19:04 
+# session 2026-11-20T20:19:07 127.0.0.1:2150
+20:19:07 
+20:19:07 
+20:19:07                              Welcome to MUD
+20:19:07 
+20:19:07                          Based on a creation of
+20:19:07               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:19:07 
+20:19:14 [tail] By what name do you wish to be known? 
+20:19:14 > mel
+20:19:17 [tail] Password: 
+20:19:17 [secret withheld]
+20:19:17 
+20:19:17 Reedanooze.
+20:19:17 
+20:19:17 
+20:19:17 
+20:19:19 [tail] *** PRESS RETURN: 
+20:19:19 
+20:19:19 Welcome to DikuMUD
+20:19:19 
+20:19:19 0) Exit from DikuMud.
+20:19:19 1) Enter the game.
+20:19:19 2) Enter description.
+20:19:19 3) Change password.
+20:19:19 4) Kick a dog.
+20:19:19 
+20:19:20 [tail]    Make your choice: 
+20:19:20 > 1
+20:19:20 
+20:19:20 Welcome to Midgaard.
+20:19:20 
+20:19:20 The Wizard's Lounge
+20:19:20   Say!  Isn't this a nifty room?
+20:19:20 Exits: SWD
+20:19:20 
+20:19:30 [tail] [2] 
+20:19:30 > d
+20:19:30 The Temple Of Midgaard
+20:19:30    You are in the southern end of the temple hall in the Temple of Midgaard.
+20:19:30 The temple has been constructed from giant marble blocks, eternal in
+20:19:30 appearance, and most of the walls are covered by ancient wall paintings
+20:19:30 picturing Gods, Giants and peasants.
+20:19:30    Large steps lead down through the grand temple gate, descending the huge
+20:19:30 mound upon which the temple is built and ends on the temple square below.
+20:19:30    There is a SIGN here.
+20:19:30 Exits: NESWUD
+20:19:30 A Coke Machine is here.
+20:19:30 Mudhead is here.
+20:19:30 Bozo the Clown is joking around here.
+20:19:30 Bozo is twitching.
+20:19:30 
+20:19:35 [3001] 
+20:19:35 Mudhead leaves south.
+20:19:35 

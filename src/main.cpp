@@ -296,6 +296,8 @@ int main(int argc, char** argv) {
                 alive = true;
                 next_dial = 0;
                 view.push_line("[reconnect] back in the world");
+
+                net.send_line("l");   // the room wakes without being asked
                 log_line(log, "[reconnect] ", std::string(host) + ":" + std::to_string(port) + " - auto dial ok");
             } else {
                 view.push_line("[reconnect] redial refused: " + rerr);
@@ -321,6 +323,8 @@ int main(int argc, char** argv) {
                         if (net.connect_to(host, port, &rerr)) {
                             alive = true;
                             view.push_line("[reconnect] dialed " + std::string(host) + ":" + std::to_string(port) + " live again");
+
+                            net.send_line("l");   // the room wakes without being asked
                             view.push_line("[reconnect] presence sleeps until the room re-renders");
                             log_line(log, "[reconnect] ", std::string(host) + ":" + std::to_string(port) + " - dial ok");
                         } else {

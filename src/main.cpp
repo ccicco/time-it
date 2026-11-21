@@ -97,6 +97,10 @@ struct Counter { std::string name; long v; };
 static std::vector<Counter> counts;   // session counters, born at zero
 struct RoomNode { std::string name; std::string exits; long visits; };
 static std::vector<RoomNode> rooms;   // the world you have walked, in visit order
+struct PathStep { std::string from, to, dir; };
+static std::vector<PathStep> steps;   // the crumbs, in walk order
+static std::string current_room;      // where presence stands
+static std::string pending_dir;       // the exit spoken, awaiting its room
 
 static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
     bool any = false;
@@ -460,6 +464,20 @@ int main(int argc, char** argv) {
                             view.push_line(removed ? "[unact] disarmed: " + rest : "[unact] no such act");
                             if (removed) save_rc(view.highlights(), aliases, gags, acts);
                         }
+                    } else if (submitted.rfind("/path", 0) == 0) {   // the way you came
+
+                        if (steps.empty()) { view.push_line("[path] no steps yet"); }
+
+                        else {
+
+                            const size_t start = steps.size() > 20 ? steps.size() - 20 : 0;
+
+                            view.push_line("[path] " + std::to_string(steps.size()) + " step(s), showing " + std::to_string(steps.size() - start));
+
+                            for (size_t k = start; k < steps.size(); ++k) view.push_line("  " + steps[k].from + " -" + steps[k].dir + "-> " + steps[k].to);
+
+                        }
+
                     } else if (submitted.rfind("/map", 0) == 0) {   // the world you have walked
                         if (rooms.empty()) { view.push_line("[map] nothing walked yet"); }
                         else {
@@ -544,7 +562,19 @@ int main(int argc, char** argv) {
                         } else {
                             if (!submitted.empty()) { push("> " + submitted); log_line(log, "> ", submitted); }
                         }
-                        if (alive) net.send_line(submitted);
+                        {
+                            const std::string w0 = submitted.substr(0, submitted.find(0x27ull ? 0 : 0x27) );
+                        }
+{
+                            const std::string w0 = submitted.substr(0, submitted.find(' '));
+                            if (w0 == "n" || w0 == "north") pending_dir = "n";
+                            else if (w0 == "s" || w0 == "south") pending_dir = "s";
+                            else if (w0 == "e" || w0 == "east") pending_dir = "e";
+                            else if (w0 == "w" || w0 == "west") pending_dir = "w";
+                            else if (w0 == "u" || w0 == "up") pending_dir = "u";
+                            else if (w0 == "d" || w0 == "down") pending_dir = "d";
+                        }
+                                                if (alive) net.send_line(submitted);
                     }
                     done_submit:;
                 }
@@ -577,6 +607,9 @@ int main(int argc, char** argv) {
                         bool seen = false;
                         for (RoomNode& r : rooms) if (r.name == rname) { r.visits++; r.exits = trim(exits_txt); seen = true; break; }
                         if (!seen) rooms.push_back({rname, trim(exits_txt), 1});
+                            if (!pending_dir.empty() && !current_room.empty() && !rname.empty() && rname != current_room) steps.push_back({current_room, rname, pending_dir});
+                            pending_dir.clear();
+                            current_room = rname;
                         log_line(log, "[map] ", rname + " (" + trim(exits_txt) + ")");
                         room_buf.clear();
                     }

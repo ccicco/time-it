@@ -660,7 +660,10 @@ const PathStep& st = floor_sel != -2000000000 ? steps[sidx[k]] : steps[k];
 
                     } else if (submitted.rfind("/map", 0) == 0) {   // the world you have walked
                         if (rooms.empty()) { view.push_line("[map] nothing walked yet"); }
-                        else if (trim(submitted) == "/map draw") {
+                        else if (submitted.rfind("/map draw", 0) == 0) {
+                            int mapfs = -2000000000;
+                            const std::string mrest = trim(submitted.substr(9));
+                            if (mrest.rfind("-f", 0) == 0 && mrest.size() > 2) mapfs = std::atoi(mrest.c_str() + 2);
                                 std::map<std::string, int> mx, my, mz;
                                 if (!steps.empty()) {
                                     mx[steps.front().from] = 0; my[steps.front().from] = 0; mz[steps.front().from] = 0;
@@ -706,8 +709,10 @@ const PathStep& st = floor_sel != -2000000000 ? steps[sidx[k]] : steps[k];
                                 size_t unplaced = 0;
                                 for (const RoomNode& r : rooms) if (mx.count(r.name) == 0) ++unplaced;
                                 if (floors.empty()) { view.push_line("[map] draw: no trail to place rooms from - walk first"); }
+                                else if (mapfs != -2000000000 && floors.count(mapfs) == 0) { view.push_line("[map] draw: floor " + std::to_string(mapfs) + " holds nothing"); }
                                 else {
                                     for (const auto& fz : floors) {
+                                        if (mapfs != -2000000000 && fz.first != mapfs) continue;
                                         view.push_line("[map] floor " + std::to_string(fz.first) + ":");
                                         int minx = 0, maxx = 0, miny = 0, maxy = 0; bool bfirst = true;
                                         for (const auto& c : fz.second) {

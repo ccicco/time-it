@@ -576,7 +576,11 @@ int main(int argc, char** argv) {
 
                         else {
 
-                            const size_t start = steps.size() > 20 ? steps.size() - 20 : 0;
+                            const std::string parg = trim(submitted.size() > 5 ? submitted.substr(5) : "");
+                            size_t depth = 20;
+                            if (parg == "all") depth = steps.size();
+                            else if (!parg.empty()) { const int pv = std::atoi(parg.c_str()); if (pv > 0) depth = (size_t)pv; if (depth > 200) depth = 200; }
+                            const size_t start = steps.size() > depth ? steps.size() - depth : 0;
 
                             view.push_line("[path] " + std::to_string(steps.size()) + " step(s), showing " + std::to_string(steps.size() - start));
 

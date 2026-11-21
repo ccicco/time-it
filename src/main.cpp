@@ -582,6 +582,18 @@ int main(int argc, char** argv) {
                         else {
 
                             const std::string parg = trim(submitted.size() > 5 ? submitted.substr(5) : "");
+                            if (parg == "save") {
+                                const std::string outp = rc_path().substr(0, rc_path().rfind(47)) + "/timeit-trail.txt";
+                                std::FILE* tf = std::fopen(outp.c_str(), "w");
+                                if (!tf) { view.push_line("[path] export refused: cannot open " + outp); }
+                                else {
+                                    std::fprintf(tf, "# time-it trail: %zu step(s)\n", steps.size());
+                                    for (const PathStep& st : steps) std::fprintf(tf, "%s -%s-> %s\n", st.from.c_str(), st.dir.c_str(), st.to.c_str());
+                                    std::fclose(tf);
+                                    view.push_line("[path] " + std::to_string(steps.size()) + " step(s) exported: " + outp);
+                                }
+                            }
+                            else {
                             size_t depth = 20;
                             if (parg == "all") depth = steps.size();
                             else if (!parg.empty()) { const int pv = std::atoi(parg.c_str()); if (pv > 0) depth = (size_t)pv; if (depth > 200) depth = 200; }
@@ -590,6 +602,7 @@ int main(int argc, char** argv) {
                             view.push_line("[path] " + std::to_string(steps.size()) + " step(s), showing " + std::to_string(steps.size() - start));
 
                             for (size_t k = start; k < steps.size(); ++k) view.push_line("  " + steps[k].from + " -" + steps[k].dir + "-> " + steps[k].to);
+                            }
 
                         }
 

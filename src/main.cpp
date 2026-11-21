@@ -611,6 +611,24 @@ int main(int argc, char** argv) {
                             std::fclose(sf);
                             view.push_line("[save] snapshot shut: " + sa_path + " (" + std::to_string(aliases.size()) + " alias(es), " + std::to_string(marks.size()) + " mark(s), " + std::to_string(steps.size()) + " step(s))");
                         }
+                    } else if (submitted.rfind("/exit-recall", 0) == 0) {   // the doors a room has given
+                        const std::string er_term = submitted.size() > 12 ? trim(submitted.substr(12)) : "";
+                        if (er_term.empty()) { view.push_line("[exits] name a room to recall"); }
+                        else {
+                            const RoomNode* er_hit = nullptr;
+                            for (const RoomNode& r : rooms) if (contains_ci(r.name, er_term)) { if (!er_hit || r.visits > er_hit->visits) er_hit = &r; }
+                            if (!er_hit) { view.push_line("[exits] no walked room matches " + er_term); }
+                            else {
+                                view.push_line("[exits] " + er_hit->name + " - doors: " + (er_hit->exits.empty() ? std::string("(none recorded)") : er_hit->exits) + " (" + std::to_string(er_hit->visits) + " visit(s))");
+                                std::map<std::string, size_t> er_dirs;
+                                for (const PathStep& st : steps) if (st.from == er_hit->name) ++er_dirs[st.dir];
+                                size_t er_walk = 0;
+                                std::string er_line;
+                                for (const auto& d : er_dirs) { er_walk += d.second; if (!er_line.empty()) er_line += ", "; er_line += d.first + " x" + std::to_string(d.second); }
+                                if (er_walk == 0) view.push_line("[exits] no departures walked from it yet");
+                                else view.push_line("[exits] walked from it: " + er_line + " (" + std::to_string(er_walk) + " departure(s))");
+                            }
+                        }
                     } else if (submitted.rfind("/find", 0) == 0) {   // the walked world remembered
                         const std::string fterm = submitted.size() > 5 ? trim(submitted.substr(5)) : "";
                         if (fterm.empty()) { view.push_line("[find] name a room to find"); }

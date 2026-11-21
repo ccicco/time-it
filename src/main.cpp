@@ -90,7 +90,9 @@ struct Alias {
 struct ActRule {
     std::string text;       // what the wire says
     std::string response;   // what the client answers
+    std::string cond;       // presence demanded (empty = unconditional)
 };
+static std::vector<std::string> room_buf;   // the room render since the last Exits:
 
 static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
     bool any = false;
@@ -152,7 +154,7 @@ static bool save_rc(const std::vector<HiRule>& hi, const std::vector<Alias>& al,
     }
     for (const Alias& a : al) std::fprintf(f, "alias %s %s\n", a.name.c_str(), a.expansion.c_str());
     for (const std::string& g : gags) std::fprintf(f, "gag %s\n", g.c_str());
-    for (const ActRule& a : acts) std::fprintf(f, "act %s => %s\n", a.text.c_str(), a.response.c_str());
+    for (const ActRule& a : acts) std::fprintf(f, "act %s => %s%s\n", a.text.c_str(), a.response.c_str(), a.cond.empty() ? "" : (" WHEN " + a.cond).c_str());
     std::fclose(f);
     return true;
 }
@@ -187,8 +189,11 @@ static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al, std::vect
             const size_t sep = rest.find("=>");
             if (sep != std::string::npos) {
                 const std::string text = trim(rest.substr(0, sep));
-                const std::string resp = trim(rest.substr(sep + 2));
-                if (!text.empty() && !resp.empty()) { acts->push_back(ActRule{text, resp}); ++n; }
+                std::string resp = trim(rest.substr(sep + 2));
+                std::string cond;
+                const size_t wc = resp.find(" WHEN ");
+                if (wc != std::string::npos) { cond = trim(resp.substr(wc + 6)); resp = trim(resp.substr(0, wc)); }
+                if (!text.empty() && !resp.empty() && !(wc != std::string::npos && cond.empty())) { acts->push_back(ActRule{text, resp, cond}); ++n; }
             }
         }
     }
@@ -389,7 +394,7 @@ int main(int argc, char** argv) {
                         std::string rest = trim(submitted.substr(4));
                         if (rest.empty() || rest == "list") {
                             view.push_line("[act] " + std::to_string(acts.size()) + " reflex(es)");
-                            for (const ActRule& a : acts) view.push_line("  " + a.text + " => " + a.response);
+                            for (const ActRule& a : acts) view.push_line("  " + a.text + " => " + a.response + (a.cond.empty() ? "" : " WHEN " + a.cond));
                         } else if (rest == "clear") {
                             acts.clear();
                             save_rc(view.highlights(), aliases, gags, acts);
@@ -397,20 +402,23 @@ int main(int argc, char** argv) {
                         } else {
                             const size_t sep = rest.find("=>");
                             if (sep == std::string::npos) {
-                                view.push_line("[act] usage: /act <text> => <response>");
+                                view.push_line("[act] usage: /act <text> => <response> [< WHEN present>]");
                             } else {
                                 const std::string text = trim(rest.substr(0, sep));
-                                const std::string resp = trim(rest.substr(sep + 2));
-                                if (text.empty() || resp.empty()) {
-                                    view.push_line("[act] usage: /act <text> => <response>");
+                                std::string resp = trim(rest.substr(sep + 2));
+                                std::string cond;
+                                const size_t wc = resp.find(" WHEN ");
+                                if (wc != std::string::npos) { cond = trim(resp.substr(wc + 6)); resp = trim(resp.substr(0, wc)); }
+                                if (text.empty() || resp.empty() || (wc != std::string::npos && cond.empty())) {
+                                    view.push_line("[act] usage: /act <text> => <response> [< WHEN present>]");
                                 } else {
                                     bool replaced = false;
                                     for (ActRule& a : acts) {
-                                        if (a.text == text) { a.response = resp; replaced = true; break; }
+                                        if (a.text == text) { a.response = resp; a.cond = cond; replaced = true; break; }
                                     }
-                                    if (!replaced) acts.push_back(ActRule{text, resp});
-                                    view.push_line("[act] armed: " + text + " => " + resp);
-                                    log_line(log, "[act] ", text + " => " + resp);
+                                    if (!replaced) acts.push_back(ActRule{text, resp, cond});
+                                    view.push_line("[act] armed: " + text + " => " + resp + (cond.empty() ? "" : " WHEN " + cond));
+                                    log_line(log, "[act] ", text + " => " + resp + (cond.empty() ? "" : " WHEN " + cond));
                                     save_rc(view.highlights(), aliases, gags, acts);
                                 }
                             }
@@ -464,13 +472,19 @@ int main(int argc, char** argv) {
                     expect_secret = true;
                     continue;                                   // never arm, never fire, on secrets
                 }
-                if (!acts.empty() && alive) {                   // the wire spoke; the reflexes listen
+                if (!acts.empty() && alive) {
+                    if (contains_ci(s, "Exits:")) room_buf.clear();   // a new room render begins
+                    room_buf.push_back(s);
                     for (const ActRule& a : acts) {
-                        if (contains_ci(s, a.text)) {
-                            net.send_line(a.response);
-                            view.push_line("[act] " + a.response);
-                            log_line(log, "[act-fired] ", a.text + " => " + a.response);
+                        if (!contains_ci(s, a.text)) continue;        // the wire must say it
+                        if (!a.cond.empty()) {                        // presence demanded: the room must show it
+                            bool met = false;
+                            for (const std::string& rl : room_buf) if (contains_ci(rl, a.cond)) { met = true; break; }
+                            if (!met) continue;                        // unmet is silence, reflex stays armed
                         }
+                        net.send_line(a.response);
+                        view.push_line("[act] " + a.response);
+                        log_line(log, "[act-fired] ", a.text + " => " + a.response + (a.cond.empty() ? "" : " (WHEN " + a.cond + ")"));
                     }
                 }
             }

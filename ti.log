@@ -2341,3 +2341,238 @@ You are too exhausted.
 12:06:35 
 12:06:35 [1662] You can't find it!
 12:06:35 
+# session 2026-11-20T12:16:32 127.0.0.1:2150
+12:16:32 
+12:16:32 
+12:16:32                              Welcome to MUD
+12:16:32 
+12:16:32                          Based on a creation of
+12:16:32               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+12:16:32 
+12:16:34 [tail] By what name do you wish to be known? 
+12:16:34 > mel
+12:16:40 [tail] Password: 
+12:16:40 [secret withheld]
+12:16:40 Reconnecting.
+12:16:40 
+12:16:42 [tail] [1662] 
+12:16:42 > l
+12:16:42 The Corner of Mindflayer and Fourth
+12:16:42 You are outdoors in Northern Midgaard.
+12:16:42 Exits: NESW
+12:16:42 
+12:16:49 [tail] [1662] 
+12:16:49 > /acr
+12:16:49 You type much?
+12:16:49 
+12:16:55 [1662] 
+12:16:55 You are hungry.
+12:16:55 You are thirsty.
+12:16:55 [act-fired] You are thirsty => drink coke
+12:16:55 
+12:16:55 [1662] You can't find it!
+12:16:55 
+12:17:11 [tail] [1662] 
+12:17:11 > l
+12:17:11 The Corner of Mindflayer and Fourth
+12:17:11 You are outdoors in Northern Midgaard.
+12:17:11 Exits: NESW
+12:17:11 
+12:17:15 [1662] 
+12:17:15 You are hungry.
+12:17:15 You are thirsty.
+12:17:15 [act-fired] You are thirsty => drink coke
+12:17:15 
+12:17:15 [1662] You can't find it!
+12:17:15 
+12:17:20 [1662] 
+12:17:20 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+12:17:20 
+12:17:35 [1662] 
+12:17:35 You are hungry.
+12:17:35 You are thirsty.
+12:17:35 [act-fired] You are thirsty => drink coke
+12:17:35 
+12:17:35 [1662] You can't find it!
+12:17:35 
+12:17:55 [1662] 
+12:17:55 You are hungry.
+12:17:55 You are thirsty.
+12:17:55 [act-fired] You are thirsty => drink coke
+12:17:55 
+12:17:55 [1662] You can't find it!
+12:17:55 
+12:18:00 [1662] 
+12:18:00 Mudhead shouts 'Hey Mel, this Mud sucks!'
+12:18:00 
+# session 2026-11-20T16:53:13 127.0.0.1:2150
+16:53:13 
+16:53:13 
+16:53:13                              Welcome to MUD
+16:53:13 
+16:53:13                          Based on a creation of
+16:53:13               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+16:53:13 
+16:53:33 [tail] By what name do you wish to be known? 
+16:53:33 > grep -n '" (WHEN "' src/main.cpp/quit
+16:53:33 Illegal name, please try another.
+# session 2026-11-20T16:54:55 127.0.0.1:2150
+16:54:55 
+16:54:55 
+16:54:55                              Welcome to MUD
+16:54:55 
+16:54:55                          Based on a creation of
+16:54:55               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+16:54:55 
+16:54:55 [tail] By what name do you wish to be known? 
+16:54:55 > grep -n '" (WHEN "' src/main.cpp
+16:54:56 Illegal name, please try another.
+16:54:58 [tail] Name: 
+16:54:58 > mel
+16:55:04 [tail] Password: 
+16:55:04 [secret withheld]
+16:55:04 Reconnecting.
+16:55:04 
+16:55:11 [1662] 
+16:55:11 You are hungry.
+16:55:11 You are thirsty.
+16:55:11 [act-fired] You are thirsty => drink coke
+16:55:11 
+16:55:11 [1662] You can't find it!
+16:55:11 
+16:55:21 [1662] 
+16:55:21 Mom shouts 'Life is too serious to be taken seriously.'
+16:55:21 
+16:55:31 [1662] 
+16:55:31 The sun rises in the west.
+16:55:31 You are hungry.
+16:55:31 You are thirsty.
+16:55:31 [act-fired] You are thirsty => drink coke
+16:55:31 
+16:55:31 [1662] You can't find it!
+16:55:31 
+16:55:51 [1662] 
+16:55:51 The day has begun.
+16:55:51 You are hungry.
+16:55:51 You are thirsty.
+16:55:51 [act-fired] You are thirsty => drink coke
+16:55:51 
+16:55:51 [1662] You can't find it!
+16:55:51 
+16:56:11 [1662] 
+16:56:11 You are hungry.
+16:56:11 You are thirsty.
+16:56:11 
+16:56:26 [1662] 
+16:56:26 Mom shouts 'Goodness had nothing to do with it, dearie.'
+16:56:26 
+16:56:31 [1662] 
+16:56:31 You are hungry.
+16:56:31 You are thirsty.
+16:56:31 
+16:56:51 [1662] 
+16:56:51 You are hungry.
+16:56:51 You are thirsty.
+16:56:51 
+16:56:56 [1662] 
+16:56:56 Uncle Fred shouts 'Time to get up, you lazy swine!'
+16:56:56 
+16:57:11 [act] You are thirsty => drink coke WHEN Coke Machine is herel
+16:57:11 [1662] 
+16:57:11 You are hungry.
+16:57:11 You are thirsty.
+16:57:11 
+16:57:31 [1662] 
+16:57:31 You are hungry.
+16:57:31 You are thirsty.
+16:57:31 
+16:57:51 [1662] 
+16:57:51 You are hungry.
+16:57:51 You are thirsty.
+16:57:51 
+16:57:56 [1662] 
+16:57:56 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+16:57:56 
+16:58:11 [act] You are thirsty => drink coke WHEN Coke Machine is here
+16:58:11 [1662] 
+16:58:11 You are hungry.
+16:58:11 You are thirsty.
+16:58:11 
+16:58:16 [1662] 
+16:58:16 Mom shouts 'If we knew what we were doing, it wouldn't be research.'
+16:58:16 
+16:58:23 [tail] [1662] 
+16:58:23 > l
+16:58:23 The Corner of Mindflayer and Fourth
+16:58:23 You are outdoors in Northern Midgaard.
+16:58:23 Exits: NESW
+16:58:23 
+16:58:28 [tail] [1662] 
+16:58:28 > s
+16:58:28 The North Steps of the Temple
+16:58:28    You find yourself on the north steps of the newly renovated
+16:58:28 Temple of Midgaard.  The northern sector of the city is north
+16:58:28 of you.  The Temple is south.
+16:58:28 Exits: NS
+16:58:28 
+16:58:30 [tail] [3004] 
+16:58:30 > s
+16:58:30 The Temple Of Midgaard
+16:58:30    You are in the southern end of the temple hall in the Temple of Midgaard.
+16:58:30 The temple has been constructed from giant marble blocks, eternal in
+16:58:30 appearance, and most of the walls are covered by ancient wall paintings
+16:58:30 picturing Gods, Giants and peasants.
+16:58:30    Large steps lead down through the grand temple gate, descending the huge
+16:58:30 mound upon which the temple is built and ends on the temple square below.
+16:58:30    There is a SIGN here.
+16:58:30 Exits: NESWUD
+16:58:30 A Coke Machine is here.
+16:58:30 
+16:58:31 [3001] 
+16:58:31 You are hungry.
+16:58:31 You are thirsty.
+16:58:31 [act-fired] You are thirsty => drink coke (WHEN Coke Machine is here)
+16:58:31 
+16:58:31 [3001] You drink the Coca Cola.
+16:58:31 You do not feel thirsty.
+16:58:31 You are full.
+16:58:31 
+16:58:36 [3001] 
+16:58:36 Mudhead shouts 'This MUD sux!'
+16:58:36 
+16:58:37 [tail] [3001] 
+16:58:37 > sc
+16:58:37 Age: 21 years old, Alignment: 0, Level: 9999, Spell level: 9999.
+16:58:37 You have 1(1) hit, 1(1) mana and 1(1) moves.
+16:58:37 EXPERIENCE: 1, GOLD: 0, MR: 0, META: 0
+16:58:37 Str: 9999  Int: 9999  Wis: 9999  Dex: 9999  Con: 9999
+16:58:37 Armor: 0, Hit Roll: 0, Damage Roll: 0, Practices: 0
+16:58:37 You have been playing for 0 days and 23 hours.
+16:58:37 You have made 0 kills and died 0 times.
+16:58:37 Your flags are: AUTOEXIT 
+16:58:37 Alcohol Blood Level    : 0
+16:58:37 Solid stomach content  : 100
+16:58:37 Liquid stomach content : 100
+16:58:37 Your GUT can hold 100 units.
+16:58:37 You are standing.
+16:58:37 
+16:58:42 [tail] [3001] 
+16:58:42 > sc
+16:58:42 Age: 21 years old, Alignment: 0, Level: 9999, Spell level: 9999.
+16:58:42 You have 1(1) hit, 1(1) mana and 1(1) moves.
+16:58:42 EXPERIENCE: 1, GOLD: 0, MR: 0, META: 0
+16:58:42 Str: 9999  Int: 9999  Wis: 9999  Dex: 9999  Con: 9999
+16:58:42 Armor: 0, Hit Roll: 0, Damage Roll: 0, Practices: 0
+16:58:42 You have been playing for 0 days and 23 hours.
+16:58:42 You have made 0 kills and died 0 times.
+16:58:42 Your flags are: AUTOEXIT 
+16:58:42 Alcohol Blood Level    : 0
+16:58:42 Solid stomach content  : 100
+16:58:42 Liquid stomach content : 100
+16:58:42 Your GUT can hold 100 units.
+16:58:42 You are standing.
+16:58:42 
+16:58:56 [3001] 
+16:58:56 Mudhead has arrived.
+16:58:56 Uncle Fred has arrived.
+16:58:56 

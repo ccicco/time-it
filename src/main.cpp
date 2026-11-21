@@ -300,6 +300,20 @@ int main(int argc, char** argv) {
                 if (act == InputLine::Act::quit) break;
                 if (act == InputLine::Act::submit) {
                     if (submitted == "/quit") break;
+                    if (submitted.rfind("/reconnect", 0) == 0) {   // the reflex of coming back
+                        std::string rerr;
+                        net.shutdown();
+                        room_buf.clear();                          // the room-sense dies honestly
+                        if (net.connect_to(host, port, &rerr)) {
+                            alive = true;
+                            view.push_line("[reconnect] dialed " + std::string(host) + ":" + std::to_string(port) + " live again");
+                            view.push_line("[reconnect] presence sleeps until the room re-renders");
+                            log_line(log, "[reconnect] ", std::string(host) + ":" + std::to_string(port) + " - dial ok");
+                        } else {
+                            view.push_line("[reconnect] refused: " + rerr);
+                            log_line(log, "[reconnect] ", "FAILED " + rerr);
+                        }
+                    }
                     if (submitted.rfind("/hi", 0) == 0) {
                         std::string rest = trim(submitted.substr(3));
                         if (rest.empty() || rest == "list") {

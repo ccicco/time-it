@@ -644,6 +644,37 @@ int main(int argc, char** argv) {
                                 }
                             }
                             if (parg == "count") { view.push_line("[path] census: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)"); }
+                            if (parg.rfind("load", 0) == 0 && (parg.size() == 4 || parg[4] == 32)) {
+                                std::string ld_fname = trim(parg.substr(4));
+                                if (ld_fname.empty()) ld_fname = "timeit-trail.txt";
+                                const std::string ld_path = rc_path().substr(0, rc_path().rfind(47)) + "/" + ld_fname;
+                                std::FILE* lf = std::fopen(ld_path.c_str(), "r");
+                                if (!lf) { view.push_line("[path] import refused: cannot open " + ld_path); }
+                                else {
+                                    std::vector<PathStep> ld_steps;
+                                    size_t ld_bad = 0;
+                                    char lb[512];
+                                    while (std::fgets(lb, sizeof(lb), lf)) {
+                                        std::string ls = trim(lb);
+                                        if (ls.empty() || ls[0] == 35) continue;
+                                        const size_t ld_dash = ls.find(" -");
+                                        const size_t ld_arr = ls.find("-> ");
+                                        if (ld_dash == std::string::npos || ld_arr == std::string::npos || ld_arr <= ld_dash) { ++ld_bad; continue; }
+                                        const std::string lfrom = trim(ls.substr(0, ld_dash));
+                                        const std::string ldir = trim(ls.substr(ld_dash + 2, ld_arr - ld_dash - 2));
+                                        const std::string lto = trim(ls.substr(ld_arr + 3));
+                                        if (lfrom.empty() || ldir.empty() || lto.empty()) { ++ld_bad; continue; }
+                                        if (ld_steps.size() < 10000) ld_steps.push_back({lfrom, lto, ldir});
+                                    }
+                                    std::fclose(lf);
+                                    if (ld_steps.empty()) { view.push_line("[path] import refused: no steps read from " + ld_path); }
+                                    else {
+                                        steps = ld_steps;
+                                        if (ld_bad > 0) view.push_line("[path] note: " + std::to_string(ld_bad) + " line(s) skipped as unreadable");
+                                        view.push_line("[path] " + std::to_string(steps.size()) + " step(s) imported: " + ld_path);
+                                    }
+                                }
+                            }
                             if (parg.rfind("save", 0) == 0) {
                                 std::string sfname = trim(parg.substr(4));
                                 size_t save_cap = steps.size();

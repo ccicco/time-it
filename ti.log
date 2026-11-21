@@ -3495,3 +3495,259 @@ You are too exhausted.
 20:19:35 [3001] 
 20:19:35 Mudhead leaves south.
 20:19:35 
+# session 2026-11-20T20:25:12 127.0.0.1:2150
+20:25:12 
+20:25:12 
+20:25:12                              Welcome to MUD
+20:25:12 
+20:25:12                          Based on a creation of
+20:25:12               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:25:12 
+20:25:21 [tail] By what name do you wish to be known? 
+20:25:21 > mel
+20:25:26 [tail] Password: 
+20:25:26 [secret withheld]
+20:25:26 Reconnecting.
+20:25:26 
+20:25:31 [tail] [3001] 
+20:25:31 > go fred
+20:25:31 Uncle Fred's House
+20:25:31    You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+20:25:31 Aunt Kate will also be moving in soon.
+20:25:31 Exits: NESD
+20:25:31 Uncle Fred is resting here.
+20:25:31 Uncle Fred is twitching.
+20:25:31 The Undercover Cop is sneaky and strong.
+20:25:31 Aunt Kate is here, doing nothing, as usual.
+20:25:31 Aunt Kate is twitching.
+20:25:31 
+20:25:34 [tail] [3023] 
+20:25:34 > fol fred
+20:25:34 You now follow Uncle Fred.
+20:25:34 
+20:25:41 [tail] [3023] 
+20:25:41 > l
+20:25:41 Uncle Fred's House
+20:25:41    You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+20:25:41 Aunt Kate will also be moving in soon.
+20:25:41 Exits: NESD
+20:25:41 Uncle Fred is resting here.
+20:25:41 Uncle Fred is twitching.
+20:25:41 The Undercover Cop is sneaky and strong.
+20:25:41 Aunt Kate is here, doing nothing, as usual.
+20:25:41 Aunt Kate is twitching.
+20:25:41 
+20:25:54 [tail] [3023] 
+20:25:54 > force fred stand
+20:25:54 Ok.
+20:25:54 Uncle Fred stops resting, and clambers on his feet.
+20:25:54 
+20:25:56 [tail] [3023] 
+20:25:56 > l
+20:25:56 Uncle Fred's House
+20:25:56    You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+20:25:56 Aunt Kate will also be moving in soon.
+20:25:56 Exits: NESD
+20:25:56 Uncle Fred is standing here.
+20:25:56 Uncle Fred is twitching.
+20:25:56 The Undercover Cop is sneaky and strong.
+20:25:56 Aunt Kate is here, doing nothing, as usual.
+20:25:56 Aunt Kate is twitching.
+20:25:56 
+20:26:07 [tail] [3023] 
+20:26:07 > kiss fred
+20:26:07 You kiss him.
+20:26:07 
+20:26:12 [tail] [3023] 
+20:26:12 > l
+20:26:12 Uncle Fred's House
+20:26:12    You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+20:26:12 Aunt Kate will also be moving in soon.
+20:26:12 Exits: NESD
+20:26:12 Uncle Fred is standing here.
+20:26:12 Uncle Fred is twitching.
+20:26:12 The Undercover Cop is sneaky and strong.
+20:26:12 Aunt Kate is here, doing nothing, as usual.
+20:26:12 Aunt Kate is twitching.
+20:26:12 
+20:26:17 [tail] [3023] 
+20:26:17 > poke fred
+20:26:17 You poke him in the ribs.
+20:26:17 
+20:26:20 [3023] 
+20:26:20 Uncle Fred snickers softly.
+20:26:20 
+20:26:25 [3023] 
+20:26:25 Uncle Fred stands up.
+20:26:25 
+20:26:28 [tail] [3023] 
+20:26:28 > l
+20:26:28 Uncle Fred's House
+20:26:28    You are in the entrance to  humble home of dear old Uncle Fred.  Actually,
+20:26:28 Aunt Kate will also be moving in soon.
+20:26:28 Exits: NESD
+20:26:28 Uncle Fred is standing here.
+20:26:28 Uncle Fred is twitching.
+20:26:28 The Undercover Cop is sneaky and strong.
+20:26:28 Aunt Kate is here, doing nothing, as usual.
+20:26:28 Aunt Kate is twitching.
+20:26:28 
+20:26:30 [3023] 
+20:26:30 Uncle Fred opens the door.
+20:26:30 
+20:26:35 [3023] 
+20:26:35 Uncle Fred leaves west.
+20:26:35 You follow Uncle Fred.
+20:26:35 
+20:26:35 Some Park Benches
+20:26:35    You are near a group of park benches, just south of the new
+20:26:35 Midgaard Plaza.
+20:26:35 Exits: NE
+20:26:35 A white-painted wooden bench is standing here.
+20:26:35 Uncle Fred is standing here.
+20:26:35 Uncle Fred is twitching.
+20:26:35 Grandpa is resting here, complaining about things in general.
+20:26:35 Grandpa is glowing and twitching.
+20:26:35 
+20:26:40 [3022] 
+20:26:40 Mom shouts 'There was a young girl of Angina'
+20:26:40 Uncle Fred leaves north.
+20:26:40 You follow Uncle Fred.
+20:26:40 
+20:26:40 A Small Plaza
+20:26:40   You are in a small plaza in downtown Midgaard.
+20:26:40 Exits: NS
+20:26:40 Uncle Fred is standing here.
+20:26:40 Uncle Fred is twitching.
+20:26:40 Chester Wilson is here, shoveling.
+20:26:40 Chester Wilson is glowing.
+20:26:40 
+20:26:45 [3021] 
+20:26:45 Mom shouts 'Who stretched catgut across her vagina.'
+20:26:45 Uncle Fred shouts 'Well if it isn't Mel the Loser.'
+20:26:45 
+20:26:50 [3021] 
+20:26:50 Mom shouts 'From the love-making frock'
+20:26:50 Uncle Fred leaves north.
+20:26:50 You follow Uncle Fred.
+20:26:50 
+20:26:50 The Main Street
+20:26:50    You are on Main Street, in beautiful downtown Midgaard.
+20:26:50 Exits: NESW
+20:26:50 Uncle Fred is standing here.
+20:26:50 Uncle Fred is twitching.
+20:26:50 
+20:26:55 [3016] 
+20:26:55 Mom shouts '(With the proper sized cock)'
+20:26:55 Uncle Fred leaves north.
+20:26:55 You follow Uncle Fred.
+20:26:55 
+20:26:55 The Weapon Shop
+20:26:55    You are inside the weapon shop.  There is a small note on the counter.
+20:26:55 Exits: S
+20:26:55 A pile of shit is decaying nearby.
+20:26:55 Uncle Fred is standing here.
+20:26:55 Uncle Fred is twitching.
+20:26:55 The Undercover Cop is sneaky and strong.
+20:26:55 A Security Guard is keeping the peace.
+20:26:55 Walter Smith, the weaponsmith, is here.
+20:26:55 
+20:27:00 [3011] 
+20:27:00 Mom shouts 'Came Tocata and Fugue in D minor.'
+20:27:00 Uncle Fred gets A pile of shit.
+20:27:00 
+20:27:05 [3011] 
+20:27:05 Uncle Fred leaves south.
+20:27:05 You follow Uncle Fred.
+20:27:05 
+20:27:05 The Main Street
+20:27:05    You are on Main Street, in beautiful downtown Midgaard.
+20:27:05 Exits: NESW
+20:27:05 Uncle Fred is standing here.
+20:27:05 Uncle Fred is twitching.
+20:27:05 
+20:27:10 [3016] 
+20:27:10 Uncle Fred leaves west.
+20:27:10 You follow Uncle Fred.
+20:27:10 
+20:27:10 You are too exhausted to follow.
+20:27:10 
+20:27:14 [tail] [3016] 
+20:27:14 > go fred
+20:27:14 The Main Street
+20:27:14    You are on the main street crossing through town.  To the north is the
+20:27:14 general store, and the main street continues east.  To the west you see and
+20:27:14 hear the market place, to the south a small door leads into the Pet Shop.
+20:27:14 Exits: NESW
+20:27:14 Uncle Fred is standing here.
+20:27:14 Uncle Fred is twitching.
+20:27:14 
+20:27:15 [3015] 
+20:27:15 Uncle Fred leaves west.
+20:27:15 You follow Uncle Fred.
+20:27:15 
+20:27:15 You are too exhausted to follow.
+20:27:15 
+20:27:20 [3015] 
+20:27:20 Mudhead shouts 'Hey, it's noon, time for me to get up!'
+20:27:20 
+20:27:22 [tail] [3015] 
+20:27:22 > go fred
+20:27:22 Market Square
+20:27:22    You are standing on the market square, the famous Square of Midgaard.
+20:27:22 A large, pecualiar looking statue is standing in the middle of the square.
+20:27:22 Roads lead in every direction, north to the temple square, south to the
+20:27:22 common square, east and westbound is the main street.
+20:27:22 Exits: NESW
+20:27:22 Sam Hill is here, struting around.
+20:27:22 Sam Hill is twitching.
+20:27:22 Uncle Fred is standing here.
+20:27:22 Uncle Fred is twitching.
+20:27:22 Polythene Pam is here.
+20:27:22 Polythene Pam is twitching.
+20:27:22 A Security Guard is keeping the peace.
+20:27:22 Mom is here, sweeping the floor with the last guy who gave her trouble.
+20:27:22 Mom is glowing.
+20:27:22 
+20:27:25 [3014] 
+20:27:25 Uncle Fred leaves south.
+20:27:25 You follow Uncle Fred.
+20:27:25 
+20:27:25 You are too exhausted to follow.
+20:27:25 
+20:27:30 [tail] [3014] 
+20:27:30 > go fred
+20:27:30 The Common Square
+20:27:30    The common square, people pass you, talking to each other.  To the west is
+20:27:30 the poor alley and to the east is the dark alley.  To the north, this square
+20:27:30 is connected to the market square.  From the south you notice a nasty smell.
+20:27:30 Exits: NESW
+20:27:30 Uncle Fred is standing here.
+20:27:30 Uncle Fred is twitching.
+20:27:30 
+20:27:30 [3025] 
+20:27:30 Uncle Fred leaves south.
+20:27:30 You follow Uncle Fred.
+20:27:30 
+20:27:30 You are too exhausted to follow.
+20:27:30 
+20:27:33 [tail] [3025] 
+20:27:33 > go fred
+20:27:33 The Dump
+20:27:33    The dump, where the people from the city drop their garbage.  Through the
+20:27:33 garbage you can see a large junction of pipes, looks like the entrance to the
+20:27:33 sewer system.
+20:27:33 Exits: ND
+20:27:33 Uncle Fred is standing here.
+20:27:33 Uncle Fred is twitching.
+20:27:33 
+20:27:35 [3030] 
+20:27:35 Uncle Fred drops A pile of shit.
+20:27:35 
+20:27:40 [3030] 
+20:27:40 The shit vanish in a puff of smoke.
+20:27:40 Uncle Fred leaves north.
+20:27:40 You follow Uncle Fred.
+20:27:40 
+20:27:40 You are too exhausted to follow.
+20:27:40 

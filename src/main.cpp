@@ -93,6 +93,8 @@ struct ActRule {
     std::string cond;       // presence demanded (empty = unconditional)
 };
 static std::vector<std::string> room_buf;   // the room render since the last Exits:
+struct Counter { std::string name; long v; };
+static std::vector<Counter> counts;   // session counters, born at zero
 
 static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
     bool any = false;
@@ -455,6 +457,19 @@ int main(int argc, char** argv) {
                             }
                             view.push_line(removed ? "[unact] disarmed: " + rest : "[unact] no such act");
                             if (removed) save_rc(view.highlights(), aliases, gags, acts);
+                        }
+                    } else if (submitted.rfind("/count", 0) == 0) {   // the numbers with names
+                        const std::string cname = trim(submitted.substr(6));
+                        if (cname.empty()) {
+                            view.push_line("[count] " + std::to_string(counts.size()) + " counter(s)");
+                            for (const Counter& c : counts) view.push_line("  " + c.name + ": " + std::to_string(c.v));
+                        } else {
+                            Counter* c = nullptr;
+                            for (Counter& cc : counts) if (cc.name == cname) { c = &cc; break; }
+                            if (!c) { counts.push_back({cname, 0}); c = &counts.back(); }
+                            c->v++;
+                            log_line(log, "[count] ", cname + " = " + std::to_string(c->v));
+                            view.push_line("[count] " + cname + ": " + std::to_string(c->v));
                         }
                     } else if (submitted.rfind("/act", 0) == 0) {
                         std::string rest = trim(submitted.substr(4));

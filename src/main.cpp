@@ -598,6 +598,17 @@ int main(int argc, char** argv) {
                                 for (const auto& f : fc) view.push_line("[path] census floor " + std::to_string(f.first) + ": " + std::to_string(f.second.first) + " room(s), " + std::to_string(f.second.second) + " step(s)");
                                 view.push_line("[path] census total: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)");
                             }
+                            if (parg == "arrives") {
+                                std::map<std::string, size_t> seen;
+                                for (const PathStep& st : steps) ++seen[st.to];
+                                size_t rep = 0;
+                                for (const auto& s : seen) if (s.second > 1) ++rep;
+                                if (rep == 0) { view.push_line("[path] arrives: no room entered twice yet"); }
+                                else {
+                                    view.push_line("[path] arrives: " + std::to_string(rep) + " room(s) entered more than once:");
+                                    for (const auto& s : seen) if (s.second > 1) view.push_line("  " + s.first + " - " + std::to_string(s.second) + " arrival(s)");
+                                }
+                            }
                             if (parg == "count") { view.push_line("[path] census: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)"); }
                             if (parg.rfind("save", 0) == 0) {
                                 std::string sfname = trim(parg.substr(4));

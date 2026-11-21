@@ -582,6 +582,22 @@ int main(int argc, char** argv) {
                         else {
 
                             const std::string parg = trim(submitted.size() > 5 ? submitted.substr(5) : "");
+                            if (parg.rfind("count -f", 0) == 0) {
+                                std::map<std::string, int> fz;
+                                if (!steps.empty()) {
+                                    fz[steps.front().from] = 0;
+                                    for (const PathStep& st : steps) {
+                                        if (fz.count(st.from) == 0 || fz.count(st.to) != 0) continue;
+                                        const int dz = st.dir == "u" ? 1 : (st.dir == "d" ? -1 : 0);
+                                        fz[st.to] = fz[st.from] + dz;
+                                    }
+                                }
+                                std::map<int, std::pair<size_t, size_t>> fc;
+                                for (const auto& p : fz) ++fc[p.second].first;
+                                for (const PathStep& st : steps) { if (fz.count(st.from)) ++fc[fz[st.from]].second; }
+                                for (const auto& f : fc) view.push_line("[path] census floor " + std::to_string(f.first) + ": " + std::to_string(f.second.first) + " room(s), " + std::to_string(f.second.second) + " step(s)");
+                                view.push_line("[path] census total: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)");
+                            }
                             if (parg == "count") { view.push_line("[path] census: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)"); }
                             if (parg.rfind("save", 0) == 0) {
                                 const std::string sfname = trim(parg.substr(4));

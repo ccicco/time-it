@@ -595,6 +595,16 @@ int main(int argc, char** argv) {
                                 }
                             }
                             else {
+                            if (parg.rfind("first", 0) == 0) {
+                                const std::string farg = trim(parg.substr(5));
+                                size_t fdepth = 20;
+                                if (farg == "all") fdepth = steps.size();
+                                else if (!farg.empty()) { const int fv = std::atoi(farg.c_str()); if (fv > 0) fdepth = (size_t)fv; if (fdepth > 200) fdepth = 200; }
+                                const size_t fend = fdepth < steps.size() ? fdepth : steps.size();
+                                view.push_line("[path] first " + std::to_string(fend) + " of " + std::to_string(steps.size()) + " step(s)");
+                                for (size_t k = 0; k < fend; ++k) view.push_line("  " + steps[k].from + " -" + steps[k].dir + "-> " + steps[k].to);
+                            }
+                            else {
                             size_t depth = 20;
                             if (parg == "all") depth = steps.size();
                             else if (!parg.empty()) { const int pv = std::atoi(parg.c_str()); if (pv > 0) depth = (size_t)pv; if (depth > 200) depth = 200; }
@@ -603,6 +613,7 @@ int main(int argc, char** argv) {
                             view.push_line("[path] " + std::to_string(steps.size()) + " step(s), showing " + std::to_string(steps.size() - start));
 
                             for (size_t k = start; k < steps.size(); ++k) view.push_line("  " + steps[k].from + " -" + steps[k].dir + "-> " + steps[k].to);
+                            }
                             }
 
                         }

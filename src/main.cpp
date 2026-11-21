@@ -537,6 +537,65 @@ int main(int argc, char** argv) {
 
                         }
 
+                    } else if (submitted.rfind("/restore-all", 0) == 0) {   // the session walks back
+                        std::string ra_fname = submitted.size() > 12 ? trim(submitted.substr(12)) : "";
+                        if (ra_fname.empty()) ra_fname = "timeit-session.txt";
+                        const std::string ra_path = rc_path().substr(0, rc_path().rfind(47)) + "/" + ra_fname;
+                        std::FILE* rf = std::fopen(ra_path.c_str(), "r");
+                        if (!rf) { view.push_line("[restore] refused: cannot open " + ra_path); }
+                        else {
+                            std::vector<Alias> ra_al;
+                            std::vector<std::pair<std::string, std::string>> ra_mk;
+                            std::vector<PathStep> ra_st;
+                            size_t ra_al_n = 0;
+                            size_t ra_mk_n = 0;
+                            size_t ra_skip = 0;
+                            char rb[1024];
+                            while (std::fgets(rb, sizeof rb, rf)) {
+                                std::string rs = trim(rb);
+                                if (rs.empty() || rs[0] == 35) continue;
+                                if (rs.rfind("alias ", 0) == 0) {
+                                    const std::string rrest = rs.substr(6);
+                                    const size_t rsp = rrest.find(32);
+                                    if (rsp == std::string::npos || rsp == 0 || rsp + 1 >= rrest.size()) { ++ra_skip; continue; }
+                                    const std::string rnam = trim(rrest.substr(0, rsp));
+                                    const std::string rexp = trim(rrest.substr(rsp + 1));
+                                    if (rnam.empty() || rexp.empty()) { ++ra_skip; continue; }
+                                    bool rdup = false;
+                                    for (Alias& ra : aliases) if (ra.name == rnam) { ra.expansion = rexp; rdup = true; break; }
+                                    if (!rdup) { ra_al.push_back(Alias{rnam, rexp}); ++ra_al_n; }
+                                }
+                                else if (rs.rfind("mark ", 0) == 0) {
+                                    const std::string rrest = rs.substr(5);
+                                    const size_t rsp = rrest.find(32);
+                                    if (rsp == std::string::npos || rsp == 0 || rsp + 1 >= rrest.size()) { ++ra_skip; continue; }
+                                    const std::string rlab = trim(rrest.substr(0, rsp));
+                                    const std::string rroom = trim(rrest.substr(rsp + 1));
+                                    if (rlab.empty() || rroom.empty()) { ++ra_skip; continue; }
+                                    bool rdup = false;
+                                    for (auto& rm : marks) if (rm.first == rlab) { rm.second = rroom; rdup = true; break; }
+                                    if (!rdup) { ra_mk.push_back({rlab, rroom}); ++ra_mk_n; }
+                                }
+                                else {
+                                    const size_t rdash = rs.find(" -");
+                                    const size_t rarr = rs.find("-> ");
+                                    if (rdash == std::string::npos || rarr == std::string::npos || rarr <= rdash) { ++ra_skip; continue; }
+                                    const std::string rfrom = trim(rs.substr(0, rdash));
+                                    const std::string rdir = trim(rs.substr(rdash + 2, rarr - rdash - 2));
+                                    const std::string rto = trim(rs.substr(rarr + 3));
+                                    if (rfrom.empty() || rdir.empty() || rto.empty()) { ++ra_skip; continue; }
+                                    ra_st.push_back({rfrom, rto, rdir});
+                                }
+                            }
+                            std::fclose(rf);
+                            if (ra_al_n + ra_mk_n + ra_st.size() + ra_skip == 0) { view.push_line("[restore] refused: nothing read from " + ra_path); }
+                            else {
+                                for (const auto& rp : ra_mk) marks.push_back(rp);
+                                for (const auto& ra : ra_al) aliases.push_back(ra);
+                                if (!ra_st.empty()) steps = ra_st;
+                                view.push_line("[restore] from " + ra_path + ": " + std::to_string(ra_al_n) + " alias(es) new, " + std::to_string(ra_mk_n) + " mark(s) new, " + std::to_string(ra_st.size()) + " step(s) (" + std::to_string(ra_skip) + " line(s) skipped, re-aims not counted)");
+                            }
+                        }
                     } else if (submitted.rfind("/save-all", 0) == 0) {   // one file, the session shut
                         std::string sa_fname = submitted.size() > 9 ? trim(submitted.substr(9)) : "";
                         if (sa_fname.empty()) sa_fname = "timeit-session.txt";

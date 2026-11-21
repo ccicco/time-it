@@ -602,26 +602,36 @@ int main(int argc, char** argv) {
                             if (parg.rfind("save", 0) == 0) {
                                 std::string sfname = trim(parg.substr(4));
                                 size_t save_cap = steps.size();
+                                int floor_sel = -2000000000;
                                 const bool head_save = sfname.rfind("first", 0) == 0;
                                 if (head_save) {
                                     const std::string farg = trim(sfname.substr(5));
                                     sfname = "timeit-trail-first.txt";
                                     if (farg == "all") {}
+                                    else if (farg.rfind("-f", 0) == 0 && farg.size() > 2) { floor_sel = std::atoi(farg.c_str() + 2); sfname = "timeit-trail-f" + std::to_string(floor_sel) + ".txt"; }
                                     else if (!farg.empty()) { const int fv = std::atoi(farg.c_str()); save_cap = fv > 0 ? (size_t)fv : 20; if (save_cap > 200) save_cap = 200; }
                                     else save_cap = 20;
                                 }
                                 const size_t save_n = save_cap < steps.size() ? save_cap : steps.size();
+                                std::vector<size_t> sidx;
+                                if (floor_sel != -2000000000) {
+                                    std::map<std::string, int> fzs;
+                                    fzs[steps.front().from] = 0;
+                                    for (const PathStep& st2 : steps) { if (fzs.count(st2.from) == 0 || fzs.count(st2.to) != 0) continue; const int dz2 = st2.dir == "u" ? 1 : (st2.dir == "d" ? -1 : 0); fzs[st2.to] = fzs[st2.from] + dz2; }
+                                    for (size_t k2 = 0; k2 < steps.size(); ++k2) if (fzs.count(steps[k2].from) != 0 && fzs[steps[k2].from] == floor_sel) sidx.push_back(k2);
+                                }
                                 const std::string outp = rc_path().substr(0, rc_path().rfind(47)) + "/" + (sfname.empty() ? "timeit-trail.txt" : sfname);
                                 std::FILE* tf = std::fopen(outp.c_str(), "w");
                                 if (!tf) { view.push_line("[path] export refused: cannot open " + outp); }
                                 else {
-                                    std::fprintf(tf, "# time-it trail: %zu step(s)\n", save_n);
-                                    for (size_t k = 0; k < save_n; ++k) {
-                                        const PathStep& st = steps[k];
+                                    std::fprintf(tf, "# time-it trail: %zu step(s)\n", (floor_sel != -2000000000 ? sidx.size() : save_n));
+                                    const size_t sbnd = floor_sel != -2000000000 ? sidx.size() : save_n;
+                                    for (size_t k = 0; k < sbnd; ++k) {
+const PathStep& st = floor_sel != -2000000000 ? steps[sidx[k]] : steps[k];
                                         std::fprintf(tf, "%s -%s-> %s\n", st.from.c_str(), st.dir.c_str(), st.to.c_str());
                                     }
                                     std::fclose(tf);
-                                    view.push_line("[path] " + std::to_string(save_n) + " step(s) exported: " + outp);
+                                    view.push_line("[path] " + std::to_string((floor_sel != -2000000000 ? sidx.size() : save_n)) + " step(s) exported: " + outp);
                                 }
                             }
                             else {

@@ -582,6 +582,7 @@ int main(int argc, char** argv) {
                         else {
 
                             const std::string parg = trim(submitted.size() > 5 ? submitted.substr(5) : "");
+                            if (parg == "count") { view.push_line("[path] census: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)"); }
                             if (parg.rfind("save", 0) == 0) {
                                 const std::string sfname = trim(parg.substr(4));
                                 const std::string outp = rc_path().substr(0, rc_path().rfind(47)) + "/" + (sfname.empty() ? "timeit-trail.txt" : sfname);

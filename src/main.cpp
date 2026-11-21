@@ -510,9 +510,19 @@ int main(int argc, char** argv) {
 
                             }
 
-                            if (route.empty()) { view.push_line("[back] the trail offers no way back"); }
+                            if (route.empty()) { view.push_line("[back] home, or no way back the trail confesses"); }
 
-                            else { view.push_line("[back] to " + pos + " : " + route); }
+                            else {
+
+                                const std::string leg = route.substr(0, route.find(' '));
+
+                                view.push_line("[back] walking " + leg + " toward " + pos + (route.find(' ') == std::string::npos ? std::string(" (last leg)") : std::string("")));
+
+                                pending_dir = leg;
+
+                                net.send_line(leg);
+
+                            }
 
                         }
 

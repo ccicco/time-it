@@ -846,6 +846,16 @@ const PathStep& st = floor_sel != -2000000000 ? steps[sidx[k]] : steps[k];
 
                         }
 
+                    } else if (submitted.rfind("/rooms", 0) == 0) {   // the walk memory, oldest-first
+                        if (rooms.empty()) { view.push_line("[rooms] no rooms walked yet"); }
+                        else {
+                            view.push_line("[rooms] " + std::to_string(rooms.size()) + " room(s) walked, oldest-first:");
+                            size_t ro_n = 0;
+                            for (const RoomNode& r : rooms) {
+                                ++ro_n;
+                                view.push_line("  " + std::to_string(ro_n) + ". " + r.name + " (" + std::to_string(r.visits) + " visit(s)) - " + (r.exits.empty() ? std::string("(none recorded)") : r.exits));
+                            }
+                        }
                     } else if (submitted.rfind("/map", 0) == 0) {   // the world you have walked
                         if (rooms.empty()) { view.push_line("[map] nothing walked yet"); }
                         else if (submitted.rfind("/map draw", 0) == 0) {

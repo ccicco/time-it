@@ -103,6 +103,7 @@ struct PathStep { std::string from, to, dir; };
 static std::vector<PathStep> steps;   // the crumbs, in walk order
 static std::string current_room;      // where presence stands
 static std::string pending_dir;       // the exit spoken, awaiting its room
+static std::vector<std::string> back_queue;   // the legs owed after a counted back-walk
 
 static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
     bool any = false;
@@ -542,6 +543,9 @@ int main(int argc, char** argv) {
 
                         else {
 
+                            size_t bc_want = 1;
+                                const std::string bc_arg = trim(submitted.size() > 5 ? submitted.substr(5) : "");
+                                if (!bc_arg.empty()) { const int bc_n = std::atoi(bc_arg.c_str()); if (bc_n > 1) bc_want = (size_t)bc_n; }
                             std::string pos = current_room;
 
                             std::string route;
@@ -570,6 +574,17 @@ int main(int argc, char** argv) {
 
                             else {
 
+                                if (bc_want > 1) {
+                                    back_queue.clear();
+                                    size_t bc_st = 0;
+                                    for (size_t bc_i = 0; bc_i < bc_want; ++bc_i) {
+                                        const size_t bc_sp = route.find(' ', bc_st);
+                                        if (bc_i > 0) back_queue.push_back(route.substr(bc_st, bc_sp == std::string::npos ? std::string::npos : bc_sp - bc_st));
+                                        if (bc_sp == std::string::npos) break;
+                                        bc_st = bc_sp + 1;
+                                    }
+                                    view.push_line("[back] walking " + route.substr(0, route.find(' ')) + ", " + std::to_string(back_queue.size()) + " leg(s) queued after");
+                                }
                                 const std::string leg = route.substr(0, route.find(' '));
 
                                 view.push_line("[back] walking " + leg + " toward " + pos + (route.find(' ') == std::string::npos ? std::string(" (last leg)") : std::string("")));
@@ -888,6 +903,7 @@ const PathStep& st = floor_sel != -2000000000 ? steps[sidx[k]] : steps[k];
                             else if (w0 == "w" || w0 == "west") pending_dir = "w";
                             else if (w0 == "u" || w0 == "up") pending_dir = "u";
                             else if (w0 == "d" || w0 == "down") pending_dir = "d";
+                                                        if (!back_queue.empty()) back_queue.clear();
                         }
                                                 if (alive) net.send_line(submitted);
                     }
@@ -924,6 +940,7 @@ const PathStep& st = floor_sel != -2000000000 ? steps[sidx[k]] : steps[k];
                         if (!seen) rooms.push_back({rname, trim(exits_txt), 1});
                             if (!pending_dir.empty() && !current_room.empty() && !rname.empty() && rname != current_room) steps.push_back({current_room, rname, pending_dir});
                             pending_dir.clear();
+                                                        if (!back_queue.empty() && !rname.empty() && rname != current_room) { const std::string nl2 = back_queue.front(); back_queue.erase(back_queue.begin()); view.push_line("[back] walking " + nl2 + " (queued leg)"); pending_dir = nl2; net.send_line(nl2); }
                             current_room = rname;
                         log_line(log, "[map] ", rname + " (" + trim(exits_txt) + ")");
                         room_buf.clear();

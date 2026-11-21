@@ -582,8 +582,9 @@ int main(int argc, char** argv) {
                         else {
 
                             const std::string parg = trim(submitted.size() > 5 ? submitted.substr(5) : "");
-                            if (parg == "save") {
-                                const std::string outp = rc_path().substr(0, rc_path().rfind(47)) + "/timeit-trail.txt";
+                            if (parg.rfind("save", 0) == 0) {
+                                const std::string sfname = trim(parg.substr(4));
+                                const std::string outp = rc_path().substr(0, rc_path().rfind(47)) + "/" + (sfname.empty() ? "timeit-trail.txt" : sfname);
                                 std::FILE* tf = std::fopen(outp.c_str(), "w");
                                 if (!tf) { view.push_line("[path] export refused: cannot open " + outp); }
                                 else {

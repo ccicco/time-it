@@ -3751,3 +3751,34 @@ You are too exhausted.
 20:27:40 
 20:27:40 You are too exhausted to follow.
 20:27:40 
+# session 2026-11-20T20:34:26 127.0.0.1:2150
+20:34:27 
+20:34:27 
+20:34:27                              Welcome to MUD
+20:34:27 
+20:34:27                          Based on a creation of
+20:34:27               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:34:27 
+20:34:32 [tail] By what name do you wish to be known? 
+20:34:32 > mel
+20:34:35 [tail] Password: 
+20:34:35 [secret withheld]
+20:34:35 Reconnecting.
+20:34:35 
+20:34:37 [tail] [3030] 
+20:34:37 > l
+20:34:37 The Dump
+20:34:37    The dump, where the people from the city drop their garbage.  Through the
+20:34:37 garbage you can see a large junction of pipes, looks like the entrance to the
+20:34:37 sewer system.
+20:34:37 Exits: ND
+20:34:37 
+20:34:40 [3030] 
+20:34:40 Mom shouts 'My daddy's sure to tell.'
+20:34:40 
+20:34:45 [3030] 
+20:34:45 Mom shouts 'You MUST have read my daddy's verse.'
+20:34:45 
+20:34:50 [3030] 
+20:34:50 Mom shouts 'I hope he fries in Hell.'
+20:34:50 

@@ -563,9 +563,15 @@ int main(int argc, char** argv) {
                             for (const std::string& rl : room_buf) if (contains_ci(rl, a.cond)) { met = true; break; }
                             if (!met) continue;                        // unmet is silence, reflex stays armed
                         }
-                        net.send_line(a.response);
+                        std::string spoken = a.response;
+                        for (const Counter& c : counts) {
+                            const std::string tok = "%" + c.name + "%";
+                            for (size_t p; (p = spoken.find(tok)) != std::string::npos; spoken.replace(p, tok.size(), std::to_string(c.v))) {}
+                        }
+                        net.send_line(spoken);
+                        view.push_line("[act] " + spoken);
                         view.push_line("[act] " + a.response);
-                        log_line(log, "[act-fired] ", a.text + " => " + a.response + (a.cond.empty() ? "" : " (WHEN " + a.cond + ")"));
+                        log_line(log, "[act-fired] ", a.text + " => " + spoken + (a.cond.empty() ? "" : " (WHEN " + a.cond + ")"));
                     }
                 }
             }

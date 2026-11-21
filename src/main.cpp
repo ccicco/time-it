@@ -95,6 +95,8 @@ struct ActRule {
 static std::vector<std::string> room_buf;   // the room render since the last Exits:
 struct Counter { std::string name; long v; };
 static std::vector<Counter> counts;   // session counters, born at zero
+struct RoomNode { std::string name; std::string exits; long visits; };
+static std::vector<RoomNode> rooms;   // the world you have walked, in visit order
 
 static bool expand_aliases(std::vector<Alias>* aliases, std::string* text) {
     bool any = false;
@@ -458,6 +460,12 @@ int main(int argc, char** argv) {
                             view.push_line(removed ? "[unact] disarmed: " + rest : "[unact] no such act");
                             if (removed) save_rc(view.highlights(), aliases, gags, acts);
                         }
+                    } else if (submitted.rfind("/map", 0) == 0) {   // the world you have walked
+                        if (rooms.empty()) { view.push_line("[map] nothing walked yet"); }
+                        else {
+                            view.push_line("[map] " + std::to_string(rooms.size()) + " room(s)");
+                            for (const RoomNode& r : rooms) view.push_line("  " + r.name + " - " + r.exits + " (seen " + std::to_string(r.visits) + "x)");
+                        }
                     } else if (submitted.rfind("/count", 0) == 0) {   // the numbers with names
                         const std::string cname = trim(submitted.substr(6));
                         if (cname.empty()) {
@@ -554,7 +562,24 @@ int main(int argc, char** argv) {
                     continue;                                   // never arm, never fire, on secrets
                 }
                 if (!acts.empty() && alive) {
-                    if (contains_ci(s, "Exits:")) room_buf.clear();   // a new room render begins
+                    if (contains_ci(s, "Exits:")) {
+                        std::string exits_txt = s;
+                        { size_t ep = exits_txt.find("Exits:"); if (ep != std::string::npos) exits_txt = exits_txt.substr(ep + 6); }
+                        size_t e = room_buf.size();
+                        while (e > 0 && trim(room_buf[e-1]).empty()) e--;
+                        size_t b = e;
+                        while (b > 1) {
+                            const std::string t = trim(room_buf[b-1]);
+                            if (t.empty() || t[0] == '>' || t[0] == '[' || t.find_first_not_of("0123456789: ") == std::string::npos || contains_ci(t, "Exits:")) break;
+                            b--;
+                        }
+                        std::string rname = (b < e) ? trim(room_buf[b]) : "(unnamed)";
+                        bool seen = false;
+                        for (RoomNode& r : rooms) if (r.name == rname) { r.visits++; r.exits = trim(exits_txt); seen = true; break; }
+                        if (!seen) rooms.push_back({rname, trim(exits_txt), 1});
+                        log_line(log, "[map] ", rname + " (" + trim(exits_txt) + ")");
+                        room_buf.clear();
+                    }
                     room_buf.push_back(s);
                     for (const ActRule& a : acts) {
                         if (!contains_ci(s, a.text)) continue;        // the wire must say it
@@ -570,7 +595,6 @@ int main(int argc, char** argv) {
                         }
                         net.send_line(spoken);
                         view.push_line("[act] " + spoken);
-                        view.push_line("[act] " + a.response);
                         log_line(log, "[act-fired] ", a.text + " => " + spoken + (a.cond.empty() ? "" : " (WHEN " + a.cond + ")"));
                     }
                 }

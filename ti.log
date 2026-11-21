@@ -3782,3 +3782,124 @@ You are too exhausted.
 20:34:50 [3030] 
 20:34:50 Mom shouts 'I hope he fries in Hell.'
 20:34:50 
+# session 2026-11-20T20:52:01 127.0.0.1:2150
+20:52:01 
+20:52:01 
+20:52:01                              Welcome to MUD
+20:52:01 
+20:52:01                          Based on a creation of
+20:52:01               Staerfeldt, Nyboe, Madsen, Seifert, and Hammer
+20:52:01 
+20:52:05 [tail] By what name do you wish to be known? 
+20:52:05 > mel
+20:52:10 [tail] Password: 
+20:52:10 [secret withheld]
+20:52:10 Reconnecting.
+20:52:10 
+20:52:14 [tail] [3030] 
+20:52:14 > l
+20:52:14 The Dump
+20:52:14    The dump, where the people from the city drop their garbage.  Through the
+20:52:14 garbage you can see a large junction of pipes, looks like the entrance to the
+20:52:14 sewer system.
+20:52:14 Exits: ND
+20:52:14 [map] The Dump (ND)
+20:52:14 
+20:52:15 [3030] 
+20:52:15 You are hungry.
+20:52:15 You are thirsty.
+20:52:15 
+20:52:26 [tail] [3030] 
+20:52:26 > n
+20:52:26 You are too exhausted to follow.
+20:52:26 
+20:52:30 [3030] 
+20:52:30 Mom shouts 'Drawing on my fine command of language, I said nothing.'
+20:52:30 
+20:52:31 [tail] [3030] 
+20:52:31 > ex
+20:52:31 Obvious exits from The Dump (675):
+20:52:31 North - The Common Square (671)
+20:52:31 Down  - The Quadruple Junction Under the Dump (1063)
+20:52:31 
+20:52:35 [3030] 
+20:52:35 You are hungry.
+20:52:35 You are thirsty.
+20:52:35 
+20:52:37 [tail] [3030] 
+20:52:37 > go 681
+20:52:37 No room exists with that number.
+20:52:37 
+20:52:40 [3030] 
+20:52:40 Mom shouts 'People will buy anything that's one to a customer.'
+20:52:40 
+20:52:42 [tail] [3030] 
+20:52:42 > go 67
+20:52:42 No room exists with that number.
+20:52:42 
+20:52:46 [tail] [3030] 
+20:52:46 > go 671
+20:52:46 No room exists with that number.
+20:52:46 
+20:52:50 [tail] [3030] 
+20:52:50 > ex
+20:52:50 Obvious exits from The Dump (675):
+20:52:50 North - The Common Square (671)
+20:52:50 Down  - The Quadruple Junction Under the Dump (1063)
+20:52:50 
+20:52:55 [3030] 
+20:52:55 You are hungry.
+20:52:55 You are thirsty.
+20:52:55 
+20:52:58 [tail] [3030] 
+20:52:58 > go 671
+20:52:58 No room exists with that number.
+20:52:58 
+20:53:07 [tail] [3030] 
+20:53:07 > go 3001
+20:53:08 The Temple Of Midgaard
+20:53:08    You are in the southern end of the temple hall in the Temple of Midgaard.
+20:53:08 The temple has been constructed from giant marble blocks, eternal in
+20:53:08 appearance, and most of the walls are covered by ancient wall paintings
+20:53:08 picturing Gods, Giants and peasants.
+20:53:08    Large steps lead down through the grand temple gate, descending the huge
+20:53:08 mound upon which the temple is built and ends on the temple square below.
+20:53:08    There is a SIGN here.
+20:53:08 Exits: NESWUD
+20:53:08 [map] The Temple Of Midgaard (NESWUD)
+20:53:08 A Coke Machine is here.
+20:53:08 
+20:53:10 [tail] [3001] 
+20:53:10 > s
+20:53:10 The Temple Square
+20:53:10    You are standing on the temple square.  Huge marble steps lead up to the
+20:53:10 temple gate.  The entrance to the Midgaard Bank is to the west, and the old
+20:53:10 Grunting Boar Inn, is to the east.  Just south of here you see the market
+20:53:10 square, the center of Midgaard.
+20:53:10 Exits: NESW
+20:53:10 [map] The Temple Square (NESW)
+20:53:10 A Mercenary waiting for a job.
+20:53:10 A cityguard stands here.
+20:53:10 
+20:53:14 [tail] [3005] 
+20:53:14 > s
+20:53:14 You are too exhausted to follow.
+20:53:14 
+20:53:15 [3005] 
+20:53:15 You are hungry.
+20:53:15 You are thirsty.
+20:53:15 
+20:53:17 [tail] [3005] 
+20:53:17 > n
+20:53:17 The Temple Of Midgaard
+20:53:17    You are in the southern end of the temple hall in the Temple of Midgaard.
+20:53:17 The temple has been constructed from giant marble blocks, eternal in
+20:53:17 appearance, and most of the walls are covered by ancient wall paintings
+20:53:17 picturing Gods, Giants and peasants.
+20:53:17    Large steps lead down through the grand temple gate, descending the huge
+20:53:17 mound upon which the temple is built and ends on the temple square below.
+20:53:17    There is a SIGN here.
+20:53:17 Exits: NESWUD
+20:53:17 [map] The Temple Of Midgaard (NESWUD)
+20:53:17 A Coke Machine is here.
+20:53:17 

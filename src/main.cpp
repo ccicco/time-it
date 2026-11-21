@@ -151,6 +151,12 @@ static std::string attr_to_name(int attr) {
     return "";
 }
 
+static std::string opposite_dir(const std::string& d) {
+    if (d == "n") return "s"; if (d == "s") return "n";
+    if (d == "e") return "w"; if (d == "w") return "e";
+    if (d == "u") return "d"; if (d == "d") return "u";
+    return "";
+}
 static bool save_rc(const std::vector<HiRule>& hi, const std::vector<Alias>& al,
                     const std::vector<std::string>& gags, const std::vector<ActRule>& acts,
                     const std::vector<Counter>& counts) {
@@ -474,6 +480,42 @@ int main(int argc, char** argv) {
                             view.push_line(removed ? "[unact] disarmed: " + rest : "[unact] no such act");
                             if (removed) save_rc(view.highlights(), aliases, gags, acts, counts);
                         }
+                    } else if (submitted.rfind("/back", 0) == 0) {   // the way back, confessed
+
+                        if (steps.empty() || current_room.empty()) { view.push_line("[back] nowhere walked yet"); }
+
+                        else {
+
+                            std::string pos = current_room;
+
+                            std::string route;
+
+                            for (size_t k = steps.size(); k > 0; --k) {
+
+                                const PathStep& st = steps[k-1];
+
+                                if (st.to == pos) {
+
+                                    const std::string o = opposite_dir(st.dir);
+
+                                    if (o.empty()) continue;
+
+                                    if (!route.empty()) route += " ";
+
+                                    route += o;
+
+                                    pos = st.from;
+
+                                }
+
+                            }
+
+                            if (route.empty()) { view.push_line("[back] the trail offers no way back"); }
+
+                            else { view.push_line("[back] to " + pos + " : " + route); }
+
+                        }
+
                     } else if (submitted.rfind("/path", 0) == 0) {   // the way you came
 
                         if (steps.empty()) { view.push_line("[path] no steps yet"); }

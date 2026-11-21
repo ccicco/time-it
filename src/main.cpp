@@ -537,6 +537,21 @@ int main(int argc, char** argv) {
 
                         }
 
+                    } else if (submitted.rfind("/save-all", 0) == 0) {   // one file, the session shut
+                        std::string sa_fname = submitted.size() > 9 ? trim(submitted.substr(9)) : "";
+                        if (sa_fname.empty()) sa_fname = "timeit-session.txt";
+                        const std::string sa_path = rc_path().substr(0, rc_path().rfind(47)) + "/" + sa_fname;
+                        std::FILE* sf = std::fopen(sa_path.c_str(), "w");
+                        if (!sf) { view.push_line("[save] refused: cannot open " + sa_path); }
+                        else {
+                            std::fprintf(sf, "# time-it session snapshot\n");
+                            std::fprintf(sf, "# %zu alias(es) | %zu mark(s) | %zu step(s)\n", aliases.size(), marks.size(), steps.size());
+                            for (const Alias& sa_a : aliases) std::fprintf(sf, "alias %s %s\n", sa_a.name.c_str(), sa_a.expansion.c_str());
+                            for (const auto& sa_m : marks) std::fprintf(sf, "mark %s %s\n", sa_m.first.c_str(), sa_m.second.c_str());
+                            for (const PathStep& sa_s : steps) std::fprintf(sf, "%s -%s-> %s\n", sa_s.from.c_str(), sa_s.dir.c_str(), sa_s.to.c_str());
+                            std::fclose(sf);
+                            view.push_line("[save] snapshot shut: " + sa_path + " (" + std::to_string(aliases.size()) + " alias(es), " + std::to_string(marks.size()) + " mark(s), " + std::to_string(steps.size()) + " step(s))");
+                        }
                     } else if (submitted.rfind("/find", 0) == 0) {   // the walked world remembered
                         const std::string fterm = submitted.size() > 5 ? trim(submitted.substr(5)) : "";
                         if (fterm.empty()) { view.push_line("[find] name a room to find"); }

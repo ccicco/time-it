@@ -537,6 +537,18 @@ int main(int argc, char** argv) {
 
                         }
 
+                    } else if (submitted.rfind("/find", 0) == 0) {   // the walked world remembered
+                        const std::string fterm = submitted.size() > 5 ? trim(submitted.substr(5)) : "";
+                        if (fterm.empty()) { view.push_line("[find] name a room to find"); }
+                        else {
+                            size_t fres = 0;
+                            for (const RoomNode& r : rooms) if (contains_ci(r.name, fterm)) ++fres;
+                            if (fres == 0) { view.push_line("[find] no walked room matches " + fterm); }
+                            else {
+                                view.push_line("[find] " + std::to_string(fres) + " room(s) match " + fterm + ":");
+                                for (const RoomNode& r : rooms) if (contains_ci(r.name, fterm)) view.push_line("  " + r.name + " - " + r.exits + " (" + std::to_string(r.visits) + " visit(s))");
+                            }
+                        }
                     } else if (submitted.rfind("/back", 0) == 0) {   // the way back, confessed
 
                         if (steps.empty() || current_room.empty()) { view.push_line("[back] nowhere walked yet"); }

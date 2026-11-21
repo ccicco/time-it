@@ -713,6 +713,8 @@ int main(int argc, char** argv) {
                                     view.push_line("[map] legend:");
                                     for (const auto& p : mx) view.push_line("  " + std::string(1, p.first.front()) + " = " + p.first + " (floor " + std::to_string(mz[p.first]) + ")");
                                     if (unplaced != 0) view.push_line("[map] " + std::to_string(unplaced) + " room(s) beyond the trail, unplaced");
+                                    size_t offm = 0;
+                                    for (const auto& mk : marks) { if (mx.count(mk.second) == 0) { if (offm == 0) view.push_line("[map] marks beyond the walk:"); view.push_line("  " + mk.first + " -> " + mk.second + " (off-trail)"); ++offm; } }
                                 }
                             } else {
                             view.push_line("[map] " + std::to_string(rooms.size()) + " room(s)");

@@ -599,6 +599,30 @@ int main(int argc, char** argv) {
                                         mx[st.to] = mx[st.from] + dx; my[st.to] = my[st.from] + dy; mz[st.to] = mz[st.from] + dz;
                                     }
                                 }
+                                auto has3 = [](const std::vector<std::array<int, 3>>& v, const std::array<int, 3>& a) { for (const auto& e : v) if (e == a) return true; return false; };
+
+                                std::vector<std::array<int, 3>> mh, mv;   // proved corridors: h{x,y,z} between x and x+1, v{x,y,z} between y and y+1
+
+                                for (const PathStep& st : steps) {
+
+                                    if (mx.count(st.from) == 0 || mx.count(st.to) == 0) continue;
+
+                                    const int fx = mx[st.from], fy = my[st.from], fz2 = mz[st.from];
+
+                                    const int tx = mx[st.to], ty = my[st.to], tz2 = mz[st.to];
+
+                                    if (fz2 != tz2) continue;
+
+                                    if (tx == fx + 1 && ty == fy) { const std::array<int, 3> a = {fx, fy, fz2}; if (!has3(mh, a)) mh.push_back(a); }
+
+                                    else if (tx == fx - 1 && ty == fy) { const std::array<int, 3> a = {tx, fy, fz2}; if (!has3(mh, a)) mh.push_back(a); }
+
+                                    else if (ty == fy + 1 && tx == fx) { const std::array<int, 3> a = {fx, fy, fz2}; if (!has3(mv, a)) mv.push_back(a); }
+
+                                    else if (ty == fy - 1 && tx == fx) { const std::array<int, 3> a = {fx, ty, fz2}; if (!has3(mv, a)) mv.push_back(a); }
+
+                                }
+
                                 std::map<int, std::vector<std::array<int, 3>>> floors;   // z -> (x, y, placed)
                                 for (const auto& p : mx) {
                                     bool taken = false;
@@ -620,14 +644,47 @@ int main(int argc, char** argv) {
                                             bfirst = false;
                                         }
                                         for (int y = maxy; y >= miny; --y) {
+
                                             std::string row = "  ";
+
                                             for (int x = minx; x <= maxx; ++x) {
+
                                                 const std::string* rn = nullptr;
+
                                                 for (const auto& p : mx) if (mz[p.first] == fz.first && mx[p.first] == x && my[p.first] == y) { rn = &p.first; break; }
+
                                                 row += rn ? std::string(1, rn->front()) : ".";
-                                                row += " ";
+
+                                                if (x < maxx) {
+
+                                                    const std::array<int, 3> a = {x, y, fz.first};
+
+                                                    row += has3(mh, a) ? "-" : " ";
+
+                                                } else { row += " "; }
+
                                             }
+
                                             view.push_line(row);
+
+                                            if (y > miny) {
+
+                                                std::string crow = "  ";
+
+                                                for (int x = minx; x <= maxx; ++x) {
+
+                                                    const std::array<int, 3> a = {x, y - 1, fz.first};
+
+                                                    crow += has3(mv, a) ? "|" : " ";
+
+                                                    if (x < maxx) crow += " ";
+
+                                                }
+
+                                                view.push_line(crow);
+
+                                            }
+
                                         }
                                     }
                                     if (unplaced != 0) view.push_line("[map] " + std::to_string(unplaced) + " room(s) beyond the trail, unplaced");

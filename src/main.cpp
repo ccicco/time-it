@@ -604,6 +604,7 @@ int main(int argc, char** argv) {
                         if (!sf) { view.push_line("[save] refused: cannot open " + sa_path); }
                         else {
                             std::fprintf(sf, "# time-it session snapshot\n");
+                            { std::time_t sa_now = std::time(nullptr); std::fprintf(sf, "# saved: %s", std::ctime(&sa_now)); }
                             std::fprintf(sf, "# %zu alias(es) | %zu mark(s) | %zu step(s)\n", aliases.size(), marks.size(), steps.size());
                             for (const Alias& sa_a : aliases) std::fprintf(sf, "alias %s %s\n", sa_a.name.c_str(), sa_a.expansion.c_str());
                             for (const auto& sa_m : marks) std::fprintf(sf, "mark %s %s\n", sa_m.first.c_str(), sa_m.second.c_str());

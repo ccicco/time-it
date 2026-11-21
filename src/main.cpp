@@ -161,10 +161,10 @@ static std::string opposite_dir(const std::string& d) {
 }
 static bool save_rc(const std::vector<HiRule>& hi, const std::vector<Alias>& al,
                     const std::vector<std::string>& gags, const std::vector<ActRule>& acts,
-                    const std::vector<Counter>& counts) {
+                    const std::vector<Counter>& counts, const std::vector<std::pair<std::string, std::string>>& mks) {
     std::FILE* f = std::fopen(rc_path().c_str(), "w");
     if (!f) return false;
-    std::fprintf(f, "# time-it rules. hi <text> [color] | alias <name> <expansion...> | gag <text> | act <text> => <response>\n");
+    std::fprintf(f, "# time-it rules. hi <text> [color] | alias <name> <expansion...> | gag <text> | act <text> => <response> | mark <label> <room>\n");
     for (const HiRule& r : hi) {
         const std::string n = attr_to_name(r.attr);
         std::fprintf(f, "hi %s%s%s\n", r.text.c_str(), n.empty() ? "" : " ", n.c_str());
@@ -173,12 +173,13 @@ static bool save_rc(const std::vector<HiRule>& hi, const std::vector<Alias>& al,
     for (const std::string& g : gags) std::fprintf(f, "gag %s\n", g.c_str());
     for (const ActRule& a : acts) std::fprintf(f, "act %s => %s%s\n", a.text.c_str(), a.response.c_str(), a.cond.empty() ? "" : (" WHEN " + a.cond).c_str());
     for (const Counter& c : counts) std::fprintf(f, "count %s %ld\n", c.name.c_str(), c.v);
+    for (const auto& m : mks) std::fprintf(f, "mark %s %s\n", m.first.c_str(), m.second.c_str());
     std::fclose(f);
     return true;
 }
 
 static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al, std::vector<std::string>* gags,
-                      std::vector<ActRule>* acts, std::vector<Counter>* counts) {
+                      std::vector<ActRule>* acts, std::vector<Counter>* counts, std::vector<std::pair<std::string, std::string>>* mks) {
     std::FILE* f = std::fopen(rc_path().c_str(), "r");
     if (!f) return 0;
     char buf[1024];
@@ -202,7 +203,11 @@ static size_t load_rc(std::vector<HiRule>* hi, std::vector<Alias>* al, std::vect
         } else if (s.rfind("gag ", 0) == 0) {
             const std::string rest = s.substr(4);
             if (!rest.empty()) { gags->push_back(rest); ++n; }
-            } else if (s.rfind("count ", 0) == 0) {
+            } else if (s.rfind("mark ", 0) == 0) {
+                const std::string rest = s.substr(5);
+                const size_t sp = rest.find(" ");
+                if (sp != std::string::npos) { mks->push_back({rest.substr(0, sp), rest.substr(sp + 1)}); ++n; }
+                        } else if (s.rfind("count ", 0) == 0) {
                 const std::string rest = s.substr(6);
                 const size_t sp = rest.find(' ');
                 if (sp != std::string::npos) {
@@ -274,7 +279,7 @@ int main(int argc, char** argv) {
     std::vector<HiRule> rules;
     std::vector<std::string> gags;
     std::vector<ActRule> acts;                              // the wire's words, answered
-    const size_t rc_count = load_rc(&rules, &aliases, &gags, &acts, &counts);
+    const size_t rc_count = load_rc(&rules, &aliases, &gags, &acts, &counts, &marks);
     for (const HiRule& r : rules) view.add_highlight(r.text, r.attr);
 
     const auto push = [&](const std::string& s) { if (!is_gagged(s, gags)) view.push_line(s); };
@@ -399,7 +404,7 @@ int main(int argc, char** argv) {
                             for (const HiRule& r : view.highlights()) view.push_line("  " + r.text);
                         } else if (rest == "clear") {
                             view.clear_highlights();
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                             view.push_line("[hi] cleared (rc updated)");
                         } else {
                             std::string text = rest, color;
@@ -413,7 +418,7 @@ int main(int argc, char** argv) {
                             if (!color.empty()) note += " (" + color + ")";
                             view.push_line(note);
                             log_line(log, "[hi] ", note);
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                         }
                     } else if (submitted.rfind("/alias", 0) == 0) {
                         std::string rest = trim(submitted.substr(6));
@@ -422,7 +427,7 @@ int main(int argc, char** argv) {
                             for (const Alias& a : aliases) view.push_line("  " + a.name + " = " + a.expansion);
                         } else if (rest == "clear") {
                             aliases.clear();
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                             view.push_line("[alias] cleared (rc updated)");
                         } else {
                             const size_t sp = rest.find(' ');
@@ -438,7 +443,7 @@ int main(int argc, char** argv) {
                                 if (!replaced) aliases.push_back(Alias{name, expansion});
                                 view.push_line("[alias] " + name + " = " + expansion);
                                 log_line(log, "[alias] ", name + " = " + expansion);
-                                save_rc(view.highlights(), aliases, gags, acts, counts);
+                                save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                             }
                         }
                     } else if (submitted.rfind("/ungag", 0) == 0) {   // one hand, one law undone
@@ -451,7 +456,7 @@ int main(int argc, char** argv) {
                                 if (gags[i] == rest) { gags.erase(gags.begin() + (long)i); removed = true; break; }
                             }
                             view.push_line(removed ? "[ungag] spoke again: " + rest : "[ungag] no such gag");
-                            if (removed) save_rc(view.highlights(), aliases, gags, acts, counts);
+                            if (removed) save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                         }
                     } else if (submitted.rfind("/gag", 0) == 0) {
                         std::string rest = trim(submitted.substr(4));
@@ -460,7 +465,7 @@ int main(int argc, char** argv) {
                             for (const std::string& g : gags) view.push_line("  " + g);
                         } else if (rest == "clear") {
                             gags.clear();
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                             view.push_line("[gag] cleared (rc updated)");
                         } else {
                             bool replaced = false;
@@ -468,7 +473,7 @@ int main(int argc, char** argv) {
                             if (!replaced) gags.push_back(rest);
                             view.push_line("[gag] silenced: " + rest);
                             log_line(log, "[gag] ", rest);
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                         }
                     } else if (submitted.rfind("/unact", 0) == 0) {   // one hand, one reflex undone
                         std::string rest = trim(submitted.substr(6));
@@ -480,7 +485,7 @@ int main(int argc, char** argv) {
                                 if (acts[i].text == rest) { acts.erase(acts.begin() + (long)i); removed = true; break; }
                             }
                             view.push_line(removed ? "[unact] disarmed: " + rest : "[unact] no such act");
-                            if (removed) save_rc(view.highlights(), aliases, gags, acts, counts);
+                            if (removed) save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                         }
                     } else if (submitted.rfind("/mark", 0) == 0) {   // rooms named beyond the walk
 
@@ -707,7 +712,7 @@ int main(int argc, char** argv) {
                         const std::string cname = trim(submitted.substr(6));
                         if (cname.empty()) {
                             view.push_line("[count] " + std::to_string(counts.size()) + " counter(s)");
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                             for (const Counter& c : counts) view.push_line("  " + c.name + ": " + std::to_string(c.v));
                         } else {
                             Counter* c = nullptr;
@@ -716,7 +721,7 @@ int main(int argc, char** argv) {
                             c->v++;
                             log_line(log, "[count] ", cname + " = " + std::to_string(c->v));
                             view.push_line("[count] " + cname + ": " + std::to_string(c->v));
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                         }
                     } else if (submitted.rfind("/act", 0) == 0) {
                         std::string rest = trim(submitted.substr(4));
@@ -725,7 +730,7 @@ int main(int argc, char** argv) {
                             for (const ActRule& a : acts) view.push_line("  " + a.text + " => " + a.response + (a.cond.empty() ? "" : " WHEN " + a.cond));
                         } else if (rest == "clear") {
                             acts.clear();
-                            save_rc(view.highlights(), aliases, gags, acts, counts);
+                            save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                             view.push_line("[act] cleared (rc updated)");
                         } else {
                             const size_t sep = rest.find("=>");
@@ -747,7 +752,7 @@ int main(int argc, char** argv) {
                                     if (!replaced) acts.push_back(ActRule{text, resp, cond});
                                     view.push_line("[act] armed: " + text + " => " + resp + (cond.empty() ? "" : " WHEN " + cond));
                                     log_line(log, "[act] ", text + " => " + resp + (cond.empty() ? "" : " WHEN " + cond));
-                                    save_rc(view.highlights(), aliases, gags, acts, counts);
+                                    save_rc(view.highlights(), aliases, gags, acts, counts, marks);
                                 }
                             }
                         }

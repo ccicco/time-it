@@ -812,6 +812,7 @@ int main(int argc, char** argv) {
                                 if (!tf) { view.push_line("[path] export refused: cannot open " + outp); }
                                 else {
                                     std::fprintf(tf, "# time-it trail: %zu step(s)\n", (floor_sel != -2000000000 ? sidx.size() : save_n));
+                                    { std::time_t ps_now = std::time(nullptr); std::fprintf(tf, "# saved: %s", std::ctime(&ps_now)); }
                                     const size_t sbnd = floor_sel != -2000000000 ? sidx.size() : save_n;
                                     for (size_t k = 0; k < sbnd; ++k) {
 const PathStep& st = floor_sel != -2000000000 ? steps[sidx[k]] : steps[k];

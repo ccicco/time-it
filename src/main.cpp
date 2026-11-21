@@ -717,6 +717,24 @@ int main(int argc, char** argv) {
                                     for (const auto& s : seen) if (s.second > 1) view.push_line("  " + s.first + " - " + std::to_string(s.second) + " arrival(s)");
                                 }
                             }
+                            if (parg == "heat") {
+                                if (steps.empty()) { view.push_line("[heat] no steps yet"); }
+                                else {
+                                    std::map<std::pair<std::string, std::string>, size_t> ph_map;
+                                    for (const PathStep& st : steps) ++ph_map[{st.from, st.dir}];
+                                    std::vector<std::pair<std::pair<std::string, std::string>, size_t>> ph_vec(ph_map.begin(), ph_map.end());
+                                    std::vector<bool> ph_used(ph_vec.size(), false);
+                                    view.push_line("[heat] most-walked exits:");
+                                    size_t ph_shown = 0;
+                                    while (ph_shown < 10 && ph_shown < ph_vec.size()) {
+                                        size_t ph_best = ph_vec.size();
+                                        for (size_t ph_k = 0; ph_k < ph_vec.size(); ++ph_k) if (!ph_used[ph_k] && (ph_best == ph_vec.size() || ph_vec[ph_k].second > ph_vec[ph_best].second)) ph_best = ph_k;
+                                        ph_used[ph_best] = true;
+                                        ++ph_shown;
+                                        view.push_line("  " + ph_vec[ph_best].first.first + " -" + ph_vec[ph_best].first.second + "-> x" + std::to_string(ph_vec[ph_best].second));
+                                    }
+                                }
+                            }
                             if (parg == "count") { view.push_line("[path] census: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)"); }
                             if (parg.rfind("load", 0) == 0 && (parg.size() == 4 || parg[4] == 32)) {
                                 std::string ld_fname = trim(parg.substr(4));

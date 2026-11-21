@@ -13,6 +13,7 @@
 #include <ctime>
 #include <string>
 #include <vector>
+#include <map>
 
 static void log_line(std::FILE* log, const char* tag, const std::string& s) {
     if (!log) return;
@@ -585,7 +586,53 @@ int main(int argc, char** argv) {
 
                     } else if (submitted.rfind("/map", 0) == 0) {   // the world you have walked
                         if (rooms.empty()) { view.push_line("[map] nothing walked yet"); }
-                        else {
+                        else if (trim(submitted) == "/map draw") {
+                                std::map<std::string, int> mx, my, mz;
+                                if (!steps.empty()) {
+                                    mx[steps.front().from] = 0; my[steps.front().from] = 0; mz[steps.front().from] = 0;
+                                    for (const PathStep& st : steps) {
+                                        if (mx.count(st.from) == 0 || mx.count(st.to) != 0) continue;
+                                        int dx = 0, dy = 0, dz = 0;
+                                        if (st.dir == "e") dx = 1; else if (st.dir == "w") dx = -1;
+                                        else if (st.dir == "n") dy = 1; else if (st.dir == "s") dy = -1;
+                                        else if (st.dir == "u") dz = 1; else if (st.dir == "d") dz = -1; else continue;
+                                        mx[st.to] = mx[st.from] + dx; my[st.to] = my[st.from] + dy; mz[st.to] = mz[st.from] + dz;
+                                    }
+                                }
+                                std::map<int, std::vector<std::array<int, 3>>> floors;   // z -> (x, y, placed)
+                                for (const auto& p : mx) {
+                                    bool taken = false;
+                                    for (const auto& c : floors[mz[p.first]]) if (c[0] == mx[p.first] && c[1] == my[p.first]) { taken = true; break; }
+                                    if (!taken) floors[mz[p.first]].push_back({mx[p.first], my[p.first], 0});
+                                }
+                                size_t unplaced = 0;
+                                for (const RoomNode& r : rooms) if (mx.count(r.name) == 0) ++unplaced;
+                                if (floors.empty()) { view.push_line("[map] draw: no trail to place rooms from - walk first"); }
+                                else {
+                                    for (const auto& fz : floors) {
+                                        view.push_line("[map] floor " + std::to_string(fz.first) + ":");
+                                        int minx = 0, maxx = 0, miny = 0, maxy = 0; bool bfirst = true;
+                                        for (const auto& c : fz.second) {
+                                            if (bfirst || c[0] < minx) minx = c[0];
+                                            if (bfirst || c[0] > maxx) maxx = c[0];
+                                            if (bfirst || c[1] < miny) miny = c[1];
+                                            if (bfirst || c[1] > maxy) maxy = c[1];
+                                            bfirst = false;
+                                        }
+                                        for (int y = maxy; y >= miny; --y) {
+                                            std::string row = "  ";
+                                            for (int x = minx; x <= maxx; ++x) {
+                                                const std::string* rn = nullptr;
+                                                for (const auto& p : mx) if (mz[p.first] == fz.first && mx[p.first] == x && my[p.first] == y) { rn = &p.first; break; }
+                                                row += rn ? std::string(1, rn->front()) : ".";
+                                                row += " ";
+                                            }
+                                            view.push_line(row);
+                                        }
+                                    }
+                                    if (unplaced != 0) view.push_line("[map] " + std::to_string(unplaced) + " room(s) beyond the trail, unplaced");
+                                }
+                            } else {
                             view.push_line("[map] " + std::to_string(rooms.size()) + " room(s)");
                             for (const RoomNode& r : rooms) {
                                 std::string mk;

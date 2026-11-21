@@ -497,6 +497,13 @@ int main(int argc, char** argv) {
 
                             else { for (const auto& m : marks) { view.push_line("[mark] " + m.first + " -> " + m.second); } }
 
+                        } else if (rest.rfind("rm", 0) == 0) {
+                            const std::string mlabel = rest.size() > 3 ? trim(rest.substr(3)) : "";
+                            if (mlabel.empty()) { view.push_line("[mark] rm needs a label to untie"); }
+                            auto mit = marks.end();
+                                for (auto it = marks.begin(); it != marks.end(); ++it) if (it->first == mlabel) { mit = it; break; }
+                                                            if (mit == marks.end()) { view.push_line("[mark] no mark named " + mlabel); }
+                            else { const std::string was = mit->second; marks.erase(mit); view.push_line("[mark] " + mlabel + " untied from " + was); }
                         } else if (current_room.empty()) {
 
                             view.push_line("[mark] presence unnamed - no room confessed yet");

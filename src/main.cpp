@@ -600,15 +600,28 @@ int main(int argc, char** argv) {
                             }
                             if (parg == "count") { view.push_line("[path] census: " + std::to_string(steps.size()) + " step(s), " + std::to_string(rooms.size()) + " room(s) walked, " + std::to_string(marks.size()) + " mark(s)"); }
                             if (parg.rfind("save", 0) == 0) {
-                                const std::string sfname = trim(parg.substr(4));
+                                std::string sfname = trim(parg.substr(4));
+                                size_t save_cap = steps.size();
+                                const bool head_save = sfname.rfind("first", 0) == 0;
+                                if (head_save) {
+                                    const std::string farg = trim(sfname.substr(5));
+                                    sfname = "timeit-trail-first.txt";
+                                    if (farg == "all") {}
+                                    else if (!farg.empty()) { const int fv = std::atoi(farg.c_str()); save_cap = fv > 0 ? (size_t)fv : 20; if (save_cap > 200) save_cap = 200; }
+                                    else save_cap = 20;
+                                }
+                                const size_t save_n = save_cap < steps.size() ? save_cap : steps.size();
                                 const std::string outp = rc_path().substr(0, rc_path().rfind(47)) + "/" + (sfname.empty() ? "timeit-trail.txt" : sfname);
                                 std::FILE* tf = std::fopen(outp.c_str(), "w");
                                 if (!tf) { view.push_line("[path] export refused: cannot open " + outp); }
                                 else {
-                                    std::fprintf(tf, "# time-it trail: %zu step(s)\n", steps.size());
-                                    for (const PathStep& st : steps) std::fprintf(tf, "%s -%s-> %s\n", st.from.c_str(), st.dir.c_str(), st.to.c_str());
+                                    std::fprintf(tf, "# time-it trail: %zu step(s)\n", save_n);
+                                    for (size_t k = 0; k < save_n; ++k) {
+                                        const PathStep& st = steps[k];
+                                        std::fprintf(tf, "%s -%s-> %s\n", st.from.c_str(), st.dir.c_str(), st.to.c_str());
+                                    }
                                     std::fclose(tf);
-                                    view.push_line("[path] " + std::to_string(steps.size()) + " step(s) exported: " + outp);
+                                    view.push_line("[path] " + std::to_string(save_n) + " step(s) exported: " + outp);
                                 }
                             }
                             else {
